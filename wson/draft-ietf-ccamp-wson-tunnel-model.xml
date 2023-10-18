@@ -1,0 +1,1828 @@
+<?xml version="1.0" encoding="US-ASCII"?> 
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<!--  vi: set et smarttab sw=2 tabstop=4:--> 
+<?rfc toc="yes"?> 
+<?rfc tocompact="yes"?> 
+<?rfc tocdepth="3"?> 
+<?rfc tocindent="yes"?> 
+<?rfc symrefs="yes"?> 
+<?rfc sortrefs="yes"?> 
+<?rfc comments="yes"?> 
+<?rfc inline="yes"?> 
+<?rfc compact="yes"?> 
+<?rfc subcompact="no"?>
+
+<rfc category="std" docName="draft-ietf-ccamp-wson-tunnel-model-05" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en">
+ <front>
+  <title abbrev="WSON Tunnel YANG"> A Yang Data Model for WSON Tunnel </title> 
+ 
+     <author fullname="Young Lee" initials="Y." surname="Lee">
+      <organization>Samsung</organization>
+      <address>
+        <postal>
+          <street></street>
+          <city>Seoul</city>
+          <region></region>
+          <code></code>
+          <country>South Korea</country>
+        </postal>
+        <email>younglee.tx@gmail.com</email>
+      </address>
+    </author>
+ 
+  <author initials="H." surname="Zheng" fullname="Haomian Zheng">
+   <organization>Huawei Technologies</organization>
+   <address>
+    <postal>
+     <street>H1, Huawei Industrial Base, Songshan Lake</street>
+     <city>Dongguan</city>
+     <region>Guangdong</region>
+     <code>523808</code>
+     <country>China</country>
+    </postal>
+    <email>zhenghaomian@huawei.com</email>
+   </address>
+  </author>
+
+ <author initials="A." surname="Guo" fullname="Aihua Guo">
+   <organization>Futurewei</organization>
+   <address>
+    <postal>
+     <street></street>
+     <city></city>
+     <region></region>
+     <code></code>
+     <country></country>
+    </postal>
+    <email>aihuaguo.ietf@gmail.com</email>
+   </address>
+  </author>
+
+  <author initials="V." surname="Lopez" fullname="Victor Lopez">
+   <organization>Telefonica</organization>
+   <address>
+    <postal>
+     <street></street>
+     <city></city>
+     <region></region>
+     <code></code>
+     <country></country>
+    </postal>
+    <email>victor.lopezalvarez@telefonica.com</email>
+   </address>
+  </author>
+
+  <author initials="D." surname="King" fullname="Daniel King">
+   <organization>Univ. of Lancaster</organization>
+   <address>
+    <postal>
+     <street></street>
+     <city></city>
+     <region></region>
+     <code></code>
+     <country></country>
+    </postal>
+    <email>d.king@lancaster.ac.uk</email>
+   </address>
+  </author>
+
+  <author initials="B." surname="Yoon" fullname="Bin Yeong Yoon">
+   <organization>ETRI</organization>
+   <address>
+    <postal>
+     <street>218 Gaijeongro, Yuseong-gu</street>
+     <city>Daejeon</city>
+     <region></region>
+     <code></code>
+     <country>Korea</country>
+    </postal>
+    <email>byyun@etri.re.kr</email>
+   </address>
+  </author>
+  
+    <author initials="R." surname="Vilalta" fullname="Ricard Vilalta">
+   <organization>CTTC</organization>
+   <address>
+    <postal>
+     <street></street>
+     <city></city>
+     <region></region>
+     <code></code>
+     <country></country>
+    </postal>
+    <email>ricard.vilalta@cttc.es</email>
+   </address>
+  </author>
+
+  <date month="March" day="19" year="2020"></date>
+  <workgroup>CCAMP Working Group</workgroup>
+
+ <abstract>
+  <t>
+  This document provides a YANG data model for WSON TE tunnel.
+  </t>
+ </abstract>
+ <!--
+ <note title="Requirements Language">
+  <t>
+  The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <xref target="RFC2119" />.
+  </t>
+ </note>
+ -->
+ </front>
+
+
+ <middle>
+ <section title="Introduction" toc="default">
+  <t>
+  This document provides a YANG data model for WSON tunnel model. The YANG model described in this document is a WSON technology-specific Yang Tunnel model based on the information model developed in <xref target="RFC7446" /> and the two encoding documents <xref target="RFC7579" /> and <xref target="RFC7581" /> that developed protocol independent encodings based on <xref target="RFC7446" />.
+  </t>
+  <t>
+  This document augments the generic TE tunnel model <xref target="I-D.ietf-teas-yang-te" />.
+  </t>
+   <section title="Terminology" toc="default">
+  <t>
+  Refer to <xref target="RFC7446" /> and <xref target="RFC7581" /> for the key terms used in this document.
+  </t>
+  <t>
+  The following terms are defined in <xref target="RFC7950" /> and are not redefined here:
+	<list style="symbols">
+	  <t>
+	  client
+	  </t>
+	  <t>
+	  server
+	  </t>
+	  <t>
+	  augment
+	  </t>
+	  <t>
+	  data model
+	  </t>
+	  <t>
+	  data node
+	  </t>
+	</list>
+  </t>
+  <t>
+  The following terms are defined in <xref target="RFC6241" /> and are not redefined here:
+  	<list style="symbols">
+	  <t>
+	  configuration data
+	  </t>
+	  <t>
+	  state data
+	  </t>
+	</list>
+  </t>
+  <t>
+  The terminology for describing YANG data models is found in <xref target="RFC7950" />.
+  </t>
+  </section>
+    <section title="Tree Diagram" toc="default">
+  <t>
+  A simplified graphical representation of the data model is used in <xref target="tree" /> of this this document.  The meaning of the symbols in these diagrams is defined in <xref target="RFC8340" />.
+  </t>
+  </section>
+  <section title="Prefixes in Data Node Names" toc="default">
+   <t>
+   In this document, names of data nodes and other data model objects are prefixed using the standard prefix associated with the corresponding YANG imported modules. The module ietf-layer0-types specified in <xref target="I-D.ietf-ccamp-layer0-types" />, ietf-layer1-types specified in <xref target="I-D.ietf-ccamp-layer1-types" />, ietf-te-path-computation specified in <xref target="I-D.ietf-teas-yang-path-computation" /> and ietf-te specified in <xref target="I-D.ietf-teas-yang-te" /> are imported in this module. 
+  </t>
+    <figure>
+    <artwork>
+      <![CDATA[
+    +-------------+-------------------+------------------------------+
+    | Prefix      | YANG module       |         Reference            |
+    +-------------+-------------------+------------------------------+
+    | layer0-types|ietf-layer0-types  |[I-D.ietf-ccamp-layer0-types] |
+	| layer1-types|ietf-layer1-types  |[I-D.ietf-ccamp-layer1-types] |
+	| tepc  |ietf-te-path-computation |[I-D.ietf-teas-yang-path-computation]|
+    | te          | ietf-te           |[I-D.ietf-teas-yang-te]       |
+	| wson-tunnel | ietf-wson-tunnel  |[RFC XXXX]                    |
+    +-------------+-------------------+------------------------------+
+     ]]>
+   </artwork>
+  </figure>
+  <t>
+  Note: The RFC Editor will replace XXXX with the number assigned to the RFC once this draft becomes an RFC.
+  </t>
+  </section>
+ </section>
+ <!--  Introduction END  -->
+
+ <section anchor="Overview" title="WSON Tunnel Model Description" toc="default">
+  <section title="Overview of WSON Tunnel Model">
+   <t>
+   The WSON tunnel model is using TE tunnel <xref target="I-D.ietf-teas-yang-te" /> and TE types <xref target="I-D.ietf-teas-yang-te-types" /> as a basic model and augment to the TE tunnel with WSON-specific parameters, including the bandwidth information and label information. It is also worth noting that the WSON tunnel provisioning is usually based on the WSON topology. Therefore the WSON tunnel model is usually used together with WSON topology model specified in <xref target="I-D.ietf-ccamp-wson-yang" />. 
+   </t>
+   <t>
+   More scenarios and model applications can be found in <xref target="I-D.ietf-ccamp-transport-nbi-app-statement" /> and <xref target="I-D.ietf-teas-actn-yang" />. The current model is following the YANG language specification as <xref target="RFC7950" />, and the corresponding protocol is recommended to be Netconf protocol in <xref target="RFC6241" /> or RESTconf protocol in <xref target="RFC8040" />.
+   </t>
+   <t>
+   The YANG module ietf-wson-tunnel defined in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <xref target="RFC8342" />.
+   </t>
+  </section>
+
+  <section title="WSON-specific Parameters in Tunnel Model">
+   <t>
+   WSON specific parameters have been augmenting to the TE tunnel models. The attributes on both of the source and destination need to be configured when setting up the tunnel. Typical parameters, including bandwidth and grid information, are required in the WSON tunnel model. These parameters are consistent with the framework in <xref target="RFC6163" />, and the specification in <xref target="RFC7579" /> and <xref target="RFC7581" />.
+   </t>
+   <t>
+   The WSON bandwidth information has been augmenting to various sections of TE tunnel models, including tunnel bandwidth, primary path bandwidth and so on. The WSON label information has been augmenting to label hop of a group of routing objects and also LSPs.
+   </t>
+  </section>
+   </section>
+  <!--  WSON Tunnel Model Overview END  --> 
+
+  <section anchor="tree" title="WSON Tunnel YANG Tree" toc="default">
+   <t>
+   <figure anchor="treefigure" title="" suppress-title="true" align="left" alt="" width="" height="">
+    <artwork xml:space="preserve" name="" type="" align="left" alt="" width="" height="">
+<![CDATA[ 
+module: ietf-wson-tunnel
+  augment /te:te/te:tunnels/te:tunnel:
+    +--rw src-client-signal?   identityref
+    +--rw dst-client-signal?   identityref
+    +--rw fec-type?            identityref
+    +--rw termination-type?    identityref
+    +--rw bit-stuffing?        boolean
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:te-bandwidth
+            /te:technology:
+    +--:(wson)
+       +--rw bandwidth-type?   identityref
+  augment /te:te/te:tunnels/te:tunnel/te:te-bandwidth
+            /te:technology:
+    +--:(wson)
+       +--rw bandwidth-type?   identityref
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:te-bandwidth
+            /te:technology:
+    +--:(wson)
+       +--rw bandwidth-type?   identityref
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:te-bandwidth/te:technology:
+    +--:(wson)
+       +--rw bandwidth-type?   identityref
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path/te:te-bandwidth
+            /te:technology:
+    +--:(wson)
+       +--rw bandwidth-type?   identityref
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint
+            /te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint
+            /te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type
+            /te:label/te:label-hop/te:te-label
+            /te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-in-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?   identityref
+    +--rw priority?    uint8
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-in-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-in-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-end/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-out-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?   identityref
+    +--rw priority?    uint8
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:globals/te:named-path-constraints
+            /te:named-path-constraint/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-end/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:optimizations
+            /te:algorithm/te:metric/te:optimization-metric
+            /te:explicit-route-exclude-objects
+            /te:route-object-exclude-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:optimizations
+            /te:algorithm/te:metric/te:optimization-metric
+            /te:explicit-route-include-objects
+            /te:route-object-include-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path
+            /te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path
+            /te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type
+            /te:label/te:label-hop/te:te-label
+            /te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?   identityref
+    +--rw priority?    uint8
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-end/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?   identityref
+    +--rw priority?    uint8
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-end/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path
+            /te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects
+            /te:path-computed-route-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--ro (grid-type)?
+          +--:(dwdm)
+          |  +--ro (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--ro subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--ro cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:lsps/te:lsp
+            /te:lsp-record-route-information
+            /te:lsp-record-route-information/te:type
+            /te:label/te:label-hop/te:te-label
+            /te:technology:
+    +--:(wson)
+       +--ro (grid-type)?
+          +--:(dwdm)
+          |  +--ro (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--ro subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--ro cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:lsps/te:lsp
+            /te:path-properties/te:path-route-objects
+            /te:path-computed-route-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--ro (grid-type)?
+          +--:(dwdm)
+          |  +--ro (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--ro subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--ro cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:optimizations/te:algorithm/te:metric
+            /te:optimization-metric
+            /te:explicit-route-exclude-objects
+            /te:route-object-exclude-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:optimizations/te:algorithm/te:metric
+            /te:optimization-metric
+            /te:explicit-route-include-objects
+            /te:route-object-include-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type
+            /te:label/te:label-hop/te:te-label
+            /te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:path-in-segment/te:label-restrictions
+            /te:label-restriction:
+    +--rw grid-type?   identityref
+    +--rw priority?    uint8
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-start/te:te-label
+            /te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:path-in-segment/te:label-restrictions
+            /te:label-restriction/te:label-end/te:te-label
+            /te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:path-out-segment/te:label-restrictions
+            /te:label-restriction:
+    +--rw grid-type?   identityref
+    +--rw priority?    uint8
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:path-out-segment/te:label-restrictions
+            /te:label-restriction/te:label-start/te:te-label
+            /te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:path-out-segment/te:label-restrictions
+            /te:label-restriction/te:label-end/te:te-label
+            /te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects
+            /te:path-computed-route-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--ro (grid-type)?
+          +--:(dwdm)
+          |  +--ro (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--ro subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--ro cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:lsps/te:lsp/te:lsp-record-route-information
+            /te:lsp-record-route-information/te:type
+            /te:label/te:label-hop/te:te-label
+            /te:technology:
+    +--:(wson)
+       +--ro (grid-type)?
+          +--:(dwdm)
+          |  +--ro (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--ro subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--ro cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-primary-paths
+            /te:p2p-primary-path/te:p2p-primary-reverse-path
+            /te:lsps/te:lsp/te:path-properties
+            /te:path-route-objects
+            /te:path-computed-route-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--ro (grid-type)?
+          +--:(dwdm)
+          |  +--ro (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--ro subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--ro cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path/te:optimizations
+            /te:algorithm/te:metric/te:optimization-metric
+            /te:explicit-route-exclude-objects
+            /te:route-object-exclude-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path/te:optimizations
+            /te:algorithm/te:metric/te:optimization-metric
+            /te:explicit-route-include-objects
+            /te:route-object-include-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path
+            /te:explicit-route-objects-always
+            /te:route-object-exclude-always/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path
+            /te:explicit-route-objects-always
+            /te:route-object-include-exclude/te:type
+            /te:label/te:label-hop/te:te-label
+            /te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--rw subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--rw cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?   identityref
+    +--rw priority?    uint8
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path/te:path-in-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-end/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction:
+    +--rw grid-type?   identityref
+    +--rw priority?    uint8
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-start/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path/te:path-out-segment
+            /te:label-restrictions/te:label-restriction
+            /te:label-end/te:te-label/te:technology:
+    +--:(wson)
+       +--rw (grid-type)?
+          +--:(dwdm)
+          |  +--rw dwdm-n?   layer0-types:dwdm-n
+          +--:(cwdm)
+             +--rw cwdm-n?   layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path
+            /te:computed-paths-properties
+            /te:computed-path-properties/te:path-properties
+            /te:path-route-objects
+            /te:path-computed-route-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--ro (grid-type)?
+          +--:(dwdm)
+          |  +--ro (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--ro subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--ro cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path/te:lsps/te:lsp
+            /te:lsp-record-route-information
+            /te:lsp-record-route-information/te:type
+            /te:label/te:label-hop/te:te-label
+            /te:technology:
+    +--:(wson)
+       +--ro (grid-type)?
+          +--:(dwdm)
+          |  +--ro (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--ro subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--ro cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:tunnels/te:tunnel/te:p2p-secondary-paths
+            /te:p2p-secondary-path/te:lsps/te:lsp
+            /te:path-properties/te:path-route-objects
+            /te:path-computed-route-object/te:type/te:label
+            /te:label-hop/te:te-label/te:technology:
+    +--:(wson)
+       +--ro (grid-type)?
+          +--:(dwdm)
+          |  +--ro (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--ro subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--ro cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:te/te:lsps-state/te:lsp
+            /te:lsp-record-route-information
+            /te:lsp-record-route-information/te:type
+            /te:label/te:label-hop/te:te-label
+            /te:technology:
+    +--:(wson)
+       +--ro (grid-type)?
+          +--:(dwdm)
+          |  +--ro (single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?
+          |     |          layer0-types:dwdm-n
+          |     +--:(super)
+          |        +--ro subcarrier-dwdm-n*   int16
+          +--:(cwdm)
+             +--ro cwdm-n?
+                     layer0-types:cwdm-n
+  augment /te:tunnels-rpc/te:input/te:tunnel-info
+            /tepc:path-request:
+    +-- src-client-signal?       identityref
+    +-- dst-client-signal?       identityref
+    +-- fec-type?                identityref
+    +-- termination-type?        identityref
+    +-- bit-stuffing?            boolean
+    +-- wavelength-assignment?   identityref
+
+
+
+]]> 
+    </artwork>
+   </figure>
+   </t>
+  </section>
+  <!--  tree END  --> 
+
+  <section anchor="code" title="WSON Tunnel YANG Code" toc="default">
+   <figure anchor="TheYANGCode" title="" suppress-title="true" align="left" alt="" width="" height="">
+    <artwork xml:space="preserve" name="" type="" align="left" alt="" width="" height="">
+<![CDATA[ 
+<CODE BEGINS>file "ietf-wson-tunnel@2019-09-11.yang"
+
+module ietf-wson-tunnel {
+  //yang-version 1.1;
+
+  namespace "urn:ietf:params:xml:ns:yang:ietf-wson-tunnel";
+  prefix "wson-tunnel";
+
+  import ietf-te { prefix "te"; }
+  import ietf-layer0-types{ prefix "layer0-types"; }
+  import ietf-te-path-computation { prefix "tepc"; }
+  import ietf-layer1-types { prefix "layer1-types";}
+
+  organization
+    "IETF CCAMP Working Group";
+
+  contact
+    "WG Web:   <http://tools.ietf.org/wg/ccamp/>
+     WG List:  <mailto:ccamp@ietf.org>
+
+     WG Chair: Daniele Ceccarelli
+               <daniele.ceccarelli@ericsson.com>
+
+     WG Chair: Fatai Zhang
+               <zhangfatai@huawei.com>
+
+     Editor: Young Lee <leeyoung.tx@gmail.com>
+	 Editor: Haomian Zheng <zhenghaomian@huawei.com>
+     Editor: Aihua Guo <aihuaguo.ietf@gmail.com>
+     Editor: Victor Lopez <victor.lopezalvarez@telefonica.com>
+	 Editor: Daniel King <d.king@lancaster.ac.uk>
+	 Editor: Bin Yeong Yoon <byyun@etri.re.kr>
+     Editor: Ricard Vilalta <ricard.vilalta@cttc.es>";
+     description
+       "This module defines a model for WSON Tunnel Services.
+	   
+	 Copyright (c) 2019 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD 
+     License set forth in Section 4.c of the IETF Trust's Legal 
+     Provisions Relating to IETF Documents
+     (http://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC XXXX; see
+     the RFC itself for full legal notices.";
+
+  revision "2019-09-11" {
+    description
+      "Updates to version 4";
+    reference "version 4";
+  }
+
+  /* Groupings. */
+  grouping wson-tunnel-attributes {
+    description "Parameters for WSON tunnel.";
+
+    leaf src-client-signal {
+      type identityref {
+        base layer1-types:client-signal;
+      }
+      description
+        "Client signal at the source endpoint of
+         the tunnel.";
+    }
+
+    leaf dst-client-signal {
+      type identityref {
+        base layer1-types:client-signal;
+      }
+      description
+        "Client signal at the destination endpoint of
+         the tunnel.";
+    }
+
+    leaf fec-type {
+      type identityref {
+        base layer0-types:fec-type;
+      }
+      description
+        "FEC type.";
+    }
+
+    leaf termination-type {
+      type identityref {
+        base layer0-types:term-type;
+      }
+      description
+        "Termination type.";
+    }
+
+    leaf bit-stuffing {
+      type boolean;
+      description
+        "Bit stuffing enabled/disabled.";
+    }
+  }
+
+  grouping wson-path-constraints {
+    description
+      "Global named path constraints configuration
+       grouping for WSON tunnel";
+
+    leaf wavelength-assignment {
+      type identityref {
+        base layer0-types:wavelength-assignment;
+      }
+      description "Wavelength Allocation Method";
+    }
+  }
+
+ /*
+  * Data nodes
+  */
+
+  augment "/te:te/te:tunnels/te:tunnel" {
+    description
+      "Augment with additional parameters required for WSON tunnel.";
+    uses wson-tunnel-attributes;
+  }
+  /*
+   * Augment TE bandwidth
+   */
+
+  /* Augment bandwidth of named-path-constraints */
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/"
+        + "te:te-bandwidth/te:technology" {
+    description "WSON bandwidth.";
+    case wson {
+      uses layer0-types:wson-path-bandwidth;
+    }
+  }
+
+  /* Augment bandwdith of tunnel */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:te-bandwidth/te:technology" {
+    description "WSON bandwidth.";
+    case wson {
+      uses layer0-types:wson-path-bandwidth;
+    }
+  }
+
+  /* Augment bandwidth of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:te-bandwidth/te:technology" {
+    description "WSON bandwidth.";
+    case wson {
+      uses layer0-types:wson-path-bandwidth;
+    }
+  }
+
+  /* Augment bandwidth of reverse primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:te-bandwidth/te:technology" {
+    description "WSON bandwidth.";
+    case wson {
+      uses layer0-types:wson-path-bandwidth;
+    }
+  }
+
+  /* Augment bandwidht of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:te-bandwidth/te:technology" {
+    description "WSON bandwidth.";
+    case wson {
+      uses layer0-types:wson-path-bandwidth;
+    }
+  }
+
+  /*
+   * Augment TE label.
+   */
+
+  /* Augment label hop of route-object-exclude-always of named-path-
+constraints */
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:explicit-route-objects-always/"
+        + "te:route-object-exclude-always/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of route-object-include-exclude of named-path-
+constraints */
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:explicit-route-objects-always/"
+        + "te:route-object-include-exclude/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label restrictions for the path-in-segment of 
+     named-path-constraints */
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-in-segment/"
+        + "te:label-restrictions/te:label-restriction" {
+    description "WSON label.";
+    uses layer0-types:layer0-label-restriction;
+  }
+
+  /* Augment label restrictions start for the path-in-segment 
+     of named-path-constraints */
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-in-segment/"
+        + "te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label restrictions end for the path-in-segment of 
+     named-path-constraints */
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-in-segment/"
+        + "te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label restrictions for the path-out-segment of 
+     named-path-constraints */
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-out-segment/"
+        + "te:label-restrictions/"
+        + "te:label-restriction" {
+    description "WSON label.";
+    uses layer0-types:layer0-label-restriction;
+  }
+  /* Augment label restrictions start for the path-out-segment 
+     of named-path-constraints */
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-out-segment/"
+        + "te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label restrictions end for the path-out-segment of 
+     named-path-constraints */
+  augment "/te:te/te:globals/te:named-path-constraints/"
+        + "te:named-path-constraint/te:path-out-segment/"
+        + "te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label hop of route-exclude of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-exclude-objects/"
+        + "te:route-object-exclude-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of route-include of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-include-objects/"
+        + "te:route-object-include-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of route-object-exclude-always of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-exclude-always/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of route-object-include-exclude of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-include-exclude/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label restrictions for the path-in-segment of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description "WSON label.";
+    uses layer0-types:layer0-label-restriction;
+  }
+
+  /* Augment label restrictions start for the path-in-segment of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label restrictions end for the path-in-segment of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label restrictions for the path-out-segment of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description "WSON label.";
+    uses layer0-types:layer0-label-restriction;
+  }
+
+  /* Augment label restrictions start for the path-out-segment of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label restrictions end for the path-out-segment of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label hop of path-route of primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:computed-paths-properties/"
+		+ "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-computed-route-object/"
+        + "te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of record-route of primary LSP */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:lsps/te:lsp/te:lsp-record-route-information/"
+        + "te:lsp-record-route-information/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of path-route of primary LSP */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:lsps/te:lsp/te:path-properties/"
+        + "te:path-route-objects/te:path-computed-route-object/"
+        + "te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of route-exclude of reverse primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-exclude-objects/"
+        + "te:route-object-exclude-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of route-include of reverse primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-include-objects/"
+        + "te:route-object-include-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of route-object-exclude-always of reverse primary path
+*/
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-exclude-always/"
+        + "te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of route-object-include-exclude of reverse primary path
+*/
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-include-exclude/"
+        + "te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label restrictions for the path-in-segment of reverse primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description "WSON label.";
+    uses layer0-types:layer0-label-restriction;
+  }
+
+  /* Augment label restrictions start for the path-in-segment of reverse primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+  /* Augment label restrictions end for the path-in-segment of reverse primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label restrictions for the path-out-segment of reverse primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description "WSON label.";
+    uses layer0-types:layer0-label-restriction;
+  }
+
+  /* Augment label restrictions start for the path-out-segment of reverse primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label restrictions end for the path-out-segment of reverse primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label hop of path-route of reverse primary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:computed-paths-properties/"
+		+ "te:computed-path-properties/te:path-properties/"
+        + "te:path-route-objects/te:path-computed-route-object/"
+        + "te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of record-route of reverse primary LSP */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:lsps/te:lsp/te:lsp-record-route-information/"
+        + "te:lsp-record-route-information/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of path-route of reverse primary LSP */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-primary-paths/te:p2p-primary-path/"
+        + "te:p2p-primary-reverse-path/"
+        + "te:lsps/te:lsp/te:path-properties/"
+        + "te:path-route-objects/te:path-computed-route-object/"
+        + "te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of route-exclude of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-exclude-objects/"
+        + "te:route-object-exclude-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of route-include of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:optimizations/te:algorithm/te:metric/"
+        + "te:optimization-metric/te:explicit-route-include-objects/"
+        + "te:route-object-include-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of route-object-exclude-always of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-exclude-always/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of route-object-include-exclude of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:explicit-route-objects-always/"
+        + "te:route-object-include-exclude/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label restrictions for the path-in-segment of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description "WSON label.";
+    uses layer0-types:layer0-label-restriction;
+  }
+
+  /* Augment label restrictions start for the path-in-segment of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label restrictions end for the path-in-segment of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:path-in-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label restrictions for the path-out-segment of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction" {
+    description "WSON label.";
+    uses layer0-types:layer0-label-restriction;
+  }
+
+  /* Augment label restrictions start for the path-out-segment of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-start/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label restrictions end for the path-out-segment of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:path-out-segment/te:label-restrictions/"
+        + "te:label-restriction/te:label-end/"
+        + "te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-link-label;
+    }
+  }
+
+  /* Augment label hop of path-route of secondary path */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:computed-paths-properties/"
+		+ "te:computed-path-properties/te:path-properties/"
+		+ "te:path-route-objects/"
+        + "te:path-computed-route-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of record-route of secondary LSP */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:lsps/te:lsp/te:lsp-record-route-information/"
+        + "te:lsp-record-route-information/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of path-route of secondary LSP */
+  augment "/te:te/te:tunnels/te:tunnel/"
+        + "te:p2p-secondary-paths/te:p2p-secondary-path/"
+        + "te:lsps/te:lsp/te:path-properties/"
+        + "te:path-route-objects/"
+        + "te:path-computed-route-object/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  /* Augment label hop of record-route of LSP */
+  augment "/te:te/te:lsps-state/"
+        + "te:lsp/te:lsp-record-route-information/"
+        + "te:lsp-record-route-information/te:type/te:label/"
+        + "te:label-hop/te:te-label/te:technology" {
+    description "WSON label.";
+    case wson {
+      uses layer0-types:wson-path-label;
+    }
+  }
+
+  augment "/te:tunnels-rpc/te:input/te:tunnel-info/"
+        + "tepc:path-request" {
+    description
+       "Augment with additional constraints WSON
+        tunnel.";
+    uses wson-tunnel-attributes;
+    uses wson-path-constraints;
+  }
+}
+
+
+<CODE ENDS>
+
+]]> 
+    </artwork>
+   </figure>  
+  </section>
+  <!--  YANG CODE END  --> 
+
+
+ <section anchor="Security" title="Security Considerations" toc="default">
+  <t>
+   The configuration, state, and action data defined in this document are designed to be accessed via a management protocol with a secure transport layer, such as NETCONF <xref target="RFC6241" />.  The NETCONF access control model <xref target="RFC8341" /> provides the means to restrict access for particular NETCONF users to a preconfigured subset of all available NETCONF protocol operations and content.
+  </t>
+  <t>
+  There are a number of data nodes defined in this YANG module that are writable/creatable/deletable (i.e., config true, which is the default).  These data nodes may be considered sensitive or vulnerable in some network environments.  Write operations (e.g., edit-config) to these data nodes without proper protection can have a negative effect on network operations.  These are the subtrees and data nodes and their sensitivity/vulnerability:
+  </t>
+  <t>  
+	/te:te/te:tunnels/te:tunnel
+	/te:te/../te:te-bandwidth/te:technology
+	/te:te/../te:type/te:label/te:label-hop/te:te-label/te:technology
+	/te:te/../te:label-restrictions/te:label-restriction/te:label-start/te:te-label/te:technology
+	/te:te/../te:label-restrictions/te:label-restriction/te:label-end/te:te-label/te:technology
+	/te:te/../te:label-restrictions/te:label-restriction/
+  Editors note: we are using simplified description by folding similar branches to avoid repetition.
+  </t>
+ </section>
+ <!--  Security END  --> 
+
+ <section anchor="IANA" title="IANA Considerations" toc="default">
+  <t>
+  It is proposed that IANA should assign new URIs from the "IETF XML Registry" <xref target="RFC3688" /> as follows:
+  </t>
+  <figure>
+			<artwork>
+	  <![CDATA[
+      URI: urn:ietf:params:xml:ns:yang:ietf-wson-tunnel
+      Registrant Contact: The IESG
+      XML: N/A; the requested URI is an XML namespace.
+
+		]]>
+			</artwork>
+	</figure>
+  <t> 
+   This document registers following YANG modules in the YANG Module Names registry <xref target="RFC7950" />.
+	</t>
+    <figure>
+		<artwork>
+	  <![CDATA[
+   name:         ietf-wson-tunnel
+   namespace:    urn:ietf:params:xml:ns:yang:ietf-wson-tunnel
+   prefix:       wson-tunnel
+   reference:    RFC XXXX
+
+		]]>
+		</artwork>
+	</figure>
+
+ </section>
+ <!--  IANA END  --> 
+
+ <section title="Acknowledgements" toc="default">
+  <t>
+  TBD.
+  </t>
+ </section>
+
+ <section anchor="Contributor" title="Contributors" toc="default">
+  <t>
+  Dhruv Dhody
+  <vspace blankLines="0" /> 
+  Huawei Technologies
+  <vspace blankLines="0" /> 
+  Email: dhruv.ietf@gmail.com
+  <vspace blankLines="0" /> 
+  </t>
+
+  <t>
+  Italo Busi
+  <vspace blankLines="0" /> 
+  Huawei Technologies
+  <vspace blankLines="0" /> 
+  Email: Italo.Busi@huawei.com
+  <vspace blankLines="0" /> 
+  </t>
+  
+  
+
+ </section>
+ <!--  Contributor END  --> 
+ </middle>
+
+ <back>
+ <references title="Normative References">
+  <!--<?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?> --> 
+  <?rfc include="reference.I-D.ietf-teas-yang-te"?>  
+  <?rfc include="reference.I-D.ietf-teas-yang-te-types"?> 
+  <?rfc include="reference.I-D.ietf-ccamp-wson-yang"?> 
+  <?rfc include="reference.I-D.ietf-ccamp-layer0-types"?> 
+  <?rfc include="reference.I-D.ietf-ccamp-layer1-types"?> 
+  <?rfc include="reference.I-D.ietf-teas-yang-path-computation"?>   
+ </references>
+ <!--  Normative END  -->
+
+ <references title="Informative References">
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.3688.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.6241.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.6163.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.7446.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.7579.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.7581.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.7950.xml"?>
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8040.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8340.xml"?>   
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8341.xml"?> 
+  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8342.xml"?> 
+  <?rfc include="reference.I-D.ietf-teas-actn-yang"?> 
+  <?rfc include="reference.I-D.ietf-ccamp-transport-nbi-app-statement"?>
+  </references>
+ <!--  Informative END  -->
+ 
+ </back>
+</rfc>

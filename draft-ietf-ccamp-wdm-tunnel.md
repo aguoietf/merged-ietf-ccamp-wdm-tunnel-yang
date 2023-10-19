@@ -168,7 +168,7 @@ contributor:
    are optional to support both situations.
 
    This is achieved by a combination of the traffic engineering tunnel
-   attributes explained in {{?I-D.ietf-teas-yang-te}} and augments
+   attributes explained in {{!I-D.ietf-teas-yang-te}} and augments
    when necessary. For instance, source address, source flexi-grid
    transponder, destination address and destination flexi-grid
    transponder attributes are directly taken from tunnel, whereas other
@@ -186,26 +186,26 @@ contributor:
 
 ~~~~
                                  Tunnel
-     <==============================================================>
+   <==============================================================>
                          Flexi-grid Tunnel Group x
             <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
 
-   +------------+                                        +------------+
-   |  Flexi-    |                                        |  Flexi-    |
-   |   grid     |                                        |   grid     |
-   |  node A    |                                        |  node E    |
-   |            |        +------+        +------+        |            |
-   |            | Link 1 |Flexi-| Link 2 |Flexi-| Link 3 |            |
-   |            |<------>| grid |<------>| grid |<------>|            |
-   |.........   |        |node B|        |node C|        |   .........|
-   | Trans- :   |        +------+        +------+        |   : Trans- |
-   | ponder :   |                                        |   : ponder |
-   |    A   :   |              +----------+              |   :    E   |
-   |........:   |     Link 4   |Flexi-grid|   Link 5     |   :........|
-   |            |              |    D     |              |            |
-   |            |<------------>|   node   |<------------>|            |
-   |            |              +----------+              |            |
-   +------------+                                        +------------+
+   +----------+                                        +----------+
+   |  Flexi-  |                                        |  Flexi-  |
+   |   grid   |                                        |   grid   |
+   |  node A  |                                        |  node E  |
+   |          |        +------+        +------+        |          |
+   |          | Link 1 |Flexi-| Link 2 |Flexi-| Link 3 |          |
+   |          |<------>| grid |<------>| grid |<------>|          |
+   |......... |        |node B|        |node C|        | .........|
+   | Trans- : |        +------+        +------+        | : Trans- |
+   | ponder : |                                        | : ponder |
+   |    A   : |              +----------+              | :    E   |
+   |........: |     Link 4   |Flexi-grid|   Link 5     | :........|
+   |          |              |    D     |              |          |
+   |          |<------------>|   node   |<------------>|          |
+   |          |              +----------+              |          |
+   +----------+                                        +----------+
 
             <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
                           Flexi-grid Tunnel Group y

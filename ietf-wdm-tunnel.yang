@@ -75,15 +75,17 @@ module ietf-wdm-tunnel {
   identity lower-first-wavelength-assignment {
     base l0-types:wavelength-assignment;
     description
-      "Assign first available wavelength starting from the lowest frequency
-       towards the highest frequency in the allowable frequency range.";
+      "Assign first available wavelength starting from the
+       lowest frequency towards the highest frequency in
+       the allowable frequency range.";
   }
 
   identity upper-first-wavelength-assignment {
     base l0-types:wavelength-assignment;
     description
-      "Assign first available wavelength starting from the highest frequency
-       towards the lowest frequency in the allowable frequency range.";
+      "Assign first available wavelength starting from the
+       highest frequency towards the lowest frequency in
+       the allowable frequency range.";
   }
 
   /*
@@ -204,9 +206,9 @@ module ietf-wdm-tunnel {
         default false;
         description
           "Indicate whether or not regenerators (e.g. 3R) should be
-           considered. When this parameter is set to true, the tunnel
-           path may include a regen when the path is not feasible for
-           direct optical reach.";
+           considered. When this parameter is set to true, the
+           tunnel path may include a regen when the path is not
+           feasible for direct optical reach.";
       }
 
       leaf wavelength-conversion {
@@ -219,8 +221,8 @@ module ietf-wdm-tunnel {
         default false;
         description
           "Indicate whether or not wavelength conversion is allowed
-           along the tunnel path. Applicable only when 3R regeneration
-           is enabled.";
+           along the tunnel path. Applicable only when 3R
+           regeneration is enabled.";
       }
 
       uses l0-types:l0-tunnel-attributes;
@@ -416,9 +418,6 @@ module ietf-wdm-tunnel {
       
     uses wdm-path-state;
   }
-
-
-//two separate proposal : one for wdm constraints, the other for merging wson and flexi-grid
 
   /*
    * Augment TE label range information

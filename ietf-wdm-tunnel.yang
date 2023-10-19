@@ -98,7 +98,6 @@ module ietf-wdm-tunnel {
       description
         "Transmitter's allowed tuning frequency range.";
 
-      config true;
       uses l0-types:transmitter-tuning-range;
     }
   }
@@ -130,10 +129,10 @@ module ietf-wdm-tunnel {
     }
 
     list transceivers {
+      key "lane-id";
       description
         "List of transceivers for all lanes.";
 
-      key "lane-id";
       leaf lane-id {
         type uint8;
         must '. >= 1' {
@@ -211,13 +210,13 @@ module ietf-wdm-tunnel {
       }
 
       leaf wavelength-conversion {
-        type boolean;
-        default false;
         when '../use-regen = "true"' {
           description
             "Regenerator must be enabled for wavelength conversion
              to be considered.";
         }
+        type boolean;
+        default false;
         description
           "Indicate whether or not wavelength conversion is allowed
            along the tunnel path. Applicable only when 3R regeneration
@@ -250,7 +249,7 @@ module ietf-wdm-tunnel {
            planning considerations.";
       }
       leaf delta-power {
-        type l0-types:decimal-2-digits;
+        type l0-types:gain-in-db-or-null;
         units "dB";
         description
           "Delta power in dB indicating the per-channel power

@@ -107,7 +107,7 @@ contributor:
    a YANG {{!RFC7950}} model for the flexi-grid tunnel (media-channel). This YANG
    module defines the whole path from a source transponder or node to
    the destination through a number of intermediate nodes in the flexi-grid network.
-	 
+ 
    This document identifies the flexi-grid tunne components,
    parameters and their values, characterizes the features and the
    performances of the flexi-grid elements. An application example is
@@ -174,7 +174,7 @@ contributor:
    transponder attributes are directly taken from tunnel, whereas other
    attributes such as source flexi-grid port, destination flexi-grid
    port are defined, as they are specific for flexi-grid.
-	  
+  
 # Example of Use
 
    In order to explain how this model is used, the following

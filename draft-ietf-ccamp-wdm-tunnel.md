@@ -99,7 +99,7 @@ contributor:
    Transport networks are evolving from current DWDM systems towards
    elastic optical networks, based on flexi-grid transmission and
    switching technologies {{!RFC7698}}. Such technology
-   aims at increasing both transport network scalability and flexibility, 
+   aims at increasing both transport network scalability and flexibility,
    allowing the optimization of bandwidth usage.
 
    While {{!I-D.ietf-ccamp-flexigrid-yang}} focuses on flexi-grid
@@ -107,7 +107,7 @@ contributor:
    a YANG {{!RFC7950}} model for the flexi-grid tunnel (media-channel). This YANG
    module defines the whole path from a source transponder or node to
    the destination through a number of intermediate nodes in the flexi-grid network.
- 
+
    This document identifies the flexi-grid tunne components,
    parameters and their values, characterizes the features and the
    performances of the flexi-grid elements. An application example is
@@ -174,7 +174,7 @@ contributor:
    transponder attributes are directly taken from tunnel, whereas other
    attributes such as source flexi-grid port, destination flexi-grid
    port are defined, as they are specific for flexi-grid.
-  
+
 # Example of Use
 
    In order to explain how this model is used, the following
@@ -212,12 +212,12 @@ contributor:
 ~~~~
 {: #fig-topology-example title="Topology Example"}
 
-   To configure a network tunnel to interconnect 
+   To configure a network tunnel to interconnect
    transponders A and E, first of all we have to populate the
    flexi-grid topology YANG model with all elements in the network:
 
    -  We define the transponders within nodes A and E as tunnel termination
-      points (TTPs) and provide their internal local link connectivity 
+      points (TTPs) and provide their internal local link connectivity
       towards the node interfaces.  We also provide nodes A and B identifiers,
       addresses and interfaces.
 
@@ -225,14 +225,14 @@ contributor:
       identifiers, addresses and interfaces, as well as the internal
       connectivity matrix between interfaces.
 
-   -  Then, we also define the links 1 to 5 that interconnect nodes, 
+   -  Then, we also define the links 1 to 5 that interconnect nodes,
       indicating which flexi-grid labels are available.
 
    -  Other information, such as the slot frequency and granularity are
       also provided.
 
    After the nodes, links and transponders have been defined using
-   {{!I-D.ietf-ccamp-flexigrid-yang}} we can 
+   {{!I-D.ietf-ccamp-flexigrid-yang}} we can
    configure the tunnel from the information we have stored in the
    flexi-grid topology, by querying which elements are available, and
    planning the resources that have to be provided on each situation.

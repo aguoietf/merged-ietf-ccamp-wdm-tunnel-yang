@@ -114,7 +114,7 @@ contributor:
    provided towards the end of the document to better understand
    their utility.
 
-## Terminology
+# Terminology
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -143,7 +143,7 @@ contributor:
 
    -  state data
 
-## Overview
+# Overview
 
    The present model defines a flexi-grid tunnel mainly composed of:
    -  source address
@@ -168,517 +168,140 @@ contributor:
    are optional to support both situations.
 
    This is achieved by a combination of the traffic engineering tunnel
-   attributes explained in {{?I-D.ietf-teas-yang-te"}} and augments
+   attributes explained in {{?I-D.ietf-teas-yang-te}} and augments
    when necessary. For instance, source address, source flexi-grid
    transponder, destination address and destination flexi-grid
    transponder attributes are directly taken from tunnel, whereas other
    attributes such as source flexi-grid port, destination flexi-grid
    port are defined, as they are specific for flexi-grid.
 	  
-## Prefixes in Data Node Names
+# Example of Use
 
-   In this document, names of data nodes and other data model objects
-   are prefixed using the standard prefix associated with the
-   corresponding YANG imported modules, as shown in {{tab-prefixes}}.
-
-   | Prefix   | YANG Module                  | Reference         |
-   |----------|------------------------------|-------------------|
-   | yang     | ietf-yang-types              | {{!RFC6991}}      |
-   | inet     | ietf-inet-types              | {{!RFC6991}}      |
-   | nt       | ietf-network-topology        | {{!RFC8345}}      |
-   | nw       | ietf-network-topology        | {{!RFC8345}}      |
-   | tet      | ietf-te-topology             | {{!RFC8795}}      |
-   | ietf-nss | ietf-network-slice-service   | \[RFCVVVV]        |
-   | te-types | ietf-te-types                | \[RFCWWWW]        |
-   | otnt     | ietf-otn-topology            | \[RFCYYYY]        |
-   | l1-types | ietf-layer1-types            | \[RFCZZZZ]        |
-   | otns     | ietf-otn-slice               | \[RFCXXXX]        |
-   | otns-mpi | ietf-otn-slice-mpi           | \[RFCXXXX]        |
-{: #tab-prefixes title="Prefixes and Corresponding YANG Modules"}
-
-RFC Editor Note:
-Please replace VVVV with the RFC number assigned to {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}.
-Please replace WWWW with the RFC number assigned to {{?I-D.ietf-teas-rfc8776-update}}.
-Please replace XXXX with the RFC number assigned to this document.
-Please replace YYYY with the RFC number assigned to {{!I-D.ietf-ccamp-otn-topo-yang}}.
-Please replace ZZZZ with the RFC number assigned to {{!I-D.ietf-ccamp-layer1-types}}.
-Please remove this note.
-
-## Definition of OTN Slice
-   An OTN slice is an OTN virtual network topology connecting a number
-   of OTN endpoints using a set of shared or dedicated OTN network resources to
-   satisfy specific service level objectives (SLOs).
-
-   An OTN slice is a technology-specific realization of an IETF network slice 
-   {{!I-D.ietf-teas-ietf-network-slices}} in the OTN domain, with the
-   capability of configuring slice resources in the term of OTN technologies. 
-   Therefore, all the terms and definitions concerning network slicing as 
-   defined in {{!I-D.ietf-teas-ietf-network-slices}} apply to OTN slicing.
-   
-   An OTN slice can span multiple OTN administrative domains, encompassing 
-   access links, intra-domain paths, and inter-domain links. 
-   An OTN slice may include multiple endpoints, each associated with a set of physical
-   or logical resources, e.g. optical port or time slots, at the termination point (TP) of 
-   an access link or inter-domain link at an OTN provider edge (PE) equipment. 
-
-   An end-to-end OTN slice may be composed of multiple OTN segment slices in
-   a hierarchical or sequential (or stitched) combination. 
-
-   {{fig-otn-slice}} illustrates the scope of OTN slices in multi-domain 
-   environment.
-
-~~~~
-      <------------------End-to-end OTN Slice---------------->
-
-      <- OTN Segment Slice 1 --->  <-- OTN Segment Slice 2 -->
-
-
-       +-------------------------+  +-----------------------+
-       | +-----+      +-------+  |  | +-------+      +-----+|
-+----+ | | OTN |      | OTN   |  |  | | OTN   |      | OTN ||  +----+
-| CE +-+-o PE  +-...--+ Borde o--+--+-o Borde +-...--+ PE  o+--+ CE |
-+----+||/|     |      | Node  |\ || | | Node  |      |     || |+----+
-      |||+-----+      +-------+| || | +-------+      +-----+| |
-      |||    OTN Domain 1      | || |      OTN Domain 2     | |
-      |++----------------------+-+| +-----------------------+ |
-      | |                      |  |                           |
-      | +-----+    +-----------+  |                           |
-      |       |    |              |                           |
-      V       V    V              V                           V
-   Access    OTN Slice        Inter-domain                  Access
-   Link      Endpoint         Link                          Link
-
-~~~~
-{: #fig-otn-slice title="OTN Slice"}
-
-   OTN slices may be pre-configured by the management plane and presented to 
-   the customer via the northbound interface (NBI), or be dynamically 
-   provisioned by a higher layer slice controller, e.g., an IETF network slice 
-   controller (IETF NSC) through the NBI. The OTN slice is 
-   provided by a service provider to a customer to be used as though it was part
-   of the customer's own networks.
-         
-# Use Cases for OTN Network Slicing
-
-## Leased Line Services with OTN
-
-   For end business customers (like OTT or enterprises), leased lines
-   have the advantage of providing high-speed connections with low
-   costs. On the other hand, the traffic control of leased lines is very
-   challenging due to rapid changes in service demands. Carriers are
-   recommended to provide network-level slicing capabilities to meet
-   this demand. Based on such capabilities, private network users have
-   full control over the sliced resources which have been allocated to them
-   and which could be used to support their leased lines, when needed.
-   Users may formulate policies based on the demand for services and
-   time to schedule the resources from the entire network's perspective
-   flexibly. For example, the bandwidth between any two points may be
-   established or released based on the time or monitored traffic
-   characteristics. The routing and bandwidth may be adjusted at a
-   specific time interval to maximize network resource utilization
-   efficiency.
-
-## Co-construction and Sharing
-
-   Co-construction and sharing of a network are becoming a popular means
-   among service providers to reduce networking building CAPEX. For Co-
-   construction and sharing case, there are typically multiple co-
-   founders for the same network. For example, one founder may provide
-   optical fibres and another founder may provide OTN equipment, while
-   each occupies a certain percentage of the usage rights of the network
-   resources. In this scenario, the network O&M is performed by a
-   certain founder in each region, where the same founder usually
-   deploys an independent management and control system. The other
-   founders of the network use each other's management and control
-   system to provision services remotely. In this scenario, different
-   founders' network resources need to be automatically (associated)
-   divided, isolated, and visualized. All founders may share or have
-   independent O&M capabilities, and should be able to perform service-
-   level provisioning in their respective slices.
-
-## Wholesale of optical resources
-
-   In the optical resource wholesale market, smaller, local carriers and
-   wireless carriers may rent resources from larger carriers, or
-   infrastructure carriers instead of building their networks. Likewise,
-   international carriers may rent resources from respective local
-   carriers and local carriers may lease their owned networks to each
-   other to achieve better network utilization efficiency.
-   From the perspective of a resource provider, it is crucial that a
-   network slice is timely configured to meet traffic matrix
-   requirements requested by its tenants. The support for multi-tenancy
-   within the resource provider's network demands that the network
-   slices are qualitatively isolated from each other to meet the
-   requirements for transparency, non-interference, and security.
-   Typically, a resource purchaser expects to use the leased network
-   resources flexibly, just like they are self-constructed. Therefore,
-   the purchaser is not only provided with a network slice, but also the
-   full set of functionalities for operating and maintaining the network
-   slice.  The purchaser also expects to, flexibly and independently, 
-   schedule and maintain physical resources to support their own
-   end-to-end automation using both leased and self-constructed network
-   resources.
-
-## Vertical dedicated network with OTN
-
-   Vertical industry slicing is an emerging category of network slicing
-   due to the high demand for private high-speed network interconnects
-   for industrial applications.
-   In this scenario, the biggest challenge is to implement
-   differentiated optical network slices based on the requirements from
-   different industries. For example, in the financial industry, to
-   support high-frequency transactions, the slice must ensure to provide
-   the minimum latency along with the mechanism for latency management.
-   For the healthcare industry, online diagnosis network and software
-   capabilities to ensure the delivery of HD video without frame loss.
-   For bulk data migration in data centers, the network needs to support
-   on-demand, large-bandwidth allocation. In each of the aforementioned
-   vertical industry scenarios, the bandwidth shall be adjusted as
-   required to ensure flexible and efficient network resource usage.
-
-## End-to-end network slicing
-
-   In an end-to-end network slicing scenario such as 5G network slicing
-   {{TS.28.530-3GPP}}, an IETF network slice {{?I-D.ietf-teas-ietf-network-slices}}
-   provides the required connectivity between other different segments 
-   of an end-to-end network slice, such as the Radio Access Network 
-   (RAN) and the Core Network (CN) segments, with a specific 
-   performance commitment. An IETF network slice could be composed of 
-   network slices from multiple technological and administrative 
-   domains. An IETF network slice can be realized by using or combining
-   multiple underlying OTN slices with OTN resources, e.g., ODU time 
-   slots or ODU containers, to achieve end-to-end slicing across the transport
-   domain.
-
-# Framework for OTN slicing
-
-   OTN slices may be abstracted differently depending on the requirement contained
-   in the configuration provided by the slice customer. Whereas the customer requests
-   an OTN slice to provide connectivity between specified endpoints, an OTN slice 
-   can be abstracted as a set of endpoint-to-endpoint links, with each link formed 
-   by an end-to-end tunnel across the underlying OTN networks. The resources
-   associated with each link of the slice is reserved and commissioned in the underlying
-   physical network upon the completion of configuring the OTN slice and all the 
-   links are active. 
-   
-   An OTN slice can also be abstracted as an abstract topology when the customer requests
-   the slice to share resources between multiple endpoints and to use the resources on demand.
-   The abstract topology may consist of virtual nodes and virtual links, and their associated
-   resources are reserved but not commissioned across the underlying OTN networks. The 
-   customer can later commission resources within the slice dynamically using the NBI provided
-   by the service provider. An OTN slice could use abstract topology to connect endpoints with 
-   shared resources to optimize the resource utilization, and connections can be activated 
-   within the slice as needed.
-    
-   It is worth noting that those means to abstract an OTN slice are similar to the Virtual 
-   Network (VN) abstraction defined for higher-level interfaces in {{!RFC8453}}, in which context
-   a connectivity-based slice corresponds to Type 1 VN and a resource-based slice corresponds to 
-   Type 2 VN, respectively.
-
-   A particular resource in an OTN network, such as a port or link, may be
-   sliced with one of the two granularity levels:
-
-   -  Link-based slicing, in which a link and its associated link
-      termination points (LTPs) are dedicatedly allocated to a
-      particular OTN slice.
-
-   -  Tributary-slot based slicing, in which multiple OTN slices
-      share the same link by allocating different OTN tributary slots in
-      different granularities.
-
-   Furthermore, an OTN switch is typically fully non-blocking switching 
-   at the lowest ODU container granularity, it is
-desirable to specify just the total number of ODU containers in the
-lowest granularity (e.g. ODU0), when configuring tributary-slot based
-slicing on links and ports internal to an OTN network. In multi-domain
-OTN network scenarios where separate OTN slices are created on
-each of the OTN networks and are stitched at inter-domain OTN links, it
-is necessary to specify matching tributary slots at the endpoints of the
-inter-domain links. In some real network scenarios, OTN network resources
-including tributary slots are managed explicitly by network operators for
-network maintenance considerations. Therefore, an OTN slice controller
-shall support configuring an OTN slice with both options.
-
-   An OTN slice controller (OTN-SC) is a logical function responsible for
-   the life-cycle management of OTN slices instantiated within the 
-   corresponding OTN network domains. The OTN-SC provides technology-specific 
-   interfaces at its northbound (OTN-SC NBI) to allow a higher-layer slice 
-   controller, such as an IETF network slice controller (NSC) or an orchestrator, 
-   to request OTN slices with OTN-specific 
-   requirements. The OTN-SC interfaces at the southbound using the MDSC-to-PNC 
-   interface (MPI) with a Physical Network Controller (PNC) or Multi-Domain Service Orchestrator (MDSC),
-   as defined in the ACTN control framework {{!RFC8453}}. The logical function 
-   within the OTN-SC is responsible for translating the OTN slice requests 
-   into concrete slice realization which can be understood and 
-   provisioned at the southbound by the PNC or MDSC.
-   
-   The presence of OTN-SC provides multiple options for a high-level slice controller 
-   or an orchestrator to configure and realize slicing in OTN networks, depending on
-   whether a customer's slice request is technology agnostic or technology specific:
-    
-   Option 1\[opt.1]: An IETF NSC receives a technology-agnostic slice request from the IETF NSC NBI and
-   realizes full or part of the slice in OTN networks directly through MPI provided by
-   the PNC or MDSC. The IETF NSC is responsible for mapping a technology-agnostic slicing request 
-   into an OTN technology-specific realization. In this option, the OTN-SC is not used.
-   
-   Option 2\[opt.2]: An IETF NSC receives a technology-agnostic slice request from the IETF NSC NBI and delegates the
-   request to the OTN-SC through the OTN-SC NBI, which is OTN technology specific. The OTN-SC in turn realizes the slice in single or multi domain OTN networks by working with the underlying PNC or MDSC. In this option, the OTN-SC is considered as a realization of IETF NSC, i.e.,
-   an NS realizer as per {{!I-D.draft-contreras-teas-slice-controller-models}},
-   when the underlying network is OTN. The OTN-SC is also a subordinate slice controller of the IETF NSC, which 
-   is consistent with the hierarchical control of slices defined by the IETF network slice framework.
-   
-   Option 3\[opt.3]: An OTN-aware orchestrator may request an OTN technology-specific slice with OTN-specific SLOs through the 
-   OTN-SC NBI to the OTN-SC. The OTN-SC in turn realizes the slice in single or multi domain OTN networks by working with the underlying PNC or MDSC
-   
-   An OTN slice may be realized by using standard MPI interfaces, control plane, network management system (NMS) or any other proprietary interfaces as needed. Examples of such interfaces include the abstract TE topology {{!RFC8795}}, TE tunnel {{!I-D.ietf-teas-yang-te}},L1VPN{{!RFC4847}}, or Netconf/YANG based interfaces such as OpenConfig. Some of these interfaces, such as the TE tunnel model, are suitable for creating connectivity-based OTN slices which represent a slice as a set of TE tunnels, while other interfaces such as the TE topology model are more suitable for creating resource-based OTN slices which represent a slice as a topology.
-   
-   The OTN-SC NBI is a technology-specific interface that augments the IETF NSC NBI, which is technology-
-   agnostic. 
-   
-   {{fig-slice-interfaces}} illustrates the OTN slicing control hierarchy 
-   , the positioning of the OTN slicing interfaces as well as the options for OTN slice configuration.
+   In order to explain how this model is used, the following
+   example is provided.  An optical network usually has multiple transponders,
+   switches (nodes) and links. {{fig-topology-example}} shows a simple
+   topology, where two physical paths interconnect two optical
+   transponders.
 
 
 ~~~~
-                      +--------------------+
-                      | Provider's User    |
-                      +--------|-----------+
-                               | CMI
-       +-----------------------+----------------------------+
-       |          Orchestrator / E2E Slice Controller       | 
-       +------------+-----------------------------+---------+
-                    |                             | NSC-NBI
-                    |       +---------------------+---------+
-                    |       | IETF Network Slice Controller |
-                    |       +-----+---------------+---------+
-                    | opt.3       | opt.2         | opt.1
-                    | OTN-SC NBI  |OTN-SC NBI     |               
-       +------------+-------------+--------+      |
-       |               OTN-SC              |      |
-       +--------------------------+--------+      |      
-                                  | MPI           | MPI                           
-       +--------------------------+---------------+---------+ 
-       |                         PNC                        | 
-       +--------------------------+-------------------------+ 
-                                  | SBI
-                      +-----------+----------+
-                      |OTN Physical Network  |
-                      +----------------------+
+                                 Tunnel
+     <==============================================================>
+                         Flexi-grid Tunnel Group x
+            <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+
+   +------------+                                        +------------+
+   |  Flexi-    |                                        |  Flexi-    |
+   |   grid     |                                        |   grid     |
+   |  node A    |                                        |  node E    |
+   |            |        +------+        +------+        |            |
+   |            | Link 1 |Flexi-| Link 2 |Flexi-| Link 3 |            |
+   |            |<------>| grid |<------>| grid |<------>|            |
+   |.........   |        |node B|        |node C|        |   .........|
+   | Trans- :   |        +------+        +------+        |   : Trans- |
+   | ponder :   |                                        |   : ponder |
+   |    A   :   |              +----------+              |   :    E   |
+   |........:   |     Link 4   |Flexi-grid|   Link 5     |   :........|
+   |            |              |    D     |              |            |
+   |            |<------------>|   node   |<------------>|            |
+   |            |              +----------+              |            |
+   +------------+                                        +------------+
+
+            <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+                          Flexi-grid Tunnel Group y
+~~~~
+{: #fig-topology-example title="Topology Example"}
+
+   To configure a network tunnel to interconnect 
+   transponders A and E, first of all we have to populate the
+   flexi-grid topology YANG model with all elements in the network:
+
+   -  We define the transponders within nodes A and E as tunnel termination
+      points (TTPs) and provide their internal local link connectivity 
+      towards the node interfaces.  We also provide nodes A and B identifiers,
+      addresses and interfaces.
+
+   -  We do the same for the nodes B, C and D, providing their
+      identifiers, addresses and interfaces, as well as the internal
+      connectivity matrix between interfaces.
+
+   -  Then, we also define the links 1 to 5 that interconnect nodes, 
+      indicating which flexi-grid labels are available.
+
+   -  Other information, such as the slot frequency and granularity are
+      also provided.
+
+   After the nodes, links and transponders have been defined using
+   {{!I-D.ietf-ccamp-flexigrid-yang}} we can 
+   configure the tunnel from the information we have stored in the
+   flexi-grid topology, by querying which elements are available, and
+   planning the resources that have to be provided on each situation.
+   Note that every element in the flexi-grid topology has a reference,
+   and this is the way in which they are called in the tunnel.
+
+   -  Depending on the case, it is possible to define either the source
+      and destination node ports, or the source and destination node and
+      transponder.  In our case, we would define a network tunnel, with
+      source transponder A and source node B, and destination
+      transponder E and destination node C.  Thus, we are going to
+      follow path x.
+
+   -  Then, for each link in the path x, we indicate which channel we
+      are going to use, providing information about the slots, and what
+      nodes are connected.
+
+   -  Finally, the flexi-grid topology has to be updated with each
+      element usage status each time a tunnel is created or torn down.
+
+# YANG Model for WDM Tunnel
+
+## YANG Tree
 
 ~~~~
-{: #fig-slice-interfaces title="Positioning of OTN Slicing Interfaces"}
+{::include ./ietf-wdm-tunnel.tree}
+~~~~
 
-   OTN-SC functionalities may be recursive such that a higher-level
-   OTN-SC may designate the creation of OTN slices to a lower-level
-   OTN-SC in a recursive manner. This scenario may apply to the
-   creation of OTN slices in multi-domain OTN networks, where 
-   multiple domain-wide OTN slices provisioned by lower-layer
-   OTN-SCs are stitched to support a multi-domain OTN slice
-   provisioned by the higher-level OTN-SC.  Alternatively, the OTN-SC
-   may interface with an MDSC, which in turn interfaces with multiple 
-   PNCs through the MPI to realize OTN slices in multi-domain OTN networks 
-   without OTN-SC recursion. 
-   {{fig-otn-sc-recursion}} illustrates both options for OTN slicing
-   in multi-domain.
+## YANG Code
 
 ~~~~
-    +-------------------+                    +-------------------+
-    |      OTN-SC       |                    |      OTN-SC       |
-    +--------|----------+                    +---|----------|----+
-             |MPI                                |OTN-SC NBI|
-    +--------|----------+                    +---|----+ +---|----+
-    |      MDSC         |                    | OTN-SC | | OTN-SC |
-    +---|----------|----+                    +---|----+ +---|----+
-        |MPI       |MPI                          |MPI       |MPI
-    +---|----+ +---|----+                    +---|----+ +---|----+
-    |   PNC  | |   PNC  |                    |   PNC  | |   PNC  |
-    +--------+ +--------+                    +--------+ +--------+
-    Multi-domain Option 1                    Multi-domain Option 2
-~~~~
-{: #fig-otn-sc-recursion title="OTN-SC for multi-domain"}
-
-   OTN-SC functionalities are logically independent and may be deployed in 
-   different combinations to cater to the realization needs. In reference to the 
-   ACTN control framework {{!RFC8453}}, an OTN-SC may be deployed
-
-   - as an independent network function;
-
-   - together with a Physical Network Controller (PNC) for single-domain
-      or with a Multi-Domain Service Orchestrator (MDSC)for multi-domain;
-
-   - together with a higher-level network slice controller to support 
-      end-to-end network slicing;
-
-# Realizing OTN Slices
-
-{{!I-D.ietf-teas-ietf-network-slices}} introduces a mechanism for an IETF network slice controller to realize network slices by constructing Network Resource Partitions (NRP). A NRP is a collection of resources identified in the underlay network to facilitate the mapping of network slices onto available network resources. An NRP is a scope view of a topology and may be considered as a topology in its own right. Thus, in traffic-engineered (TE) networks including OTN, an NRP may be simply represented as an abstract TE topology defined by {{!RFC8795}}. For OTN networks, An NRP may be represented as an abstract OTN topology defined by {{!I-D.ietf-ccamp-otn-topo-yang}}.
-
-The NRP may be used to address the scalability issues where there may be considerable numbers of control and data plane states required to be stored and programmed if network slices are mapped directly to the underlay topology. NRP is internal to a network slice controller, and use of NRPs is optional yet could benefit a network slice realization in large-scale networks, including OTN networks. 
-
-For connectivity-based OTN slices, a connection within an OTN slice is typically realized by an OTN tunnel in the underlay topology and resources are reserved by the tunnel, thus use of NRP is optional in this case.
-
-For resource-based OTN slices, the OTN-SC may map an OTN slice directly onto the underlay TE topology presented by the subtended network controller (MDSC or PNC) without creating NRP topologies. Due to the need for reserving resources, the OTN-SC needs to color corresponding link resources of the underlay topology with a slice identifier and maintain the coloring to keep track of the mapping of OTN slices. The OTN-SC may push the colored topology to the subtended MDSC or PNC using the MPI model defined in this draft.
-
-Alternatively, an OTN slice may be mapped to a NRP as an overlay abstract OTN TE topology on top of the underlay topology. The corresponding link resources allocated to the slice is encapsulated in and tracked by the abstract topology, and a given link or port in the NRP topology represents resources that are reserved in the underlay topology. Multiple OTN slices may be mapped to the same NRP, and a single connectivity construct of the slice may be mapped to only one NRP, as per {{!I-D.ietf-teas-ietf-network-slices}}. The resources of an NRP topology are reserved and shared by all the OTN slices mapped to this NRP, and the NRP topology may be pushed directly to the subtended MDSC or PNC, thus eliminating the need for link coloring if using the underlay topology.
-
-{{fig-otn-sc-nrp}} illustrates the relationship between OTN slices and NRP.
-
-~~~~
-        /---------------/      |            /---------------/
-       /  --     --    /       |           /  --     --    /
-      /  |N1|---|N3|  /---/    |          /  |N2|   |N3|  /
-     /    --\    --  /   /     |         /    --     --  /
-    /        \--    /   /      |        /       \ --/   /
-   /         |N2|  /   /       |       /         |N4|  /
-  / Slice 1   --  /   /        |      / Slice 2   --  /
- /------------<--/   /         |     /-----------<---/
-    / Slice 3 <     /          |                 <
-   /--------- <-<--/           |                 <
-+-------------<-<--------------V-----------------<------------+
-|          /--<-<------------/             /-----<-----------/|
-|         / /--\     /--\   /             /          /--\   / |
-|        / |NE1 |---|NE2 | /             /          |NE2 | /  |
-|       /   \--/\  . \--/ /             /            \--/ /   |
-|      /       ..\ ........            /              /. /    |
-|     /        . /--\   / .           / /--\     /--\/ ./     |
-|    /         .|NE4 | /  .          / |NE3 |---|NE4 | .      |
-|   /          . \--/ /   .         /   \--/  .  \--/ /.      |
-|  /  NRP Topology 1 /    .        /  NRP Topology 2 / .      |
-| /------------.----/     .       /-----------.-----/  .      |
-|              .......    .                   .        .      |
-|             /------.----.-----------------/ .        .      |
-|            / /--\  .    .     /--\       /  .        .      |
-|           / |NE1 |-.----v----|NE2 |     /   .        .      |
-|          /   ---/\ .         /\--/     /    .        .      |
-|         /   /     \v        /<........................      |
-|        / /-/\      \ /--\  /         /      .               |
-|       / |NE3 |------|NE4 |/         /       .               |
-|      /   \--/  ^     \--/          /        .               |
-|     /  Underlay.OTN TE Topology   /         .               |
-|    /-----------.-----------------/          .               |
-|                ..............................     OTN-SC    |
-+-------------------------------------------------------------+
-                 |                         ^
-                 |MPI                      |MPI
-+----------------V--------------------------------------------+
-|                                                             |
-|                       OTN MDSC/PNC                          |
-+-------------------------------------------------------------+
-~~~~
-{: #fig-otn-sc-nrp title="Mapping OTN Slices to NRP"}
-
-# YANG Data Model for OTN Slicing Configuration
-
-## OTN Slicing YANG Model for MPI
-
-### MPI YANG Model Overview
-
-   For the configuration of connectivity-based OTN slices, existing models such as 
-   the TE tunnel interface {{!I-D.ietf-teas-yang-te}} may be used and no addition is 
-   needed. This model is addressing the case for configuring resource-based OTN slices,
-   where the model permits to reserve resources exploiting the common knowledge of an underlying 
-   virtual topology between the OTN-SC and the subtended network controller (MDSC or PNC). The slice
-   is configured by marking corresponding link resources on the TE topology received from the 
-   underlying MDSC or PNC with a slice identifier and OTN-specific resource requirements, 
-   e.g. the number of ODU time slots or the type/number of ODU containers. The MDSC or PNC, based on the 
-   marked resources by the OTN-SC, will update the underlying TE topology with new TE link for each of 
-   the colored links to keep booked the reserved OTN resources e.g. time slots or ODU containers.
-
-### MPI YANG Model Tree
-
-~~~~
-{::include ./ietf-otn-slice-mpi.tree}
-~~~~
-{: #fig-otn-slice-mpi-tree title="OTN slicing MPI tree diagram"}
-
-### MPI YANG Code
-
-~~~~
-   <CODE BEGINS> file "ietf-otn-slice-mpi@2022-10-12.yang"
-{::include ./ietf-otn-slice-mpi.yang}
+   <CODE BEGINS> file "ietf-wdm-tunnel@2023-10-02.yang"
+{::include ./ietf-wdm-tunnel.yang}
    <CODE ENDS>
 ~~~~
-{: #fig-otn-slice-mpi-yang title="OTN slicing MPI YANG model"}
-
-## OTN Slicing YANG Model for OTN-SC NBI
-
-### NBI YANG Model Overview
-
-   The YANG model for OTN-SC NBI is OTN-technology specific, but shares many
-   common constructs and attributes with the common network slicing YANG model
-   defined in {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}. Furthermore, the 
-   OTN-SC NBI YANG is expected to support both connectivity-based
-   and resource-based slice configuration, which is likely a common requirement for
-   supporting slicing at other transport network layers, e.g. WDM or MPLS(-TP).
-   
-   The OTN slicing model augments the common network slicing YANG model by extending
-   OTN technology-specific SLO and SLE attributes which can be requested by OTN-aware
-   customers and allows the customer to specify desired OTN signal quality. 
-   These attributes include:
-   
-   - The performance objective for Optical Data Unit (ODU) containers as defined in
-     ITU-T-G.8201-Amd.1.
-   
-   - Bandwidth specification in the type and number of ODU containers.
-
-### NBI YANG Model Tree for OTN slice
-
-~~~~
-{::include ./ietf-otn-slice.tree}
-~~~~
-{: #fig-ietf-otn-slice title="Tree diagram for OTN slice"}
-
-### NBI YANG Code for OTN Slice
-
-~~~~
-   <CODE BEGINS> file "ietf-otn-slice@2023-07-06.yang"
-{::include ./ietf-otn-slice.yang}
-   <CODE ENDS>
-~~~~
-{: #fig-ietf-otn-slice-yang title="YANG model for transport network slice"}   
-  
-# Manageability Considerations
-
-   To ensure the security and controllability of physical resource
-   isolation, slice-based independent operation and management are
-   required to achieve management isolation.
-   Each optical slice typically requires dedicated accounts,
-   permissions, and resources for independent access and O&M. This
-   mechanism is to guarantee the information isolation among slice
-   tenants and to avoid resource conflicts. The access to slice
-   management functions will only be permitted after successful security
-   checks.
 
 # Security Considerations
 
-   The YANG module specified in this document defines a schema for data
-   that is designed to be accessed via network management protocols such
-   as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer
-   is the secure transport layer, and the mandatory-to-implement secure
-   transport is Secure Shell (SSH) {{!RFC6242}}.  The lowest RESTCONF layer
-   is HTTPS, and the mandatory-to-implement secure transport is TLS
-   {{!RFC8446}}.
-
+   The configuration, state, and action data defined in this document
+   are designed to be accessed via a management protocol with a secure
+   transport layer, such as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.
    The NETCONF access control model {{!RFC8341}} provides the means to
-   restrict access for particular NETCONF or RESTCONF users to a
-   preconfigured subset of all available NETCONF or RESTCONF protocol
-   operations and content.
+   restrict access for particular NETCONF users to a preconfigured
+   subset of all available NETCONF protocol operations and content.
 
    There are a number of data nodes defined in this YANG module that are
    writable/creatable/deletable (i.e., config true, which is the
    default).  These data nodes may be considered sensitive or vulnerable
    in some network environments.  Write operations (e.g., edit-config)
    to these data nodes without proper protection can have a negative
-   effect on network operations.  Considerations in Section 8 of
-   {{!RFC8795}} are also applicable to their subtrees in the module defined
-   in this document.
+   effect on network operations.  These are the subtrees and data nodes
+   and their sensitivity/vulnerability:
 
-   Some of the readable data nodes in this YANG module may be considered
-   sensitive or vulnerable in some network environments.  It is thus
-   important to control read access (e.g., via get, get-config, or
-   notification) to these data nodes.  Considerations in Section 8 of
-   {{!RFC8795}} are also applicable to their subtrees in the module defined
-   in this document.
+   -  /te:te/te:tunnels/te:tunnel
+
+   -  /te:te/.../te:te-bandwidth/te:technology
+
+   -  /te:te/.../te:type/te:label/te:label-hop/te:te-label/te:technology
+
+   -  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
+      start/te:te-label/te:technology
+
+   -  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
+      end/te:te-label/te:technology
+
+   -  /te:te/.../te:label-restrictions/te:label-restriction/
+
+   Editors note: we are using simplified description by folding similar
+   branches to avoid repetition.
 
 # IANA Considerations
 
@@ -686,27 +309,18 @@ Alternatively, an OTN slice may be mapped to a NRP as an overlay abstract OTN TE
    Registry" {{!RFC3688}} as follows:
 
 ~~~~
-   URI: urn:ietf:params:xml:ns:yang:ietf-otn-slice
-   Registrant Contact: The IESG
-   XML: N/A; the requested URI is an XML namespace.
-
-   URI: urn:ietf:params:xml:ns:yang:ietf-otn-slice-mpi
+   URI: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
    Registrant Contact: The IESG
    XML: N/A; the requested URI is an XML namespace.
 ~~~~
 
-   This document registers two YANG modules in the YANG Module Names
+   This document registers the following YANG module in the YANG Module Names
    registry {{!RFC6020}}.
 
 ~~~~
-   name: ietf-otn-slice
-   namespace: urn:ietf:params:xml:ns:yang:ietf-otn-slice
-   prefix: otns
-   reference: RFC XXXX
-
-   name: ietf-otn-slice-mpi
-   namespace: urn:ietf:params:xml:ns:yang:ietf-otn-slice-mpi
-   prefix: otns-mpi
+   name: ietf-wdm-tunnel
+   namespace: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
+   prefix: wdm-tnl
    reference: RFC XXXX
 ~~~~
 
@@ -716,10 +330,8 @@ Alternatively, an OTN slice may be mapped to a NRP as an overlay abstract OTN TE
 
 # Acknowledgments
 
-   This document was prepared using kramdown.
-
-   Previous versions of this document were prepared using 2-Word-v2.0.template.dot.
-
-   The authors would like to thank Adrian Farrel, Danielle Ceccarelli,
-   Igor Bryskin, Bo Wu, Gyan Mishra, Joel M. Halpen, Dhruv Dhoddy and Loa Andersson
-   for providing valuable insights.
+   This work is also partially funded by the Spanish State Research
+   Agency under the project AgileMon (AEI PID2019-104451RB-C21) and by
+   the Spanish Ministry of Science, Innovation and Universities under
+   the program for the training of university lecturers (Grant number:
+   FPU19/05678).

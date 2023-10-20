@@ -2,10 +2,10 @@
 
 This is the working area for the individual Internet-Draft, "A YANG Data Model for WDM Tunnels".
 
-* [Editor's Copy](https://aguoietf.github.io/merged-ietf-ccamp-wdm-tunnel-yang/#go.draft-bgkx-ccamp-merged-wdm-tunnel.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-bgkx-ccamp-merged-wdm-tunnel)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-bgkx-ccamp-merged-wdm-tunnel)
-* [Compare Editor's Copy to Individual Draft](https://aguoietf.github.io/merged-ietf-ccamp-wdm-tunnel-yang/#go.draft-bgkx-ccamp-merged-wdm-tunnel.diff)
+* [Editor's Copy](https://aguoietf.github.io/merged-ietf-ccamp-wdm-tunnel-yang/#go.draft-bgk-ccamp-merged-wdm-tunnel.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-bgk-ccamp-merged-wdm-tunnel)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-bgk-ccamp-merged-wdm-tunnel)
+* [Compare Editor's Copy to Individual Draft](https://aguoietf.github.io/merged-ietf-ccamp-wdm-tunnel-yang/#go.draft-bgk-ccamp-merged-wdm-tunnel.diff)
 
 
 ## Contributing

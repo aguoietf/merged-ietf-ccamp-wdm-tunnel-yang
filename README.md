@@ -2,10 +2,10 @@
 
 This is the working area for the IETF [CCCAMP Working Group](https://datatracker.ietf.org/wg/cccamp/documents/) Internet-Draft, "A YANG Data Model for WDM Tunnels".
 
-* [Editor's Copy](https://aguoietf.github.io/merged-ietf-ccamp-wdm-tunnel-yang/#go.draft-ietf-cccamp-wdm-tunnel.html)
-* [Datatracker Page (TBD) ](https://datatracker.ietf.org/doc/draft-ietf-cccamp-wdm-tunnel)
-* [Working Group Draft (TBD) ](https://datatracker.ietf.org/doc/html/draft-ietf-cccamp-wdm-tunnel)
-* [Compare Editor's Copy to Working Group Draft (TBD) ](https://aguoietf.github.io/merged-ietf-ccamp-wdm-tunnel-yang/#go.draft-ietf-cccamp-wdm-tunnel.diff)
+* [Editor's Copy](https://aguoietf.github.io/merged-ietf-ccamp-wdm-tunnel-yang/#go.draft-bgk-ccamp-merged-wdm-tunnel.html)
+* [Datatracker Page (TBD) ](https://datatracker.ietf.org/doc/draft-bgk-ccamp-merged-wdm-tunnel)
+* [Working Group Draft (TBD) ](https://datatracker.ietf.org/doc/html/draft-bgk-ccamp-merged-wdm-tunnel)
+* [Compare Editor's Copy to Working Group Draft (TBD) ](https://aguoietf.github.io/merged-ietf-ccamp-wdm-tunnel-yang/#go.draft-bgk-ccamp-merged-wdm-tunnel.diff)
 
 ## Abstract
 

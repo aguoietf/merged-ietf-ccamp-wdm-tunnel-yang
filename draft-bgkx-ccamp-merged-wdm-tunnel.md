@@ -7,7 +7,7 @@ ipr: trust200902
 stand_alone: yes
 pi: [toc, sortrefs, symrefs, comments]
 
-docname: draft-bgk-ccamp-merged-wdm-tunnel-latest
+docname: draft-bgkx-ccamp-merged-wdm-tunnel-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:

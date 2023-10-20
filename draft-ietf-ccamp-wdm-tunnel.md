@@ -26,10 +26,6 @@ author:
     org: Individual
     email: ggalimbe56@gmail.com
   -
-    name: Daniel King
-    org: Old Dog Consulting
-    email: daniel@olddog.co.uk
-  -
     name: Jorge E. Lopez de Vergara Mendez
     org: Naudit HPCN
     email: jorge.lopez_vergara@uam.es
@@ -39,6 +35,10 @@ author:
     email: daniel.perdices@uam.es
 
 contributor:
+  -
+    name: Daniel King
+    org: Old Dog Consulting
+    email: daniel@olddog.co.uk
   -
     name: Haomian Zheng
     org: Huawei Technologies
@@ -108,7 +108,7 @@ contributor:
    module defines the whole path from a source transponder or node to
    the destination through a number of intermediate nodes in the flexi-grid network.
 
-   This document identifies the flexi-grid tunne components,
+   This document identifies the flexi-grid tunnel components,
    parameters and their values, characterizes the features and the
    performances of the flexi-grid elements. An application example is
    provided towards the end of the document to better understand

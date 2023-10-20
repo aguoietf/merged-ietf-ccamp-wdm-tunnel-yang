@@ -88,7 +88,7 @@ module: ietf-te
      |        |  |              |        |     +--:(wdm-tnl:single)
      |        |  |              |        |     |  +--rw wdm-tnl:dwdm-n?
      |        |  |              |        |     |          l0-types:dwdm-n
-     |        |  |              |        |     +--:(wdm-tnl:super)
+     |        |  |              |        |     +--:(wdm-tnl:multi)
      |        |  |              |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |        |  |              |        |                l0-types:dwdm-n
      |        |  |              |        +--:(wdm-tnl:cwdm)
@@ -159,7 +159,7 @@ module: ietf-te
      |        |        |        |        |     +--:(wdm-tnl:single)
      |        |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
      |        |        |        |        |     |          l0-types:dwdm-n
-     |        |        |        |        |     +--:(wdm-tnl:super)
+     |        |        |        |        |     +--:(wdm-tnl:multi)
      |        |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |        |        |        |        |                l0-types:dwdm-n
      |        |        |        |        +--:(wdm-tnl:cwdm)
@@ -522,7 +522,7 @@ module: ietf-te
      |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:single)
      |     |     |     |  |  |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |     |  |  |        |        |        |     |          l0-types:dwdm-n
-     |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:super)
+     |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |     |  |  |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |     |  |  |        |        |        |                l0-types:dwdm-n
      |     |     |     |  |  |        |        |        +--:(wdm-tnl:cwdm)
@@ -611,7 +611,7 @@ module: ietf-te
      |     |     |     |  |                    |        |     +--:(wdm-tnl:single)
      |     |     |     |  |                    |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |     |  |                    |        |     |          l0-types:dwdm-n
-     |     |     |     |  |                    |        |     +--:(wdm-tnl:super)
+     |     |     |     |  |                    |        |     +--:(wdm-tnl:multi)
      |     |     |     |  |                    |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |     |  |                    |        |                l0-types:dwdm-n
      |     |     |     |  |                    |        +--:(wdm-tnl:cwdm)
@@ -762,7 +762,7 @@ module: ietf-te
      |     |     |  |              |        |     +--:(wdm-tnl:single)
      |     |     |  |              |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |  |              |        |     |          l0-types:dwdm-n
-     |     |     |  |              |        |     +--:(wdm-tnl:super)
+     |     |     |  |              |        |     +--:(wdm-tnl:multi)
      |     |     |  |              |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |  |              |        |                l0-types:dwdm-n
      |     |     |  |              |        +--:(wdm-tnl:cwdm)
@@ -833,7 +833,7 @@ module: ietf-te
      |     |     |        |        |        |     +--:(wdm-tnl:single)
      |     |     |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |        |        |        |     |          l0-types:dwdm-n
-     |     |     |        |        |        |     +--:(wdm-tnl:super)
+     |     |     |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |        |        |        |                l0-types:dwdm-n
      |     |     |        |        |        +--:(wdm-tnl:cwdm)
@@ -1090,7 +1090,7 @@ module: ietf-te
      |     |     |        |                 |        |     +--:(wdm-tnl:single)
      |     |     |        |                 |        |     |  +--ro wdm-tnl:dwdm-n?
      |     |     |        |                 |        |     |          l0-types:dwdm-n
-     |     |     |        |                 |        |     +--:(wdm-tnl:super)
+     |     |     |        |                 |        |     +--:(wdm-tnl:multi)
      |     |     |        |                 |        |        +--ro wdm-tnl:subcarrier-dwdm-n*
      |     |     |        |                 |        |                l0-types:dwdm-n
      |     |     |        |                 |        +--:(wdm-tnl:cwdm)
@@ -1243,7 +1243,7 @@ module: ietf-te
      |     |     |  |     |  |  |        |        |        |     +--:(wdm-tnl:single)
      |     |     |  |     |  |  |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |  |     |  |  |        |        |        |     |          l0-types:dwdm-n
-     |     |     |  |     |  |  |        |        |        |     +--:(wdm-tnl:super)
+     |     |     |  |     |  |  |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |  |     |  |  |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |  |     |  |  |        |        |        |                l0-types:dwdm-n
      |     |     |  |     |  |  |        |        |        +--:(wdm-tnl:cwdm)
@@ -1332,7 +1332,7 @@ module: ietf-te
      |     |     |  |     |  |                    |        |     +--:(wdm-tnl:single)
      |     |     |  |     |  |                    |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |  |     |  |                    |        |     |          l0-types:dwdm-n
-     |     |     |  |     |  |                    |        |     +--:(wdm-tnl:super)
+     |     |     |  |     |  |                    |        |     +--:(wdm-tnl:multi)
      |     |     |  |     |  |                    |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |  |     |  |                    |        |                l0-types:dwdm-n
      |     |     |  |     |  |                    |        +--:(wdm-tnl:cwdm)
@@ -1488,7 +1488,7 @@ module: ietf-te
      |     |     |  |  |              |        |     +--:(wdm-tnl:single)
      |     |     |  |  |              |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |  |  |              |        |     |          l0-types:dwdm-n
-     |     |     |  |  |              |        |     +--:(wdm-tnl:super)
+     |     |     |  |  |              |        |     +--:(wdm-tnl:multi)
      |     |     |  |  |              |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |  |  |              |        |                l0-types:dwdm-n
      |     |     |  |  |              |        +--:(wdm-tnl:cwdm)
@@ -1562,7 +1562,7 @@ module: ietf-te
      |     |     |  |        |        |        |     +--:(wdm-tnl:single)
      |     |     |  |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |  |        |        |        |     |          l0-types:dwdm-n
-     |     |     |  |        |        |        |     +--:(wdm-tnl:super)
+     |     |     |  |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |  |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |  |        |        |        |                l0-types:dwdm-n
      |     |     |  |        |        |        +--:(wdm-tnl:cwdm)
@@ -1823,7 +1823,7 @@ module: ietf-te
      |     |     |  |        |                 |        |     +--:(wdm-tnl:single)
      |     |     |  |        |                 |        |     |  +--ro wdm-tnl:dwdm-n?
      |     |     |  |        |                 |        |     |          l0-types:dwdm-n
-     |     |     |  |        |                 |        |     +--:(wdm-tnl:super)
+     |     |     |  |        |                 |        |     +--:(wdm-tnl:multi)
      |     |     |  |        |                 |        |        +--ro wdm-tnl:subcarrier-dwdm-n*
      |     |     |  |        |                 |        |                l0-types:dwdm-n
      |     |     |  |        |                 |        +--:(wdm-tnl:cwdm)
@@ -1992,7 +1992,7 @@ module: ietf-te
      |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:single)
      |     |     |     |  |  |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |     |  |  |        |        |        |     |          l0-types:dwdm-n
-     |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:super)
+     |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |     |  |  |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |     |  |  |        |        |        |                l0-types:dwdm-n
      |     |     |     |  |  |        |        |        +--:(wdm-tnl:cwdm)
@@ -2081,7 +2081,7 @@ module: ietf-te
      |     |     |     |  |                    |        |     +--:(wdm-tnl:single)
      |     |     |     |  |                    |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |     |  |                    |        |     |          l0-types:dwdm-n
-     |     |     |     |  |                    |        |     +--:(wdm-tnl:super)
+     |     |     |     |  |                    |        |     +--:(wdm-tnl:multi)
      |     |     |     |  |                    |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |     |  |                    |        |                l0-types:dwdm-n
      |     |     |     |  |                    |        +--:(wdm-tnl:cwdm)
@@ -2232,7 +2232,7 @@ module: ietf-te
      |     |     |  |              |        |     +--:(wdm-tnl:single)
      |     |     |  |              |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |  |              |        |     |          l0-types:dwdm-n
-     |     |     |  |              |        |     +--:(wdm-tnl:super)
+     |     |     |  |              |        |     +--:(wdm-tnl:multi)
      |     |     |  |              |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |  |              |        |                l0-types:dwdm-n
      |     |     |  |              |        +--:(wdm-tnl:cwdm)
@@ -2303,7 +2303,7 @@ module: ietf-te
      |     |     |        |        |        |     +--:(wdm-tnl:single)
      |     |     |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |        |        |        |     |          l0-types:dwdm-n
-     |     |     |        |        |        |     +--:(wdm-tnl:super)
+     |     |     |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |        |        |        |                l0-types:dwdm-n
      |     |     |        |        |        +--:(wdm-tnl:cwdm)
@@ -2575,7 +2575,7 @@ module: ietf-te
      |     |     |        |                 |        |     +--:(wdm-tnl:single)
      |     |     |        |                 |        |     |  +--ro wdm-tnl:dwdm-n?
      |     |     |        |                 |        |     |          l0-types:dwdm-n
-     |     |     |        |                 |        |     +--:(wdm-tnl:super)
+     |     |     |        |                 |        |     +--:(wdm-tnl:multi)
      |     |     |        |                 |        |        +--ro wdm-tnl:subcarrier-dwdm-n*
      |     |     |        |                 |        |                l0-types:dwdm-n
      |     |     |        |                 |        +--:(wdm-tnl:cwdm)
@@ -2727,7 +2727,7 @@ module: ietf-te
      |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:single)
      |     |     |     |  |  |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |     |  |  |        |        |        |     |          l0-types:dwdm-n
-     |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:super)
+     |     |     |     |  |  |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |     |  |  |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |     |  |  |        |        |        |                l0-types:dwdm-n
      |     |     |     |  |  |        |        |        +--:(wdm-tnl:cwdm)
@@ -2816,7 +2816,7 @@ module: ietf-te
      |     |     |     |  |                    |        |     +--:(wdm-tnl:single)
      |     |     |     |  |                    |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |     |  |                    |        |     |          l0-types:dwdm-n
-     |     |     |     |  |                    |        |     +--:(wdm-tnl:super)
+     |     |     |     |  |                    |        |     +--:(wdm-tnl:multi)
      |     |     |     |  |                    |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |     |  |                    |        |                l0-types:dwdm-n
      |     |     |     |  |                    |        +--:(wdm-tnl:cwdm)
@@ -2967,7 +2967,7 @@ module: ietf-te
      |     |     |  |              |        |     +--:(wdm-tnl:single)
      |     |     |  |              |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |  |              |        |     |          l0-types:dwdm-n
-     |     |     |  |              |        |     +--:(wdm-tnl:super)
+     |     |     |  |              |        |     +--:(wdm-tnl:multi)
      |     |     |  |              |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |  |              |        |                l0-types:dwdm-n
      |     |     |  |              |        +--:(wdm-tnl:cwdm)
@@ -3038,7 +3038,7 @@ module: ietf-te
      |     |     |        |        |        |     +--:(wdm-tnl:single)
      |     |     |        |        |        |     |  +--rw wdm-tnl:dwdm-n?
      |     |     |        |        |        |     |          l0-types:dwdm-n
-     |     |     |        |        |        |     +--:(wdm-tnl:super)
+     |     |     |        |        |        |     +--:(wdm-tnl:multi)
      |     |     |        |        |        |        +--rw wdm-tnl:subcarrier-dwdm-n*
      |     |     |        |        |        |                l0-types:dwdm-n
      |     |     |        |        |        +--:(wdm-tnl:cwdm)
@@ -3310,7 +3310,7 @@ module: ietf-te
      |     |     |        |                 |        |     +--:(wdm-tnl:single)
      |     |     |        |                 |        |     |  +--ro wdm-tnl:dwdm-n?
      |     |     |        |                 |        |     |          l0-types:dwdm-n
-     |     |     |        |                 |        |     +--:(wdm-tnl:super)
+     |     |     |        |                 |        |     +--:(wdm-tnl:multi)
      |     |     |        |                 |        |        +--ro wdm-tnl:subcarrier-dwdm-n*
      |     |     |        |                 |        |                l0-types:dwdm-n
      |     |     |        |                 |        +--:(wdm-tnl:cwdm)
@@ -3464,7 +3464,7 @@ module: ietf-te
               |           |  |        |     +--:(wdm-tnl:single)
               |           |  |        |     |  +--ro wdm-tnl:dwdm-n?
               |           |  |        |     |          l0-types:dwdm-n
-              |           |  |        |     +--:(wdm-tnl:super)
+              |           |  |        |     +--:(wdm-tnl:multi)
               |           |  |        |        +--ro wdm-tnl:subcarrier-dwdm-n*
               |           |  |        |                l0-types:dwdm-n
               |           |  |        +--:(wdm-tnl:cwdm)

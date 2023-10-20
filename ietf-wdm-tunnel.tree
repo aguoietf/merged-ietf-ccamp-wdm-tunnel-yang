@@ -246,7 +246,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -274,7 +274,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -372,7 +372,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -400,7 +400,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -427,7 +427,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -454,7 +454,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -551,7 +551,7 @@ module: ietf-wdm-tunnel
        |  +--ro (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--ro dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--ro cwdm-n?                     l0-types:cwdm-n
@@ -580,7 +580,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -609,7 +609,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -637,7 +637,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -665,7 +665,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -768,7 +768,7 @@ module: ietf-wdm-tunnel
        |  +--ro (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--ro dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--ro cwdm-n?                     l0-types:cwdm-n
@@ -797,7 +797,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -826,7 +826,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -853,7 +853,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -880,7 +880,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -978,7 +978,7 @@ module: ietf-wdm-tunnel
        |  +--ro (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--ro dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--ro cwdm-n?                     l0-types:cwdm-n
@@ -1007,7 +1007,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -1036,7 +1036,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -1064,7 +1064,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -1092,7 +1092,7 @@ module: ietf-wdm-tunnel
        |  +--rw (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--rw cwdm-n?                     l0-types:cwdm-n
@@ -1190,7 +1190,7 @@ module: ietf-wdm-tunnel
        |  +--ro (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--ro dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--ro cwdm-n?                     l0-types:cwdm-n
@@ -1216,7 +1216,7 @@ module: ietf-wdm-tunnel
        |  +--ro (fixed-single-or-super-channel)?
        |     +--:(single)
        |     |  +--ro dwdm-n?               l0-types:dwdm-n
-       |     +--:(super)
+       |     +--:(multi)
        |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
        +--:(cwdm)
        |  +--ro cwdm-n?                     l0-types:cwdm-n

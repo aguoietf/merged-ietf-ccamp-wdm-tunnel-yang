@@ -8,8 +8,6 @@ Intended status: Standards Track                              S. Belotti
 Expires: 23 April 2024                                             Nokia
                                                            G. Galimberti
                                                               Individual
-                                                                 D. King
-                                                      Old Dog Consulting
                                                        J.E.L.d.V. Mendez
                                                              Naudit HPCN
                                                             D.P. Burrero
@@ -18,7 +16,7 @@ Expires: 23 April 2024                                             Nokia
 
 
                    A YANG Data Model for WDM Tunnels
-                     draft-ietf-ccamp-wdm-tunnel-00
+                draft-bgk-ccamp-merged-wdm-tunnel-latest
 
 Abstract
 
@@ -50,6 +48,8 @@ Copyright Notice
 
    Copyright (c) 2023 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
+
+
 
 
 
@@ -98,7 +98,7 @@ Table of Contents
    the destination through a number of intermediate nodes in the flexi-
    grid network.
 
-   This document identifies the flexi-grid tunne components, parameters
+   This document identifies the flexi-grid tunnel components, parameters
    and their values, characterizes the features and the performances of
    the flexi-grid elements.  An application example is provided towards
    the end of the document to better understand their utility.
@@ -3209,6 +3209,12 @@ Acknowledgments
 
 Contributors
 
+   Daniel King
+   Old Dog Consulting
+
+   Email: daniel@olddog.co.uk
+
+
    Haomian Zheng
    Huawei Technologies
    H1, Xiliu Beipo Village, Songshan Lake
@@ -3236,18 +3242,18 @@ Contributors
    Email: victor.lopez@nokia.com
 
 
-   Dieter Beller
-   Nokia
-
-   Email: Dieter.Beller@nokia.com
-
-
 
 
 
 Guo, et al.               Expires 23 April 2024                [Page 58]
 
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
+   Dieter Beller
+   Nokia
+
+   Email: Dieter.Beller@nokia.com
 
 
    Ricard Vilalta
@@ -3294,22 +3300,16 @@ Authors' Addresses
    Email: Sergio.belotti@nokia.com
 
 
-   G. Galimberti
-   Individual
-
-   Email: ggalimbe56@gmail.com
-
-
 
 Guo, et al.               Expires 23 April 2024                [Page 59]
 
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-   Daniel King
-   Old Dog Consulting
+   G. Galimberti
+   Individual
 
-   Email: daniel@olddog.co.uk
+   Email: ggalimbe56@gmail.com
 
 
    Jorge E. Lopez de Vergara Mendez

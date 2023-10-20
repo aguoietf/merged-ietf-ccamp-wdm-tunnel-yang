@@ -1,16 +1,27 @@
 ---
-coding: utf-8
-
 title: A YANG Data Model for WDM Tunnels
-
 abbrev: A YANG Data Model for WDM Tunnels
-docname: draft-ietf-ccamp-wdm-tunnel-00
-workgroup: CCAMP Working Group
 category: std
-ipr: trust200902
 
-stand_alone: yes
-pi: [toc, sortrefs, symrefs, comments]
+docname: draft-ietf-ccamp-wdm-tunnel-latest
+submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
+number:
+date:
+consensus: true
+v: 3
+# area: AREA
+workgroup: CCAMP Working Group
+keyword:
+ - next generation
+ - unicorn
+ - sparkling distributed ledger
+venue:
+#  group: WG
+#  type: Working Group
+#  mail: WG@example.com
+#  arch: https://example.com/WG
+  github: "aguoietf/merged-ietf-ccamp-wdm-tunnel-yang"
+  latest: "https://aguoietf.github.io/merged-ietf-ccamp-wdm-tunnel-yang/draft-ietf-cccamp-wdm-tunnel.html"
 
 author:
   -

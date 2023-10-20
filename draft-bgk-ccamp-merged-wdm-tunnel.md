@@ -4,7 +4,7 @@ coding: utf-8
 title: A YANG Data Model for WDM Tunnels
 
 abbrev: A YANG Data Model for WDM Tunnels
-docname: draft-ietf-ccamp-mwdm-tunnel-00
+docname: draft-bgk-ccamp-merged-wdm-tunnel-00
 workgroup: CCAMP Working Group
 category: std
 ipr: trust200902

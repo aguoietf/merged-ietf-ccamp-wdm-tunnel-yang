@@ -5,14 +5,14 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 22 April 2024                                             Nokia
+Expires: 23 April 2024                                             Nokia
                                                            G. Galimberti
                                                               Individual
                                                    J. E. L. de V. Mendez
                                                              Naudit HPCN
                                                            D. P. Burrero
                                           Universidad Autonoma de Madrid
-                                                         20 October 2023
+                                                         21 October 2023
 
 
                    A YANG Data Model for WDM Tunnels
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 April 2024.
+   This Internet-Draft will expire on 23 April 2024.
 
 Copyright Notice
 

@@ -16,6 +16,11 @@ See the
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
 
+### Weekly Calls
+
+The contributors on this draft have (mostly) weekly informal conference calls on Thursdays at 2:00pm CET:
+
+- [Join Zoom Meeting](https://zoom.us/j/96715237995?pwd=WmcwMVZ3c1kyY0pucUhNcWVNOHNvdz09)
 
 ## Command Line Usage
 

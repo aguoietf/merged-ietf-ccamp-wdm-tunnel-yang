@@ -101,9 +101,8 @@ contributor:
 
 --- abstract
 
-   This document defines a YANG model for managing flexi-grid optical
-   tunnels (media-channels), complementing the information provided by the
-   flexi-grid topology model.
+   This document defines a YANG model for managing multi-technology optical tunnels (media-channels),
+   complementing the information provided by the flexi-grid topology model.
 
    The YANG data model defined in this document conforms to the Network
    Management Datastore Architecture (NMDA).

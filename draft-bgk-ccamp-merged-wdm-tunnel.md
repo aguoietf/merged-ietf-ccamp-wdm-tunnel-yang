@@ -171,18 +171,16 @@ provided towards the end of the document to understand their utility better.
 
    -  other optical attributes
 
-   Each path can be a tunnel (only defined by source and
-   destination node) or a network tunnel (additionally needs
-   source and destination transponders). Therefore, all the attributes
-   are optional to support both situations.
+Each path can be a tunnel (only defined by the source and destination node) 
+or a network tunnel (additionally needs source and destination transponders). 
+Therefore, all the attributes are optional to support both situations.
 
-   This is achieved by a combination of the traffic engineering tunnel
-   attributes explained in {{!I-D.ietf-teas-yang-te}} and augments
-   when necessary. For instance, source address, source flexi-grid
-   transponder, destination address and destination flexi-grid
-   transponder attributes are directly taken from tunnel, whereas other
-   attributes such as source flexi-grid port, destination flexi-grid
-   port are defined, as they are specific for flexi-grid.
+This is achieved by combining the traffic engineering tunnel attributes 
+explained in {{!I-D.ietf-teas-yang-te}} and augments when necessary. For 
+instance, source address, source flexi-grid transponder, destination address 
+and destination flexi-grid transponder attributes are directly taken from the 
+tunnel; other tunnel attributes such as source flexi-grid port, destination 
+flexi-grid port are defined, as they are specific for flexi-grid.
 
 # Example of Use
 

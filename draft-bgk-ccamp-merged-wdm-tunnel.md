@@ -110,23 +110,18 @@ contributor:
 --- middle
 
 # Introduction
-   Transport networks are evolving from current DWDM systems towards
-   elastic optical networks, based on flexi-grid transmission and
-   switching technologies {{!RFC7698}}. Such technology
-   aims at increasing both transport network scalability and flexibility,
-   allowing the optimization of bandwidth usage.
+Transport networks have evolved from current DWDM systems towards elastic optical networks, 
+based on flexi-grid transmission and switching technologies {{!RFC7698}}. Such technology aims
+at increasing transport network scalability and flexibility, allowing bandwidth usage optimization.
 
-   While {{!I-D.ietf-ccamp-flexigrid-yang}} focuses on flexi-grid
-   objects such as nodes, transponders and links, this document presents
-   a YANG {{!RFC7950}} model for the flexi-grid tunnel (media-channel). This YANG
-   module defines the whole path from a source transponder or node to
-   the destination through a number of intermediate nodes in the flexi-grid network.
+While {{!I-D.ietf-ccamp-flexigrid-yang}} focuses on flexi-grid objects such as nodes, transponders 
+and links, this document presents a YANG {{!RFC7950}} model for the flexi-grid tunnel (media-channel). 
+This YANG module defines the path from a source transponder or node to the destination through several 
+intermediate nodes in the flexi-grid network.
 
-   This document identifies the flexi-grid tunnel components,
-   parameters and their values, characterizes the features and the
-   performances of the flexi-grid elements. An application example is
-   provided towards the end of the document to better understand
-   their utility.
+This document identifies the flexi-grid tunnel components, parameters and their values, and 
+characterizes the features and the performances of the flexi-grid elements. An application example is 
+provided towards the end of the document to understand their utility better.
 
 # Terminology
 

@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-10-19T00:32:19.075722+00:00",
+  "timestamp": "2023-10-22T00:35:05.642732+00:00",
   "repo": "aguoietf/merged-ietf-ccamp-wdm-tunnel-yang",
   "labels": [
     {
@@ -50,5 +50,74 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOKhp6hc5dWs4-",
+      "title": "Fixing issues with make",
+      "url": "https://github.com/aguoietf/merged-ietf-ccamp-wdm-tunnel-yang/pull/1",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-10-20T08:12:27Z",
+      "updatedAt": "2023-10-20T16:59:06Z",
+      "baseRepository": "aguoietf/merged-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "main",
+      "baseRefOid": "2f6c04a211022a7227e8c4b3891534db620d436f",
+      "headRepository": null,
+      "headRefName": "make-fix",
+      "headRefOid": "c91c8dfa04d412df5eff4d332d31842ded5a6654",
+      "closedAt": "2023-10-20T16:59:06Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKhp6hc5kw9aW",
+          "commit": {
+            "abbreviatedOid": "c91c8df"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-10-20T16:58:52Z",
+          "updatedAt": "2023-10-20T16:58:52Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOKhp6hc5dctnp",
+      "title": "Dan review",
+      "url": "https://github.com/aguoietf/merged-ietf-ccamp-wdm-tunnel-yang/pull/2",
+      "state": "OPEN",
+      "author": "danielkinguk",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "aguoietf"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-10-21T16:28:30Z",
+      "updatedAt": "2023-10-21T16:29:55Z",
+      "baseRepository": "aguoietf/merged-ietf-ccamp-wdm-tunnel-yang",
+      "baseRefName": "main",
+      "baseRefOid": "a957d8f0e21b436f7420f7cc8fa4ea340dc02503",
+      "headRepository": "aguoietf/merged-ietf-ccamp-wdm-tunnel-yang",
+      "headRefName": "Dan-Review",
+      "headRefOid": "dc3e395e05b402307a7e991e310e5bfc81df5c9d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }

@@ -171,8 +171,8 @@ provided towards the end of the document to understand their utility better.
 
    -  other optical attributes
 
-Each path can be a tunnel (only defined by the source and destination node)
-or a network tunnel (additionally needs source and destination transponders).
+Each path can be a segment path (only defined by the source and destination nodes or link termination points)
+or an end-to-end path (additionally needs source and destination transponders).
 Therefore, all the attributes are optional to support both situations.
 
 This is achieved by combining the traffic engineering tunnel attributes

@@ -115,7 +115,7 @@ based on flexi-grid Dense Wavelength Division Multiplexing (DWDM) transmission a
 at increasing transport network scalability and flexibility, allowing bandwidth usage optimization.
 
 While {{!RFC9094}} {{!I-D.ietf-ccamp-flexigrid-yang}} focus on flexi-grid objects such as nodes, transponders
-and links, this document presents a YANG {{!RFC7950}} model for the flexi-grid tunnel (media-channel).
+and links, this document presents a YANG {{!RFC7950}} model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in Optical Networks, which can be Wavelength Switched Optical Networks (WSON) networks or Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks or a mix of these two Networks.
 This YANG module defines the path from a source transponder or node to the destination through several
 intermediate nodes in the flexi-grid network.
 

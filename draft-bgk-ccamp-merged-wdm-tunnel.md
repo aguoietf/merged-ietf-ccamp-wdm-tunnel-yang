@@ -119,8 +119,8 @@ and links, this document presents a YANG {{!RFC7950}} model for the provisioning
 This YANG module defines the path from a source transponder or node to the destination through several
 intermediate nodes in the flexi-grid network.
 
-This document identifies the flexi-grid tunnel components, parameters and their values, and
-characterizes the features and the performances of the flexi-grid elements. An application example is
+This document identifies the WDM tunnel components, parameters and their values, and
+characterizes the features and the performances of the WDM elements. An application example is
 provided towards the end of the document to understand their utility better.
 
 # Terminology

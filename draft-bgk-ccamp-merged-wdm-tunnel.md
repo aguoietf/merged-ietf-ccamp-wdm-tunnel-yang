@@ -110,17 +110,18 @@ contributor:
 --- middle
 
 # Introduction
-Transport networks have evolved from current DWDM systems towards elastic optical networks, 
+
+Transport networks have evolved from current DWDM systems towards elastic optical networks,
 based on flexi-grid transmission and switching technologies {{!RFC7698}}. Such technology aims
 at increasing transport network scalability and flexibility, allowing bandwidth usage optimization.
 
-While {{!I-D.ietf-ccamp-flexigrid-yang}} focuses on flexi-grid objects such as nodes, transponders 
-and links, this document presents a YANG {{!RFC7950}} model for the flexi-grid tunnel (media-channel). 
-This YANG module defines the path from a source transponder or node to the destination through several 
+While {{!I-D.ietf-ccamp-flexigrid-yang}} focuses on flexi-grid objects such as nodes, transponders
+and links, this document presents a YANG {{!RFC7950}} model for the flexi-grid tunnel (media-channel).
+This YANG module defines the path from a source transponder or node to the destination through several
 intermediate nodes in the flexi-grid network.
 
-This document identifies the flexi-grid tunnel components, parameters and their values, and 
-characterizes the features and the performances of the flexi-grid elements. An application example is 
+This document identifies the flexi-grid tunnel components, parameters and their values, and
+characterizes the features and the performances of the flexi-grid elements. An application example is
 provided towards the end of the document to understand their utility better.
 
 # Terminology
@@ -171,15 +172,15 @@ provided towards the end of the document to understand their utility better.
 
    -  other optical attributes
 
-Each path can be a tunnel (only defined by the source and destination node) 
-or a network tunnel (additionally needs source and destination transponders). 
+Each path can be a tunnel (only defined by the source and destination node)
+or a network tunnel (additionally needs source and destination transponders).
 Therefore, all the attributes are optional to support both situations.
 
-This is achieved by combining the traffic engineering tunnel attributes 
-explained in {{!I-D.ietf-teas-yang-te}} and augments when necessary. For 
-instance, source address, source flexi-grid transponder, destination address 
-and destination flexi-grid transponder attributes are directly taken from the 
-tunnel; other tunnel attributes such as source flexi-grid port, destination 
+This is achieved by combining the traffic engineering tunnel attributes
+explained in {{!I-D.ietf-teas-yang-te}} and augments when necessary. For
+instance, source address, source flexi-grid transponder, destination address
+and destination flexi-grid transponder attributes are directly taken from the
+tunnel; other tunnel attributes such as source flexi-grid port, destination
 flexi-grid port are defined, as they are specific for flexi-grid.
 
 # Example of Use
@@ -195,7 +196,7 @@ flexi-grid port are defined, as they are specific for flexi-grid.
                                  Tunnel
    <==============================================================>
                          Flexi-grid Tunnel Group x
-            <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+            <------------------------------------------------>
 
    +----------+                                        +----------+
    |  Flexi-  |                                        |  Flexi-  |
@@ -214,7 +215,7 @@ flexi-grid port are defined, as they are specific for flexi-grid.
    |          |              +----------+              |          |
    +----------+                                        +----------+
 
-            <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+            <------------------------------------------------>
                           Flexi-grid Tunnel Group y
 ~~~~
 {: #fig-topology-example title="Topology Example"}

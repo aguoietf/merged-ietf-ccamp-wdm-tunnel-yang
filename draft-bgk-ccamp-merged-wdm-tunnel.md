@@ -101,8 +101,7 @@ contributor:
 
 --- abstract
 
-   This document defines a YANG model for managing optical tunnels (media-channels),
-   complementing the information provided by the multi-technology optical topology model.
+This document defines a YANG data model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in Optical Networks (Wavelength Switched Optical Networks (WSON) and Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks).
 
    The YANG data model defined in this document conforms to the Network
    Management Datastore Architecture (NMDA).

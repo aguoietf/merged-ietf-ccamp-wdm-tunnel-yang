@@ -114,7 +114,7 @@ Transport networks have evolved from traditional Wavelength Switched Optical Net
 based on flexi-grid Dense Wavelength Division Multiplexing (DWDM) transmission and switching technologies {{?RFC7698}}. Such technology aims
 at increasing transport network scalability and flexibility, allowing bandwidth usage optimization.
 
-While {{!I-D.ietf-ccamp-flexigrid-yang}} focuses on flexi-grid objects such as nodes, transponders
+While {{!RFC9094}} {{!I-D.ietf-ccamp-flexigrid-yang}} focus on flexi-grid objects such as nodes, transponders
 and links, this document presents a YANG {{!RFC7950}} model for the flexi-grid tunnel (media-channel).
 This YANG module defines the path from a source transponder or node to the destination through several
 intermediate nodes in the flexi-grid network.

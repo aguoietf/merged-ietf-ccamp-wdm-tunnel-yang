@@ -101,9 +101,7 @@ contributor:
 
 --- abstract
 
-   This document defines a YANG model for managing flexi-grid optical
-   tunnels (media-channels), complementing the information provided by the
-   flexi-grid topology model.
+This document defines a YANG data model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in Optical Networks (Wavelength Switched Optical Networks (WSON) and Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks).
 
    The YANG data model defined in this document conforms to the Network
    Management Datastore Architecture (NMDA).
@@ -111,23 +109,19 @@ contributor:
 --- middle
 
 # Introduction
-   Transport networks are evolving from current DWDM systems towards
-   elastic optical networks, based on flexi-grid transmission and
-   switching technologies {{!RFC7698}}. Such technology
-   aims at increasing both transport network scalability and flexibility,
-   allowing the optimization of bandwidth usage.
 
-   While {{!I-D.ietf-ccamp-flexigrid-yang}} focuses on flexi-grid
-   objects such as nodes, transponders and links, this document presents
-   a YANG {{!RFC7950}} model for the flexi-grid tunnel (media-channel). This YANG
-   module defines the whole path from a source transponder or node to
-   the destination through a number of intermediate nodes in the flexi-grid network.
+Transport networks have evolved from traditional Wavelength Switched Optical Networks (WSON) systems {{?RFC6163}} towards elastic optical networks,
+based on flexi-grid Dense Wavelength Division Multiplexing (DWDM) transmission and switching technologies {{?RFC7698}}. Such technology aims
+at increasing transport network scalability and flexibility, allowing bandwidth usage optimization.
 
-   This document identifies the flexi-grid tunnel components,
-   parameters and their values, characterizes the features and the
-   performances of the flexi-grid elements. An application example is
-   provided towards the end of the document to better understand
-   their utility.
+While {{!RFC9094}} {{!I-D.ietf-ccamp-flexigrid-yang}} focus on flexi-grid objects such as nodes, transponders
+and links, this document presents a YANG {{!RFC7950}} model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in Optical Networks, which can be Wavelength Switched Optical Networks (WSON) networks or Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks or a mix of these two Networks.
+This YANG module defines the path from a source transponder or node to the destination through several
+intermediate nodes in the flexi-grid network.
+
+This document identifies the WDM tunnel components, parameters and their values, and
+characterizes the features and the performances of the WDM elements. An application example is
+provided towards the end of the document to understand their utility better.
 
 # Terminology
 
@@ -177,18 +171,16 @@ contributor:
 
    -  other optical attributes
 
-   Each path can be a tunnel (only defined by source and
-   destination node) or a network tunnel (additionally needs
-   source and destination transponders). Therefore, all the attributes
-   are optional to support both situations.
+Each path can be a segment path (only defined by the source and destination nodes or link termination points)
+or an end-to-end path (additionally needs source and destination transponders).
+Therefore, all the attributes are optional to support both situations.
 
-   This is achieved by a combination of the traffic engineering tunnel
-   attributes explained in {{!I-D.ietf-teas-yang-te}} and augments
-   when necessary. For instance, source address, source flexi-grid
-   transponder, destination address and destination flexi-grid
-   transponder attributes are directly taken from tunnel, whereas other
-   attributes such as source flexi-grid port, destination flexi-grid
-   port are defined, as they are specific for flexi-grid.
+This is achieved by combining the traffic engineering tunnel attributes
+explained in {{!I-D.ietf-teas-yang-te}} and augments when necessary. For
+instance, source address, source flexi-grid transponder, destination address
+and destination flexi-grid transponder attributes are directly taken from the
+tunnel; other tunnel attributes such as source flexi-grid port, destination
+flexi-grid port are defined, as they are specific for flexi-grid.
 
 # Example of Use
 
@@ -203,7 +195,7 @@ contributor:
                                  Tunnel
    <==============================================================>
                          Flexi-grid Tunnel Group x
-            <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+            <------------------------------------------------>
 
    +----------+                                        +----------+
    |  Flexi-  |                                        |  Flexi-  |
@@ -222,7 +214,7 @@ contributor:
    |          |              +----------+              |          |
    +----------+                                        +----------+
 
-            <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+            <------------------------------------------------>
                           Flexi-grid Tunnel Group y
 ~~~~
 {: #fig-topology-example title="Topology Example"}

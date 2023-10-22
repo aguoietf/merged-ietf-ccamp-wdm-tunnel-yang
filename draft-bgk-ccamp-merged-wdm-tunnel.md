@@ -110,8 +110,8 @@ This document defines a YANG data model for the provisioning and management of T
 
 # Introduction
 
-Transport networks have evolved from current DWDM systems towards elastic optical networks,
-based on flexi-grid transmission and switching technologies {{!RFC7698}}. Such technology aims
+Transport networks have evolved from traditional Wavelength Switched Optical Networks (WSON) systems {{?RFC6163}} towards elastic optical networks,
+based on flexi-grid Dense Wavelength Division Multiplexing (DWDM) transmission and switching technologies {{?RFC7698}}. Such technology aims
 at increasing transport network scalability and flexibility, allowing bandwidth usage optimization.
 
 While {{!I-D.ietf-ccamp-flexigrid-yang}} focuses on flexi-grid objects such as nodes, transponders

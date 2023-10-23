@@ -81,7 +81,7 @@ module: ietf-te
      |        |  |              |  +--:(generic)
      |        |  |              |  |  +--rw generic?
      |        |  |              |  |          rt-types:generalized-label
-     |        |  |              |  +--:(wdm-tnl:grid-type)
+     |        |  |              |  +--:(wdm-tnl:wdm)
      |        |  |              |     +--rw (wdm-tnl:grid-type)?
      |        |  |              |        +--:(wdm-tnl:fixed-dwdm)
      |        |  |              |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -152,7 +152,7 @@ module: ietf-te
      |        |        |        |  +--:(generic)
      |        |        |        |  |  +--rw generic?
      |        |        |        |  |          rt-types:generalized-label
-     |        |        |        |  +--:(wdm-tnl:grid-type)
+     |        |        |        |  +--:(wdm-tnl:wdm)
      |        |        |        |     +--rw (wdm-tnl:grid-type)?
      |        |        |        |        +--:(wdm-tnl:fixed-dwdm)
      |        |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -203,7 +203,7 @@ module: ietf-te
      |        |        |     |  +--:(generic)
      |        |        |     |  |  +--rw generic?
      |        |        |     |  |          rt-types:generalized-label
-     |        |        |     |  +--:(wdm-tnl:grid-type)
+     |        |        |     |  +--:(wdm-tnl:wdm)
      |        |        |     |     +--rw (wdm-tnl:grid-type)?
      |        |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |        |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -222,7 +222,7 @@ module: ietf-te
      |        |        |     |  +--:(generic)
      |        |        |     |  |  +--rw generic?
      |        |        |     |  |          rt-types:generalized-label
-     |        |        |     |  +--:(wdm-tnl:grid-type)
+     |        |        |     |  +--:(wdm-tnl:wdm)
      |        |        |     |     +--rw (wdm-tnl:grid-type)?
      |        |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |        |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -240,7 +240,7 @@ module: ietf-te
      |        |        |     +--:(generic)
      |        |        |     |  +--rw generic?
      |        |        |     |          int32
-     |        |        |     +--:(wdm-tnl:l0-grid-type)
+     |        |        |     +--:(wdm-tnl:wdm)
      |        |        |        +--rw (wdm-tnl:l0-grid-type)?
      |        |        |           +--:(wdm-tnl:fixed-dwdm)
      |        |        |           |  +--rw wdm-tnl:wson-dwdm-channel-spacing?
@@ -276,7 +276,7 @@ module: ietf-te
      |                 |     |  +--:(generic)
      |                 |     |  |  +--rw generic?
      |                 |     |  |          rt-types:generalized-label
-     |                 |     |  +--:(wdm-tnl:grid-type)
+     |                 |     |  +--:(wdm-tnl:wdm)
      |                 |     |     +--rw (wdm-tnl:grid-type)?
      |                 |     |        +--:(wdm-tnl:fixed-dwdm)
      |                 |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -295,7 +295,7 @@ module: ietf-te
      |                 |     |  +--:(generic)
      |                 |     |  |  +--rw generic?
      |                 |     |  |          rt-types:generalized-label
-     |                 |     |  +--:(wdm-tnl:grid-type)
+     |                 |     |  +--:(wdm-tnl:wdm)
      |                 |     |     +--rw (wdm-tnl:grid-type)?
      |                 |     |        +--:(wdm-tnl:fixed-dwdm)
      |                 |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -313,7 +313,7 @@ module: ietf-te
      |                 |     +--:(generic)
      |                 |     |  +--rw generic?
      |                 |     |          int32
-     |                 |     +--:(wdm-tnl:l0-grid-type)
+     |                 |     +--:(wdm-tnl:wdm)
      |                 |        +--rw (wdm-tnl:l0-grid-type)?
      |                 |           +--:(wdm-tnl:fixed-dwdm)
      |                 |           |  +--rw wdm-tnl:wson-dwdm-channel-spacing?
@@ -515,7 +515,7 @@ module: ietf-te
      |     |     |     |  |  |        |        |  +--:(generic)
      |     |     |     |  |  |        |        |  |  +--rw generic?
      |     |     |     |  |  |        |        |  |          rt-types:generalized-label
-     |     |     |     |  |  |        |        |  +--:(wdm-tnl:grid-type)
+     |     |     |     |  |  |        |        |  +--:(wdm-tnl:wdm)
      |     |     |     |  |  |        |        |     +--rw (wdm-tnl:grid-type)?
      |     |     |     |  |  |        |        |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |     |  |  |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -604,7 +604,7 @@ module: ietf-te
      |     |     |     |  |                    |  +--:(generic)
      |     |     |     |  |                    |  |  +--rw generic?
      |     |     |     |  |                    |  |          rt-types:generalized-label
-     |     |     |     |  |                    |  +--:(wdm-tnl:grid-type)
+     |     |     |     |  |                    |  +--:(wdm-tnl:wdm)
      |     |     |     |  |                    |     +--rw (wdm-tnl:grid-type)?
      |     |     |     |  |                    |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |     |  |                    |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -755,7 +755,7 @@ module: ietf-te
      |     |     |  |              |  +--:(generic)
      |     |     |  |              |  |  +--rw generic?
      |     |     |  |              |  |          rt-types:generalized-label
-     |     |     |  |              |  +--:(wdm-tnl:grid-type)
+     |     |     |  |              |  +--:(wdm-tnl:wdm)
      |     |     |  |              |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |              |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |              |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -826,7 +826,7 @@ module: ietf-te
      |     |     |        |        |  +--:(generic)
      |     |     |        |        |  |  +--rw generic?
      |     |     |        |        |  |          rt-types:generalized-label
-     |     |     |        |        |  +--:(wdm-tnl:grid-type)
+     |     |     |        |        |  +--:(wdm-tnl:wdm)
      |     |     |        |        |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |        |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -877,7 +877,7 @@ module: ietf-te
      |     |     |        |     |  +--:(generic)
      |     |     |        |     |  |  +--rw generic?
      |     |     |        |     |  |          rt-types:generalized-label
-     |     |     |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |        |     |  +--:(wdm-tnl:wdm)
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -896,7 +896,7 @@ module: ietf-te
      |     |     |        |     |  +--:(generic)
      |     |     |        |     |  |  +--rw generic?
      |     |     |        |     |  |          rt-types:generalized-label
-     |     |     |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |        |     |  +--:(wdm-tnl:wdm)
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -914,7 +914,7 @@ module: ietf-te
      |     |     |        |     +--:(generic)
      |     |     |        |     |  +--rw generic?
      |     |     |        |     |          int32
-     |     |     |        |     +--:(wdm-tnl:l0-grid-type)
+     |     |     |        |     +--:(wdm-tnl:wdm)
      |     |     |        |        +--rw (wdm-tnl:l0-grid-type)?
      |     |     |        |           +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |           |  +--rw wdm-tnl:wson-dwdm-channel-spacing?
@@ -950,7 +950,7 @@ module: ietf-te
      |     |     |        |     |  +--:(generic)
      |     |     |        |     |  |  +--rw generic?
      |     |     |        |     |  |          rt-types:generalized-label
-     |     |     |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |        |     |  +--:(wdm-tnl:wdm)
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -969,7 +969,7 @@ module: ietf-te
      |     |     |        |     |  +--:(generic)
      |     |     |        |     |  |  +--rw generic?
      |     |     |        |     |  |          rt-types:generalized-label
-     |     |     |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |        |     |  +--:(wdm-tnl:wdm)
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -987,7 +987,7 @@ module: ietf-te
      |     |     |        |     +--:(generic)
      |     |     |        |     |  +--rw generic?
      |     |     |        |     |          int32
-     |     |     |        |     +--:(wdm-tnl:l0-grid-type)
+     |     |     |        |     +--:(wdm-tnl:wdm)
      |     |     |        |        +--rw (wdm-tnl:l0-grid-type)?
      |     |     |        |           +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |           |  +--rw wdm-tnl:wson-dwdm-channel-spacing?
@@ -1083,7 +1083,7 @@ module: ietf-te
      |     |     |        |                 |  +--:(generic)
      |     |     |        |                 |  |  +--ro generic?
      |     |     |        |                 |  |          rt-types:generalized-label
-     |     |     |        |                 |  +--:(wdm-tnl:grid-type)
+     |     |     |        |                 |  +--:(wdm-tnl:wdm)
      |     |     |        |                 |     +--ro (wdm-tnl:grid-type)?
      |     |     |        |                 |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |                 |        |  +--ro (wdm-tnl:fixed-single-or-super-channel)?
@@ -1236,7 +1236,7 @@ module: ietf-te
      |     |     |  |     |  |  |        |        |  +--:(generic)
      |     |     |  |     |  |  |        |        |  |  +--rw generic?
      |     |     |  |     |  |  |        |        |  |          rt-types:generalized-label
-     |     |     |  |     |  |  |        |        |  +--:(wdm-tnl:grid-type)
+     |     |     |  |     |  |  |        |        |  +--:(wdm-tnl:wdm)
      |     |     |  |     |  |  |        |        |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |     |  |  |        |        |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |     |  |  |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -1325,7 +1325,7 @@ module: ietf-te
      |     |     |  |     |  |                    |  +--:(generic)
      |     |     |  |     |  |                    |  |  +--rw generic?
      |     |     |  |     |  |                    |  |          rt-types:generalized-label
-     |     |     |  |     |  |                    |  +--:(wdm-tnl:grid-type)
+     |     |     |  |     |  |                    |  +--:(wdm-tnl:wdm)
      |     |     |  |     |  |                    |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |     |  |                    |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |     |  |                    |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -1481,7 +1481,7 @@ module: ietf-te
      |     |     |  |  |              |  +--:(generic)
      |     |     |  |  |              |  |  +--rw generic?
      |     |     |  |  |              |  |          rt-types:generalized-label
-     |     |     |  |  |              |  +--:(wdm-tnl:grid-type)
+     |     |     |  |  |              |  +--:(wdm-tnl:wdm)
      |     |     |  |  |              |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |  |              |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |  |              |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -1555,7 +1555,7 @@ module: ietf-te
      |     |     |  |        |        |  +--:(generic)
      |     |     |  |        |        |  |  +--rw generic?
      |     |     |  |        |        |  |          rt-types:generalized-label
-     |     |     |  |        |        |  +--:(wdm-tnl:grid-type)
+     |     |     |  |        |        |  +--:(wdm-tnl:wdm)
      |     |     |  |        |        |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |        |        |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -1606,7 +1606,7 @@ module: ietf-te
      |     |     |  |        |     |  +--:(generic)
      |     |     |  |        |     |  |  +--rw generic?
      |     |     |  |        |     |  |          rt-types:generalized-label
-     |     |     |  |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |  |        |     |  +--:(wdm-tnl:wdm)
      |     |     |  |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -1625,7 +1625,7 @@ module: ietf-te
      |     |     |  |        |     |  +--:(generic)
      |     |     |  |        |     |  |  +--rw generic?
      |     |     |  |        |     |  |          rt-types:generalized-label
-     |     |     |  |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |  |        |     |  +--:(wdm-tnl:wdm)
      |     |     |  |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -1643,7 +1643,7 @@ module: ietf-te
      |     |     |  |        |     +--:(generic)
      |     |     |  |        |     |  +--rw generic?
      |     |     |  |        |     |          int32
-     |     |     |  |        |     +--:(wdm-tnl:l0-grid-type)
+     |     |     |  |        |     +--:(wdm-tnl:wdm)
      |     |     |  |        |        +--rw (wdm-tnl:l0-grid-type)?
      |     |     |  |        |           +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |        |           |  +--rw wdm-tnl:wson-dwdm-channel-spacing?
@@ -1680,7 +1680,7 @@ module: ietf-te
      |     |     |  |        |     |  +--:(generic)
      |     |     |  |        |     |  |  +--rw generic?
      |     |     |  |        |     |  |          rt-types:generalized-label
-     |     |     |  |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |  |        |     |  +--:(wdm-tnl:wdm)
      |     |     |  |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -1699,7 +1699,7 @@ module: ietf-te
      |     |     |  |        |     |  +--:(generic)
      |     |     |  |        |     |  |  +--rw generic?
      |     |     |  |        |     |  |          rt-types:generalized-label
-     |     |     |  |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |  |        |     |  +--:(wdm-tnl:wdm)
      |     |     |  |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -1717,7 +1717,7 @@ module: ietf-te
      |     |     |  |        |     +--:(generic)
      |     |     |  |        |     |  +--rw generic?
      |     |     |  |        |     |          int32
-     |     |     |  |        |     +--:(wdm-tnl:l0-grid-type)
+     |     |     |  |        |     +--:(wdm-tnl:wdm)
      |     |     |  |        |        +--rw (wdm-tnl:l0-grid-type)?
      |     |     |  |        |           +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |        |           |  +--rw wdm-tnl:wson-dwdm-channel-spacing?
@@ -1816,7 +1816,7 @@ module: ietf-te
      |     |     |  |        |                 |  +--:(generic)
      |     |     |  |        |                 |  |  +--ro generic?
      |     |     |  |        |                 |  |          rt-types:generalized-label
-     |     |     |  |        |                 |  +--:(wdm-tnl:grid-type)
+     |     |     |  |        |                 |  +--:(wdm-tnl:wdm)
      |     |     |  |        |                 |     +--ro (wdm-tnl:grid-type)?
      |     |     |  |        |                 |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |        |                 |        |  +--ro (wdm-tnl:fixed-single-or-super-channel)?
@@ -1985,7 +1985,7 @@ module: ietf-te
      |     |     |     |  |  |        |        |  +--:(generic)
      |     |     |     |  |  |        |        |  |  +--rw generic?
      |     |     |     |  |  |        |        |  |          rt-types:generalized-label
-     |     |     |     |  |  |        |        |  +--:(wdm-tnl:grid-type)
+     |     |     |     |  |  |        |        |  +--:(wdm-tnl:wdm)
      |     |     |     |  |  |        |        |     +--rw (wdm-tnl:grid-type)?
      |     |     |     |  |  |        |        |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |     |  |  |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -2074,7 +2074,7 @@ module: ietf-te
      |     |     |     |  |                    |  +--:(generic)
      |     |     |     |  |                    |  |  +--rw generic?
      |     |     |     |  |                    |  |          rt-types:generalized-label
-     |     |     |     |  |                    |  +--:(wdm-tnl:grid-type)
+     |     |     |     |  |                    |  +--:(wdm-tnl:wdm)
      |     |     |     |  |                    |     +--rw (wdm-tnl:grid-type)?
      |     |     |     |  |                    |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |     |  |                    |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -2225,7 +2225,7 @@ module: ietf-te
      |     |     |  |              |  +--:(generic)
      |     |     |  |              |  |  +--rw generic?
      |     |     |  |              |  |          rt-types:generalized-label
-     |     |     |  |              |  +--:(wdm-tnl:grid-type)
+     |     |     |  |              |  +--:(wdm-tnl:wdm)
      |     |     |  |              |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |              |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |              |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -2296,7 +2296,7 @@ module: ietf-te
      |     |     |        |        |  +--:(generic)
      |     |     |        |        |  |  +--rw generic?
      |     |     |        |        |  |          rt-types:generalized-label
-     |     |     |        |        |  +--:(wdm-tnl:grid-type)
+     |     |     |        |        |  +--:(wdm-tnl:wdm)
      |     |     |        |        |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |        |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -2347,7 +2347,7 @@ module: ietf-te
      |     |     |        |     |  +--:(generic)
      |     |     |        |     |  |  +--rw generic?
      |     |     |        |     |  |          rt-types:generalized-label
-     |     |     |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |        |     |  +--:(wdm-tnl:wdm)
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -2366,7 +2366,7 @@ module: ietf-te
      |     |     |        |     |  +--:(generic)
      |     |     |        |     |  |  +--rw generic?
      |     |     |        |     |  |          rt-types:generalized-label
-     |     |     |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |        |     |  +--:(wdm-tnl:wdm)
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -2384,7 +2384,7 @@ module: ietf-te
      |     |     |        |     +--:(generic)
      |     |     |        |     |  +--rw generic?
      |     |     |        |     |          int32
-     |     |     |        |     +--:(wdm-tnl:l0-grid-type)
+     |     |     |        |     +--:(wdm-tnl:wdm)
      |     |     |        |        +--rw (wdm-tnl:l0-grid-type)?
      |     |     |        |           +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |           |  +--rw wdm-tnl:wson-dwdm-channel-spacing?
@@ -2420,7 +2420,7 @@ module: ietf-te
      |     |     |        |     |  +--:(generic)
      |     |     |        |     |  |  +--rw generic?
      |     |     |        |     |  |          rt-types:generalized-label
-     |     |     |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |        |     |  +--:(wdm-tnl:wdm)
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -2439,7 +2439,7 @@ module: ietf-te
      |     |     |        |     |  +--:(generic)
      |     |     |        |     |  |  +--rw generic?
      |     |     |        |     |  |          rt-types:generalized-label
-     |     |     |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |        |     |  +--:(wdm-tnl:wdm)
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -2457,7 +2457,7 @@ module: ietf-te
      |     |     |        |     +--:(generic)
      |     |     |        |     |  +--rw generic?
      |     |     |        |     |          int32
-     |     |     |        |     +--:(wdm-tnl:l0-grid-type)
+     |     |     |        |     +--:(wdm-tnl:wdm)
      |     |     |        |        +--rw (wdm-tnl:l0-grid-type)?
      |     |     |        |           +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |           |  +--rw wdm-tnl:wson-dwdm-channel-spacing?
@@ -2568,7 +2568,7 @@ module: ietf-te
      |     |     |        |                 |  +--:(generic)
      |     |     |        |                 |  |  +--ro generic?
      |     |     |        |                 |  |          rt-types:generalized-label
-     |     |     |        |                 |  +--:(wdm-tnl:grid-type)
+     |     |     |        |                 |  +--:(wdm-tnl:wdm)
      |     |     |        |                 |     +--ro (wdm-tnl:grid-type)?
      |     |     |        |                 |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |                 |        |  +--ro (wdm-tnl:fixed-single-or-super-channel)?
@@ -2720,7 +2720,7 @@ module: ietf-te
      |     |     |     |  |  |        |        |  +--:(generic)
      |     |     |     |  |  |        |        |  |  +--rw generic?
      |     |     |     |  |  |        |        |  |          rt-types:generalized-label
-     |     |     |     |  |  |        |        |  +--:(wdm-tnl:grid-type)
+     |     |     |     |  |  |        |        |  +--:(wdm-tnl:wdm)
      |     |     |     |  |  |        |        |     +--rw (wdm-tnl:grid-type)?
      |     |     |     |  |  |        |        |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |     |  |  |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -2809,7 +2809,7 @@ module: ietf-te
      |     |     |     |  |                    |  +--:(generic)
      |     |     |     |  |                    |  |  +--rw generic?
      |     |     |     |  |                    |  |          rt-types:generalized-label
-     |     |     |     |  |                    |  +--:(wdm-tnl:grid-type)
+     |     |     |     |  |                    |  +--:(wdm-tnl:wdm)
      |     |     |     |  |                    |     +--rw (wdm-tnl:grid-type)?
      |     |     |     |  |                    |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |     |  |                    |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -2960,7 +2960,7 @@ module: ietf-te
      |     |     |  |              |  +--:(generic)
      |     |     |  |              |  |  +--rw generic?
      |     |     |  |              |  |          rt-types:generalized-label
-     |     |     |  |              |  +--:(wdm-tnl:grid-type)
+     |     |     |  |              |  +--:(wdm-tnl:wdm)
      |     |     |  |              |     +--rw (wdm-tnl:grid-type)?
      |     |     |  |              |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |  |              |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -3031,7 +3031,7 @@ module: ietf-te
      |     |     |        |        |  +--:(generic)
      |     |     |        |        |  |  +--rw generic?
      |     |     |        |        |  |          rt-types:generalized-label
-     |     |     |        |        |  +--:(wdm-tnl:grid-type)
+     |     |     |        |        |  +--:(wdm-tnl:wdm)
      |     |     |        |        |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |        |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |        |        |  +--rw (wdm-tnl:fixed-single-or-super-channel)?
@@ -3082,7 +3082,7 @@ module: ietf-te
      |     |     |        |     |  +--:(generic)
      |     |     |        |     |  |  +--rw generic?
      |     |     |        |     |  |          rt-types:generalized-label
-     |     |     |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |        |     |  +--:(wdm-tnl:wdm)
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -3101,7 +3101,7 @@ module: ietf-te
      |     |     |        |     |  +--:(generic)
      |     |     |        |     |  |  +--rw generic?
      |     |     |        |     |  |          rt-types:generalized-label
-     |     |     |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |        |     |  +--:(wdm-tnl:wdm)
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -3119,7 +3119,7 @@ module: ietf-te
      |     |     |        |     +--:(generic)
      |     |     |        |     |  +--rw generic?
      |     |     |        |     |          int32
-     |     |     |        |     +--:(wdm-tnl:l0-grid-type)
+     |     |     |        |     +--:(wdm-tnl:wdm)
      |     |     |        |        +--rw (wdm-tnl:l0-grid-type)?
      |     |     |        |           +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |           |  +--rw wdm-tnl:wson-dwdm-channel-spacing?
@@ -3155,7 +3155,7 @@ module: ietf-te
      |     |     |        |     |  +--:(generic)
      |     |     |        |     |  |  +--rw generic?
      |     |     |        |     |  |          rt-types:generalized-label
-     |     |     |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |        |     |  +--:(wdm-tnl:wdm)
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -3174,7 +3174,7 @@ module: ietf-te
      |     |     |        |     |  +--:(generic)
      |     |     |        |     |  |  +--rw generic?
      |     |     |        |     |  |          rt-types:generalized-label
-     |     |     |        |     |  +--:(wdm-tnl:grid-type)
+     |     |     |        |     |  +--:(wdm-tnl:wdm)
      |     |     |        |     |     +--rw (wdm-tnl:grid-type)?
      |     |     |        |     |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |     |        |  +--rw wdm-tnl:dwdm-n?
@@ -3192,7 +3192,7 @@ module: ietf-te
      |     |     |        |     +--:(generic)
      |     |     |        |     |  +--rw generic?
      |     |     |        |     |          int32
-     |     |     |        |     +--:(wdm-tnl:l0-grid-type)
+     |     |     |        |     +--:(wdm-tnl:wdm)
      |     |     |        |        +--rw (wdm-tnl:l0-grid-type)?
      |     |     |        |           +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |           |  +--rw wdm-tnl:wson-dwdm-channel-spacing?
@@ -3303,7 +3303,7 @@ module: ietf-te
      |     |     |        |                 |  +--:(generic)
      |     |     |        |                 |  |  +--ro generic?
      |     |     |        |                 |  |          rt-types:generalized-label
-     |     |     |        |                 |  +--:(wdm-tnl:grid-type)
+     |     |     |        |                 |  +--:(wdm-tnl:wdm)
      |     |     |        |                 |     +--ro (wdm-tnl:grid-type)?
      |     |     |        |                 |        +--:(wdm-tnl:fixed-dwdm)
      |     |     |        |                 |        |  +--ro (wdm-tnl:fixed-single-or-super-channel)?
@@ -3457,7 +3457,7 @@ module: ietf-te
               |           |  |  +--:(generic)
               |           |  |  |  +--ro generic?
               |           |  |  |          rt-types:generalized-label
-              |           |  |  +--:(wdm-tnl:grid-type)
+              |           |  |  +--:(wdm-tnl:wdm)
               |           |  |     +--ro (wdm-tnl:grid-type)?
               |           |  |        +--:(wdm-tnl:fixed-dwdm)
               |           |  |        |  +--ro (wdm-tnl:fixed-single-or-super-channel)?

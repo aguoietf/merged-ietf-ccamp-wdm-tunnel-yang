@@ -527,7 +527,6 @@ module ietf-wdm-tunnel {
   /*
    * Augment TE label.
    */
-
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/"
         + "te:explicit-route-objects-always/"
@@ -537,7 +536,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the explicit route objects always
       excluded by the path computation with the named path
       constraint.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:globals/te:named-path-constraints/"
@@ -549,9 +550,10 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the explicit route objects included
       or excluded by the path computation with the named path
       constraint.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
-
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/te:path-in-segment/"
         + "te:label-restrictions/"
@@ -560,7 +562,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the ingress segment
       of the named path constraint.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:globals/te:named-path-constraints/"
@@ -571,7 +575,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the ingress segment
       of the named path constraint.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:globals/te:named-path-constraints/"
@@ -581,7 +587,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the ingress segment
       of the named path constraint.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:globals/te:named-path-constraints/"
@@ -592,7 +600,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the egress segment
       of the named path constraint.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:globals/te:named-path-constraints/"
@@ -603,7 +613,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the egress segment
       of the named path constraint.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:globals/te:named-path-constraints/"
@@ -613,7 +625,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the egress segment
       of the named path constraint.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -626,7 +640,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects excluded by the path computation of the primary
       path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -639,7 +655,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects included by the path computation of the primary
       path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -650,7 +668,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the explicit route objects always
       excluded by the path computation of the primary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -661,7 +681,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the explicit route objects included
       or excluded by the path computation of the primary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -672,7 +694,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the ingress segment
       of the primay path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -683,7 +707,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the ingress segment
       of the primay path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -693,7 +719,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the ingress segment
       of the primay path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -704,7 +732,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the egress segment
       of the primay path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -715,7 +745,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the egress segment
       of the primay path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -725,7 +757,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the egress segment
       of the primay path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -738,7 +772,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the route object of the computed
       primary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -752,7 +788,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects excluded by the path computation of the primary
       reverse path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -766,7 +804,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects included by the path computation of the primary
       reverse path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -780,7 +820,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the explicit route objects always
       excluded by the path computation of the primary reverse
       path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -794,7 +836,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the explicit route objects included
       or excluded by the path computation of the primary reverse
       path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -806,7 +850,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the ingress segment
       of the primay reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -818,7 +864,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the ingress segment
       of the primay reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -829,7 +877,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the ingress segment
       of the primay reverse path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -841,7 +891,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the egress segment
       of the primay reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -853,7 +905,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the egress segment
       of the primay reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -864,7 +918,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the egress segment
       of the primay reverse path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -877,7 +933,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the route object of the computed
       primary reverse path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -890,7 +948,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects excluded by the path computation of the
       secondary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -903,7 +963,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects included by the path computation of the
       secondary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -914,7 +976,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the explicit route objects always
       excluded by the path computation of the secondary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -925,7 +989,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the explicit route objects included
       or excluded by the path computation of the secondary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -936,7 +1002,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the ingress segment
       of the secondary path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -947,7 +1015,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the ingress segment
       of the secondary path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-paths/te:secondary-path/"
@@ -956,7 +1026,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the ingress segment
       of the secondary path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -967,7 +1039,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the egress segment
       of the secondary path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -978,7 +1052,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the egress segment
       of the secondary path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -988,7 +1064,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the egress segment
       of the secondary path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1001,7 +1079,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the route object of the computed
       secondary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1014,7 +1094,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects excluded by the path computation of the
       secondary reverse path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1027,7 +1109,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects included by the path computation of the
       secondary reverse path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1039,7 +1123,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the explicit route objects always
       excluded by the path computation of the secondary reverse
       path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1051,7 +1137,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the explicit route objects included
       or excluded by the path computation of the secondary reverse
       path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1062,7 +1150,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the ingress segment
       of the secondary reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1073,7 +1163,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the ingress segment
       of the secondary reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1083,7 +1175,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the ingress segment
       of the secondary reverse path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1094,7 +1188,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the egress segment
       of the secondary reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1105,7 +1201,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the egress segment
       of the secondary reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1115,7 +1213,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the egress segment
       of the secondary reverse path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -1128,7 +1228,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the route object of the computed
       secondary reverse path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:lsps/"
@@ -1137,6 +1239,8 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the actual route of the LSP.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 }

@@ -10,7 +10,7 @@
 <?rfc symrefs="yes"?>
 <?rfc comments="yes"?>
 
-<rfc ipr="trust200902" docName="draft-bgk-ccamp-merged-wdm-tunnel-latest" category="std" consensus="true" submissionType="IETF">
+<rfc ipr="trust200902" docName="draft-bgk-ccamp-merged-wdm-tunnel-00" category="std" consensus="true" submissionType="IETF">
 
   <front>
     <title abbrev="A YANG Data Model for WDM Tunnels">A YANG Data Model for WDM Tunnels</title>
@@ -459,999 +459,1052 @@ module: ietf-wdm-tunnel
             /te:explicit-route-objects-always
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint
             /te:explicit-route-objects-always
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
-    +--rw (l0-grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw wson-dwdm-channel-spacing?    identityref
-       +--:(cwdm)
-       |  +--rw wson-cwdm-channel-spacing?    identityref
-       +--:(flexi-grid)
-          x--rw flexi-grid-channel-spacing?   identityref
-          +--rw flexi-ncfg?                   identityref
-          +--rw flexi-n-step?                 uint8
+    +--:(wdm)
+       +--rw (l0-grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw wson-dwdm-channel-spacing?    identityref
+          +--:(cwdm)
+          |  +--rw wson-cwdm-channel-spacing?    identityref
+          +--:(flexi-grid)
+             x--rw flexi-grid-channel-spacing?   identityref
+             +--rw flexi-ncfg?                   identityref
+             +--rw flexi-n-step?                 uint8
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:globals/te:named-path-constraints
             /te:named-path-constraint/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
-    +--rw (l0-grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw wson-dwdm-channel-spacing?    identityref
-       +--:(cwdm)
-       |  +--rw wson-cwdm-channel-spacing?    identityref
-       +--:(flexi-grid)
-          x--rw flexi-grid-channel-spacing?   identityref
-          +--rw flexi-ncfg?                   identityref
-          +--rw flexi-n-step?                 uint8
+    +--:(wdm)
+       +--rw (l0-grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw wson-dwdm-channel-spacing?    identityref
+          +--:(cwdm)
+          |  +--rw wson-cwdm-channel-spacing?    identityref
+          +--:(flexi-grid)
+             x--rw flexi-grid-channel-spacing?   identityref
+             +--rw flexi-ncfg?                   identityref
+             +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:optimizations/te:algorithm/te:metric
             /te:optimization-metric/te:explicit-route-exclude-objects
             /te:route-object-exclude-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:optimizations/te:algorithm/te:metric
             /te:optimization-metric/te:explicit-route-include-objects
             /te:route-object-include-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:explicit-route-objects-always
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:explicit-route-objects-always
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-start/te:te-label
             /te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-end/te:te-label
             /te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-step/te:technology:
-    +--rw (l0-grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw wson-dwdm-channel-spacing?    identityref
-       +--:(cwdm)
-       |  +--rw wson-cwdm-channel-spacing?    identityref
-       +--:(flexi-grid)
-          x--rw flexi-grid-channel-spacing?   identityref
-          +--rw flexi-ncfg?                   identityref
-          +--rw flexi-n-step?                 uint8
+    +--:(wdm)
+       +--rw (l0-grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw wson-dwdm-channel-spacing?    identityref
+          +--:(cwdm)
+          |  +--rw wson-cwdm-channel-spacing?    identityref
+          +--:(flexi-grid)
+             x--rw flexi-grid-channel-spacing?   identityref
+             +--rw flexi-ncfg?                   identityref
+             +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
-    +--rw (l0-grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw wson-dwdm-channel-spacing?    identityref
-       +--:(cwdm)
-       |  +--rw wson-cwdm-channel-spacing?    identityref
-       +--:(flexi-grid)
-          x--rw flexi-grid-channel-spacing?   identityref
-          +--rw flexi-ncfg?                   identityref
-          +--rw flexi-n-step?                 uint8
+    +--:(wdm)
+       +--rw (l0-grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw wson-dwdm-channel-spacing?    identityref
+          +--:(cwdm)
+          |  +--rw wson-cwdm-channel-spacing?    identityref
+          +--:(flexi-grid)
+             x--rw flexi-grid-channel-spacing?   identityref
+             +--rw flexi-ncfg?                   identityref
+             +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
             /te:path-route-objects/te:path-route-object/te:type
             /te:label/te:label-hop/te:te-label/te:technology:
-    +--ro (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--ro (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--ro dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--ro cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--ro (single-or-super-channel)?
-             +--:(single)
-             |  +--ro flexi-n?              l0-types:flexi-n
-             |  +--ro flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--ro subcarrier-flexi-n* [flexi-n]
-             |     +--ro flexi-n    l0-types:flexi-n
-             |     +--ro flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--ro frequency-slots
-                   +--ro frequency-slot* [flexi-n]
-                      +--ro flexi-n    l0-types:flexi-n
-                      +--ro flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--ro (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--ro (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--ro cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--ro (single-or-super-channel)?
+                +--:(single)
+                |  +--ro flexi-n?              l0-types:flexi-n
+                |  +--ro flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--ro subcarrier-flexi-n* [flexi-n]
+                |     +--ro flexi-n    l0-types:flexi-n
+                |     +--ro flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--ro frequency-slots
+                      +--ro frequency-slot* [flexi-n]
+                         +--ro flexi-n    l0-types:flexi-n
+                         +--ro flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path/te:optimizations
             /te:algorithm/te:metric/te:optimization-metric
             /te:explicit-route-exclude-objects
             /te:route-object-exclude-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path/te:optimizations
             /te:algorithm/te:metric/te:optimization-metric
             /te:explicit-route-include-objects
             /te:route-object-include-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:explicit-route-objects-always
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:explicit-route-objects-always
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-start/te:te-label
             /te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-end/te:te-label
             /te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-in-segment/te:label-restrictions
             /te:label-restriction/te:label-step/te:technology:
-    +--rw (l0-grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw wson-dwdm-channel-spacing?    identityref
-       +--:(cwdm)
-       |  +--rw wson-cwdm-channel-spacing?    identityref
-       +--:(flexi-grid)
-          x--rw flexi-grid-channel-spacing?   identityref
-          +--rw flexi-ncfg?                   identityref
-          +--rw flexi-n-step?                 uint8
+    +--:(wdm)
+       +--rw (l0-grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw wson-dwdm-channel-spacing?    identityref
+          +--:(cwdm)
+          |  +--rw wson-cwdm-channel-spacing?    identityref
+          +--:(flexi-grid)
+             x--rw flexi-grid-channel-spacing?   identityref
+             +--rw flexi-ncfg?                   identityref
+             +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-out-segment/te:label-restrictions
             /te:label-restriction/te:label-start/te:te-label
             /te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-out-segment/te:label-restrictions
             /te:label-restriction/te:label-end/te:te-label
             /te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:path-out-segment/te:label-restrictions
             /te:label-restriction/te:label-step/te:technology:
-    +--rw (l0-grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw wson-dwdm-channel-spacing?    identityref
-       +--:(cwdm)
-       |  +--rw wson-cwdm-channel-spacing?    identityref
-       +--:(flexi-grid)
-          x--rw flexi-grid-channel-spacing?   identityref
-          +--rw flexi-ncfg?                   identityref
-          +--rw flexi-n-step?                 uint8
+    +--:(wdm)
+       +--rw (l0-grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw wson-dwdm-channel-spacing?    identityref
+          +--:(cwdm)
+          |  +--rw wson-cwdm-channel-spacing?    identityref
+          +--:(flexi-grid)
+             x--rw flexi-grid-channel-spacing?   identityref
+             +--rw flexi-ncfg?                   identityref
+             +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:primary-paths
             /te:primary-path/te:primary-reverse-path
             /te:computed-paths-properties/te:computed-path-properties
             /te:path-properties/te:path-route-objects
             /te:path-route-object/te:type/te:label/te:label-hop
             /te:te-label/te:technology:
-    +--ro (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--ro (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--ro dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--ro cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--ro (single-or-super-channel)?
-             +--:(single)
-             |  +--ro flexi-n?              l0-types:flexi-n
-             |  +--ro flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--ro subcarrier-flexi-n* [flexi-n]
-             |     +--ro flexi-n    l0-types:flexi-n
-             |     +--ro flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--ro frequency-slots
-                   +--ro frequency-slot* [flexi-n]
-                      +--ro flexi-n    l0-types:flexi-n
-                      +--ro flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--ro (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--ro (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--ro cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--ro (single-or-super-channel)?
+                +--:(single)
+                |  +--ro flexi-n?              l0-types:flexi-n
+                |  +--ro flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--ro subcarrier-flexi-n* [flexi-n]
+                |     +--ro flexi-n    l0-types:flexi-n
+                |     +--ro flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--ro frequency-slots
+                      +--ro frequency-slot* [flexi-n]
+                         +--ro flexi-n    l0-types:flexi-n
+                         +--ro flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:optimizations/te:algorithm
             /te:metric/te:optimization-metric
             /te:explicit-route-exclude-objects
             /te:route-object-exclude-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:optimizations/te:algorithm
             /te:metric/te:optimization-metric
             /te:explicit-route-include-objects
             /te:route-object-include-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:explicit-route-objects-always
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:explicit-route-objects-always
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
-    +--rw (l0-grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw wson-dwdm-channel-spacing?    identityref
-       +--:(cwdm)
-       |  +--rw wson-cwdm-channel-spacing?    identityref
-       +--:(flexi-grid)
-          x--rw flexi-grid-channel-spacing?   identityref
-          +--rw flexi-ncfg?                   identityref
-          +--rw flexi-n-step?                 uint8
+    +--:(wdm)
+       +--rw (l0-grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw wson-dwdm-channel-spacing?    identityref
+          +--:(cwdm)
+          |  +--rw wson-cwdm-channel-spacing?    identityref
+          +--:(flexi-grid)
+             x--rw flexi-grid-channel-spacing?   identityref
+             +--rw flexi-ncfg?                   identityref
+             +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
-    +--rw (l0-grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw wson-dwdm-channel-spacing?    identityref
-       +--:(cwdm)
-       |  +--rw wson-cwdm-channel-spacing?    identityref
-       +--:(flexi-grid)
-          x--rw flexi-grid-channel-spacing?   identityref
-          +--rw flexi-ncfg?                   identityref
-          +--rw flexi-n-step?                 uint8
+    +--:(wdm)
+       +--rw (l0-grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw wson-dwdm-channel-spacing?    identityref
+          +--:(cwdm)
+          |  +--rw wson-cwdm-channel-spacing?    identityref
+          +--:(flexi-grid)
+             x--rw flexi-grid-channel-spacing?   identityref
+             +--rw flexi-ncfg?                   identityref
+             +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
             /te:secondary-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
             /te:path-route-objects/te:path-route-object/te:type
             /te:label/te:label-hop/te:te-label/te:technology:
-    +--ro (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--ro (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--ro dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--ro cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--ro (single-or-super-channel)?
-             +--:(single)
-             |  +--ro flexi-n?              l0-types:flexi-n
-             |  +--ro flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--ro subcarrier-flexi-n* [flexi-n]
-             |     +--ro flexi-n    l0-types:flexi-n
-             |     +--ro flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--ro frequency-slots
-                   +--ro frequency-slot* [flexi-n]
-                      +--ro flexi-n    l0-types:flexi-n
-                      +--ro flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--ro (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--ro (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--ro cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--ro (single-or-super-channel)?
+                +--:(single)
+                |  +--ro flexi-n?              l0-types:flexi-n
+                |  +--ro flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--ro subcarrier-flexi-n* [flexi-n]
+                |     +--ro flexi-n    l0-types:flexi-n
+                |     +--ro flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--ro frequency-slots
+                      +--ro frequency-slot* [flexi-n]
+                         +--ro flexi-n    l0-types:flexi-n
+                         +--ro flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:optimizations/te:algorithm
             /te:metric/te:optimization-metric
             /te:explicit-route-exclude-objects
             /te:route-object-exclude-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:optimizations/te:algorithm
             /te:metric/te:optimization-metric
             /te:explicit-route-include-objects
             /te:route-object-include-object/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path
             /te:explicit-route-objects-always
             /te:route-object-exclude-always/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path
             /te:explicit-route-objects-always
             /te:route-object-include-exclude/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--rw dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw (single-or-super-channel)?
-             +--:(single)
-             |  +--rw flexi-n?              l0-types:flexi-n
-             |  +--rw flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--rw subcarrier-flexi-n* [flexi-n]
-             |     +--rw flexi-n    l0-types:flexi-n
-             |     +--rw flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--rw frequency-slots
-                   +--rw frequency-slot* [flexi-n]
-                      +--rw flexi-n    l0-types:flexi-n
-                      +--rw flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--rw dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw (single-or-super-channel)?
+                +--:(single)
+                |  +--rw flexi-n?              l0-types:flexi-n
+                |  +--rw flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--rw subcarrier-flexi-n* [flexi-n]
+                |     +--rw flexi-n    l0-types:flexi-n
+                |     +--rw flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--rw frequency-slots
+                      +--rw frequency-slot* [flexi-n]
+                         +--rw flexi-n    l0-types:flexi-n
+                         +--rw flexi-m?   l0-types:flexi-m
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-in-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
-    +--rw (l0-grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw wson-dwdm-channel-spacing?    identityref
-       +--:(cwdm)
-       |  +--rw wson-cwdm-channel-spacing?    identityref
-       +--:(flexi-grid)
-          x--rw flexi-grid-channel-spacing?   identityref
-          +--rw flexi-ncfg?                   identityref
-          +--rw flexi-n-step?                 uint8
+    +--:(wdm)
+       +--rw (l0-grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw wson-dwdm-channel-spacing?    identityref
+          +--:(cwdm)
+          |  +--rw wson-cwdm-channel-spacing?    identityref
+          +--:(flexi-grid)
+             x--rw flexi-grid-channel-spacing?   identityref
+             +--rw flexi-ncfg?                   identityref
+             +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction
             /te:label-start/te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-end
             /te:te-label/te:technology:
-    +--rw (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw dwdm-n?    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--rw cwdm-n?    l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--rw flexi-n?   l0-types:flexi-n
+    +--:(wdm)
+       +--rw (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw dwdm-n?    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--rw cwdm-n?    l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--rw flexi-n?   l0-types:flexi-n
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:path-out-segment
             /te:label-restrictions/te:label-restriction/te:label-step
             /te:technology:
-    +--rw (l0-grid-type)?
-       +--:(fixed-dwdm)
-       |  +--rw wson-dwdm-channel-spacing?    identityref
-       +--:(cwdm)
-       |  +--rw wson-cwdm-channel-spacing?    identityref
-       +--:(flexi-grid)
-          x--rw flexi-grid-channel-spacing?   identityref
-          +--rw flexi-ncfg?                   identityref
-          +--rw flexi-n-step?                 uint8
+    +--:(wdm)
+       +--rw (l0-grid-type)?
+          +--:(fixed-dwdm)
+          |  +--rw wson-dwdm-channel-spacing?    identityref
+          +--:(cwdm)
+          |  +--rw wson-cwdm-channel-spacing?    identityref
+          +--:(flexi-grid)
+             x--rw flexi-grid-channel-spacing?   identityref
+             +--rw flexi-ncfg?                   identityref
+             +--rw flexi-n-step?                 uint8
   augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
             /te:secondary-reverse-path/te:computed-paths-properties
             /te:computed-path-properties/te:path-properties
             /te:path-route-objects/te:path-route-object/te:type
             /te:label/te:label-hop/te:te-label/te:technology:
-    +--ro (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--ro (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--ro dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--ro cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--ro (single-or-super-channel)?
-             +--:(single)
-             |  +--ro flexi-n?              l0-types:flexi-n
-             |  +--ro flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--ro subcarrier-flexi-n* [flexi-n]
-             |     +--ro flexi-n    l0-types:flexi-n
-             |     +--ro flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--ro frequency-slots
-                   +--ro frequency-slot* [flexi-n]
-                      +--ro flexi-n    l0-types:flexi-n
-                      +--ro flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--ro (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--ro (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--ro cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--ro (single-or-super-channel)?
+                +--:(single)
+                |  +--ro flexi-n?              l0-types:flexi-n
+                |  +--ro flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--ro subcarrier-flexi-n* [flexi-n]
+                |     +--ro flexi-n    l0-types:flexi-n
+                |     +--ro flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--ro frequency-slots
+                      +--ro frequency-slot* [flexi-n]
+                         +--ro flexi-n    l0-types:flexi-n
+                         +--ro flexi-m?   l0-types:flexi-m
   augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
             /te:lsp-actual-route-information/te:type/te:label
             /te:label-hop/te:te-label/te:technology:
-    +--ro (grid-type)?
-       +--:(fixed-dwdm)
-       |  +--ro (fixed-single-or-super-channel)?
-       |     +--:(single)
-       |     |  +--ro dwdm-n?               l0-types:dwdm-n
-       |     +--:(multi)
-       |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
-       +--:(cwdm)
-       |  +--ro cwdm-n?                     l0-types:cwdm-n
-       +--:(flexi-grid)
-          +--ro (single-or-super-channel)?
-             +--:(single)
-             |  +--ro flexi-n?              l0-types:flexi-n
-             |  +--ro flexi-m?              l0-types:flexi-m
-             x--:(super)
-             |  +--ro subcarrier-flexi-n* [flexi-n]
-             |     +--ro flexi-n    l0-types:flexi-n
-             |     +--ro flexi-m?   l0-types:flexi-m
-             +--:(multi)
-                +--ro frequency-slots
-                   +--ro frequency-slot* [flexi-n]
-                      +--ro flexi-n    l0-types:flexi-n
-                      +--ro flexi-m?   l0-types:flexi-m
+    +--:(wdm)
+       +--ro (grid-type)?
+          +--:(fixed-dwdm)
+          |  +--ro (fixed-single-or-super-channel)?
+          |     +--:(single)
+          |     |  +--ro dwdm-n?               l0-types:dwdm-n
+          |     +--:(multi)
+          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+          +--:(cwdm)
+          |  +--ro cwdm-n?                     l0-types:cwdm-n
+          +--:(flexi-grid)
+             +--ro (single-or-super-channel)?
+                +--:(single)
+                |  +--ro flexi-n?              l0-types:flexi-n
+                |  +--ro flexi-m?              l0-types:flexi-m
+                x--:(super)
+                |  +--ro subcarrier-flexi-n* [flexi-n]
+                |     +--ro flexi-n    l0-types:flexi-n
+                |     +--ro flexi-m?   l0-types:flexi-m
+                +--:(multi)
+                   +--ro frequency-slots
+                      +--ro frequency-slot* [flexi-n]
+                         +--ro flexi-n    l0-types:flexi-n
+                         +--ro flexi-m?   l0-types:flexi-m
 ]]></artwork></figure>
 
 </section>
@@ -1988,7 +2041,6 @@ module ietf-wdm-tunnel {
   /*
    * Augment TE label.
    */
-
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/"
         + "te:explicit-route-objects-always/"
@@ -1998,7 +2050,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the explicit route objects always
       excluded by the path computation with the named path
       constraint.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:globals/te:named-path-constraints/"
@@ -2010,9 +2064,10 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the explicit route objects included
       or excluded by the path computation with the named path
       constraint.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
-
   augment "/te:te/te:globals/te:named-path-constraints/"
         + "te:named-path-constraint/te:path-in-segment/"
         + "te:label-restrictions/"
@@ -2021,7 +2076,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the ingress segment
       of the named path constraint.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:globals/te:named-path-constraints/"
@@ -2032,7 +2089,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the ingress segment
       of the named path constraint.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:globals/te:named-path-constraints/"
@@ -2042,7 +2101,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the ingress segment
       of the named path constraint.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:globals/te:named-path-constraints/"
@@ -2053,7 +2114,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the egress segment
       of the named path constraint.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:globals/te:named-path-constraints/"
@@ -2064,7 +2127,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the egress segment
       of the named path constraint.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:globals/te:named-path-constraints/"
@@ -2074,7 +2139,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the egress segment
       of the named path constraint.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2087,7 +2154,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects excluded by the path computation of the primary
       path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2100,7 +2169,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects included by the path computation of the primary
       path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2111,7 +2182,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the explicit route objects always
       excluded by the path computation of the primary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2122,7 +2195,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the explicit route objects included
       or excluded by the path computation of the primary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2133,7 +2208,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the ingress segment
       of the primay path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2144,7 +2221,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the ingress segment
       of the primay path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2154,7 +2233,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the ingress segment
       of the primay path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2165,7 +2246,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the egress segment
       of the primay path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2176,7 +2259,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the egress segment
       of the primay path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2186,7 +2271,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the egress segment
       of the primay path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2199,7 +2286,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the route object of the computed
       primary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2213,7 +2302,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects excluded by the path computation of the primary
       reverse path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2227,7 +2318,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects included by the path computation of the primary
       reverse path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2241,7 +2334,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the explicit route objects always
       excluded by the path computation of the primary reverse
       path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2255,7 +2350,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the explicit route objects included
       or excluded by the path computation of the primary reverse
       path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2267,7 +2364,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the ingress segment
       of the primay reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2279,7 +2378,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the ingress segment
       of the primay reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2290,7 +2391,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the ingress segment
       of the primay reverse path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2302,7 +2405,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the egress segment
       of the primay reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2314,7 +2419,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the egress segment
       of the primay reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2325,7 +2432,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the egress segment
       of the primay reverse path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2338,7 +2447,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the route object of the computed
       primary reverse path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2351,7 +2462,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects excluded by the path computation of the
       secondary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2364,7 +2477,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects included by the path computation of the
       secondary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2375,7 +2490,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the explicit route objects always
       excluded by the path computation of the secondary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2386,7 +2503,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the explicit route objects included
       or excluded by the path computation of the secondary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2397,7 +2516,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the ingress segment
       of the secondary path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2408,7 +2529,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the ingress segment
       of the secondary path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
   augment "/te:te/te:tunnels/te:tunnel/"
         + "te:secondary-paths/te:secondary-path/"
@@ -2417,7 +2540,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the ingress segment
       of the secondary path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2428,7 +2553,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the egress segment
       of the secondary path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2439,7 +2566,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the egress segment
       of the secondary path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2449,7 +2578,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the egress segment
       of the secondary path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2462,7 +2593,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the route object of the computed
       secondary path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2475,7 +2608,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects excluded by the path computation of the
       secondary reverse path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2488,7 +2623,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the optimization of the explicit
       route objects included by the path computation of the
       secondary reverse path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2500,7 +2637,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the explicit route objects always
       excluded by the path computation of the secondary reverse
       path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2512,7 +2651,9 @@ module ietf-wdm-tunnel {
       "Augment TE label hop for the explicit route objects included
       or excluded by the path computation of the secondary reverse
       path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2523,7 +2664,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the ingress segment
       of the secondary reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2534,7 +2677,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the ingress segment
       of the secondary reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2544,7 +2689,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the ingress segment
       of the secondary reverse path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2555,7 +2702,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range start for the egress segment
       of the secondary reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2566,7 +2715,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range end for the egress segment
       of the secondary reverse path.";
-    uses l0-types:wdm-label-start-end;
+    case wdm {
+      uses l0-types:wdm-label-start-end;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2576,7 +2727,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label range step for the egress segment
       of the secondary reverse path.";
-    uses l0-types:wdm-label-step;
+    case wdm {
+      uses l0-types:wdm-label-step;
+    }
   }
 
   augment "/te:te/te:tunnels/te:tunnel/"
@@ -2589,7 +2742,9 @@ module ietf-wdm-tunnel {
     description
       "Augment TE label hop for the route object of the computed
       secondary reverse path.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 
   augment "/te:te/te:lsps/"
@@ -2598,7 +2753,9 @@ module ietf-wdm-tunnel {
         + "te:label-hop/te:te-label/te:technology" {
     description
       "Augment TE label hop for the actual route of the LSP.";
-    uses l0-types:wdm-label-hop;
+    case wdm {
+      uses l0-types:wdm-label-hop;
+    }
   }
 }
    <CODE ENDS>
@@ -3047,234 +3204,235 @@ end/te:te-label/te:technology</t>
   </back>
 
 <!-- ##markdown-source:
-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
-mLIkTGZn0tXPFdhBgCQTIwC3mjEtiZzFFZHtLIw4mdE0l7YzHCaTLrC6C4v3
-VZrkSGLK4kCTJ5aOzaRikaFnBh7A6TtJyfXamRZpVk46wVNTgXGZOC9LPjNr
-s8GERb5Um3kncoz6s8sDK0OxIBJoKyoGLFLTiKri5JGbzqHBQ/v0JBbCpoBm
-X6PHCLKKM0Q4J1tNY+uJ6CWC/ms2foqPVKjEGCqeMuxcLNssGDLPnCpMQ5s/
-smZObcqj2tS3xjKTODuu4rZOPiOzwiGonTb52BAweD7MIwaiuWd4TQaXXXnJ
-6EtjV/75sl3dGQOXdnfxdanrsOhqOg11FHumHvaa1f/gabk9GLJHFcOm1oz1
-lQoFj8p9ihKBV5QeX5/dpy8TTyfpAEBk2DDUeeOYshvaUtHZVulmgM8VGaQQ
-iHm41+pp+UVUhwufeniWT/caNZCpzewTe4NpAPI59QpeXs9jl3Z5obGphdYm
-2dgHlljCvYmaivh1NfjP+RyCYXrwv6DvqdiDSCRcbGnhJ1uf9KhmVBqh+hSv
-sXomfVBVDBgmPLuL7PEQvFy9t9sI0g4/TANh2xITwHytjznyKQIPYdAbqUnj
-TRcUyMHD7N1CMj79o7ROjN/wZJDLPYXV/PxZQ1Nbyv2W/R1iFAFd/pE1ytvZ
-Bw7vSO37Wjt3iZqhm0Y9H5POBaTLotFloeiyOOSoDIyjpjO2uM6ahq/pjC2o
-szk2UNcZu5AfOdeJXEpnpX4Xcx+X0NmN4Eh2HWOoDR5m4lZms04t2LRg04JN
-CzZXBRs8n4Tf3zDNPcjKJnjaX9R7llo6DYlq+VYBCophFjrGTMnD6NoJ7LJo
-utpMqNBtOq8ZhItwkbc0ze4Oj+fK8SzR1Ye+X3LMN+3nSLL8vHVbrdtq3Vbr
-ts7DEhdnz8KUNj5ugaYFmhZoLg00iwYtjzJGvhoePwaxhXqi7b/2H4/7SQr2
-bdyJs6/lco37NGbfFc+QuwtQsWzIvHo9b2yzh0vD41cTreSa1611V03NcgHD
-orZHYmsd6TgAKBcBgw5T68a7rqOj/XacAAm6utVgkTWWKrYr2QU487TYvisj
-FO4KevQlMM85V/C6YRTmApbTbcDx+7ivs0E3XlZaA0yd0/rmtYEOp1XHpdVx
-HTl/eVE0C/583bRauLoW2sVw52pYpADWrpj7pSpnWbW6uiZdXTy1aIOvpdJE
-62tuUhWXTSTbRbLUmmkXzTIkj7VW114BzzU3R8u2BA5k6Np8zr7f7Wr4Sa7i
-1deOAHtPzO/eBNNgvFordtqHeNI/FHiUT6cTPM1qThoXhP4oyJm2q+UnOUEc
-xqud3MwrL+ZxA1X6+mqFaGFiad/ncSyBM0Pg2zOIEjm/cbZ+I3MVFv06tcL0
-Vx0tWQmeKzuHUEV2FfbMMFX+irOh5vGZncdndx6XO38mnpDreSw5krfDf8v+
-bj/9o9aHVWayEPusYQZns91gMO4zJJUXsenAe63VnIZz51bttej0GvvNm+G9
-ADEZGRCzYNaiWItiFfZaFGtRbMl3Veb00wmPkxuEKQdVrrTqL7vInZXZoPD7
-oLjipsi/KVgQadW29GrTiZg06K1RVzDZy6hrqlVkHKz1YZ6ecD/7+lNzTjpP
-e0TLvyitZmV+rmTRTSQbKFbNwB80fVltkZ4k/HrfLM+/FxuwLXLfCQRcg+Za
-6L7vemux+x5h9zXserq/BE2EeDjE+vBojBdj/Cl5v0bE7eSZNg0Vh6wUaisP
-i9VNzWVbcWgrDhX22opDW3G4R+CXlVAXAr9y4xb8WvCrsNeCXwt+S/+bKy1e
-tXjV4lWLV8uHV+1+dgtYLWC1gHW7gHVNX+s4YwNk0ULtY6iqL6PCRBS06ro/
-6sLye7vd8aC3O9ot6nu5ytut6Uesr3ZL+nFh9I38+El9VHxeKiU03s1qBc1m
-fOFagboMjqjrrhWom6gVqGuqFagbqBWo66sVqKvUCtSN1ArU5WoF6jK1AnV9
-tQK1aK2g2nCxWsEFptfY73ZrBQ0/PlDboa5RadiunrNDXevantVpq6ll3tpq
-atGHVWayEPusYQZtNfWhIGR7oKdFyBYh8z6sRcj7gJDnoVp76qcFtRbUsj6s
-BbXHBmrt0aAW1VpUa1FtCVGtPT9U6nwPtj7vRKvtIaOHp9P2JNKD3+W+1Z+b
-bn3A8uHFtaq1dQIPUKmtF2i9ADa6kRek5rdKNZPmXk0HonIzLRVFGoCnPRDV
-HohqD0Tlony0B6Iu/l6J+T/PUevcHn5q68Ulam29uK0XL3O9eHnRsD3o1KJh
-i4Z5H9ai4TKiYXuOqcWsEm8tZhV9WItZDwyz2mNKLWi1oNWC1u2DVvs2nlLn
-u9isvDOllfaXa0RalS21ytqfzbjvW8l39ybuFq1vfem3P3H0yHXW4vXjw+v2
-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
-mAEA
+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
+bH23+fSbl3/5dr3b+X8O1iSJOKkBAA==
 
 -->
 

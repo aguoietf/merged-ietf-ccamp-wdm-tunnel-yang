@@ -16,7 +16,7 @@ Expires: 25 April 2024                                             Nokia
 
 
                    A YANG Data Model for WDM Tunnels
-                draft-bgk-ccamp-merged-wdm-tunnel-latest
+                  draft-bgk-ccamp-merged-wdm-tunnel-00
 
 Abstract
 
@@ -75,15 +75,15 @@ Table of Contents
    4.  Example of Use  . . . . . . . . . . . . . . . . . . . . . . .   4
    5.  YANG Model for WDM Tunnel . . . . . . . . . . . . . . . . . .   6
      5.1.  YANG Tree . . . . . . . . . . . . . . . . . . . . . . . .   6
-     5.2.  YANG Code . . . . . . . . . . . . . . . . . . . . . . . .  32
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  56
-   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  56
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  57
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  57
-     8.2.  Informative References  . . . . . . . . . . . . . . . . .  58
-   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  59
-   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  59
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  60
+     5.2.  YANG Code . . . . . . . . . . . . . . . . . . . . . . . .  33
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  59
+   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  60
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  60
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  60
+     8.2.  Informative References  . . . . . . . . . . . . . . . . .  62
+   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  62
+   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  62
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  64
 
 1.  Introduction
 
@@ -592,24 +592,24 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                /te:explicit-route-objects-always
                /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
 
 
 
@@ -618,54 +618,54 @@ Guo, et al.               Expires 25 April 2024                [Page 11]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint
                /te:explicit-route-objects-always
                /te:route-object-include-exclude/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-in-segment
                /te:label-restrictions/te:label-restriction
                /te:label-start/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:globals/te:named-path-constraints
-               /te:named-path-constraint/te:path-in-segment
-               /te:label-restrictions/te:label-restriction/te:label-end
-               /te:te-label/te:technology:
 
 
 
@@ -674,54 +674,54 @@ Guo, et al.               Expires 25 April 2024                [Page 12]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+               /te:named-path-constraint/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-step
                /te:technology:
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
-             +--rw flexi-ncfg?                   identityref
-             +--rw flexi-n-step?                 uint8
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-out-segment
                /te:label-restrictions/te:label-restriction
                /te:label-start/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint/te:path-out-segment
                /te:label-restrictions/te:label-restriction/te:label-end
                /te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
-     augment /te:te/te:globals/te:named-path-constraints
-               /te:named-path-constraint/te:path-out-segment
-               /te:label-restrictions/te:label-restriction/te:label-step
-               /te:technology:
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
 
 
 
@@ -730,54 +730,54 @@ Guo, et al.               Expires 25 April 2024                [Page 13]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
-             +--rw flexi-ncfg?                   identityref
-             +--rw flexi-n-step?                 uint8
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:globals/te:named-path-constraints
+               /te:named-path-constraint/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:optimizations/te:algorithm/te:metric
                /te:optimization-metric/te:explicit-route-exclude-objects
                /te:route-object-exclude-object/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:optimizations/te:algorithm/te:metric
                /te:optimization-metric/te:explicit-route-include-objects
                /te:route-object-include-object/te:type/te:label
-               /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
 
 
 
@@ -786,54 +786,54 @@ Guo, et al.               Expires 25 April 2024                [Page 14]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:explicit-route-objects-always
                /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
-     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:explicit-route-objects-always
-               /te:route-object-include-exclude/te:type/te:label
-               /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
 
 
 
@@ -842,54 +842,54 @@ Guo, et al.               Expires 25 April 2024                [Page 15]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:explicit-route-objects-always
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-in-segment/te:label-restrictions
                /te:label-restriction/te:label-start/te:te-label
                /te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-in-segment/te:label-restrictions
                /te:label-restriction/te:label-end/te:te-label
-               /te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
-     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:path-in-segment/te:label-restrictions
-               /te:label-restriction/te:label-step/te:technology:
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
 
 
 
@@ -898,54 +898,54 @@ Guo, et al.               Expires 25 April 2024                [Page 16]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
-             +--rw flexi-ncfg?                   identityref
-             +--rw flexi-n-step?                 uint8
+               /te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-step/te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-out-segment
                /te:label-restrictions/te:label-restriction
                /te:label-start/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-out-segment
                /te:label-restrictions/te:label-restriction/te:label-end
                /te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:path-out-segment
-               /te:label-restrictions/te:label-restriction/te:label-step
-               /te:technology:
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
-             +--rw flexi-ncfg?                   identityref
-             +--rw flexi-n-step?                 uint8
-     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:computed-paths-properties
-               /te:computed-path-properties/te:path-properties
-               /te:path-route-objects/te:path-route-object/te:type
-               /te:label/te:label-hop/te:te-label/te:technology:
-       +--ro (grid-type)?
 
 
 
@@ -954,54 +954,54 @@ Guo, et al.               Expires 25 April 2024                [Page 17]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-          +--:(fixed-dwdm)
-          |  +--ro (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--ro dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--ro cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--ro (single-or-super-channel)?
-                +--:(single)
-                |  +--ro flexi-n?              l0-types:flexi-n
-                |  +--ro flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    l0-types:flexi-n
-                |     +--ro flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--ro frequency-slots
-                      +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    l0-types:flexi-n
-                         +--ro flexi-m?   l0-types:flexi-m
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:label/te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              l0-types:flexi-n
+                   |  +--ro flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    l0-types:flexi-n
+                   |     +--ro flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    l0-types:flexi-n
+                            +--ro flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path/te:optimizations
                /te:algorithm/te:metric/te:optimization-metric
                /te:explicit-route-exclude-objects
                /te:route-object-exclude-object/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
+       +--:(wdm)
 
 
 
@@ -1010,54 +1010,54 @@ Guo, et al.               Expires 25 April 2024                [Page 18]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path/te:optimizations
                /te:algorithm/te:metric/te:optimization-metric
                /te:explicit-route-include-objects
                /te:route-object-include-object/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
-     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:primary-reverse-path
-               /te:explicit-route-objects-always
-               /te:route-object-exclude-always/te:type/te:label
-               /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
 
 
 
@@ -1066,54 +1066,54 @@ Guo, et al.               Expires 25 April 2024                [Page 19]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:explicit-route-objects-always
+               /te:route-object-exclude-always/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:explicit-route-objects-always
                /te:route-object-include-exclude/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
-     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:primary-reverse-path
-               /te:path-in-segment/te:label-restrictions
-               /te:label-restriction/te:label-start/te:te-label
-               /te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
 
 
 
@@ -1122,54 +1122,54 @@ Guo, et al.               Expires 25 April 2024                [Page 20]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-in-segment/te:label-restrictions
+               /te:label-restriction/te:label-start/te:te-label
+               /te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:path-in-segment/te:label-restrictions
                /te:label-restriction/te:label-end/te:te-label
                /te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:path-in-segment/te:label-restrictions
                /te:label-restriction/te:label-step/te:technology:
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
-             +--rw flexi-ncfg?                   identityref
-             +--rw flexi-n-step?                 uint8
-     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:primary-reverse-path
-               /te:path-out-segment/te:label-restrictions
-               /te:label-restriction/te:label-start/te:te-label
-               /te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
-     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:primary-reverse-path
-               /te:path-out-segment/te:label-restrictions
-               /te:label-restriction/te:label-end/te:te-label
-               /te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
 
 
 
@@ -1178,54 +1178,54 @@ Guo, et al.               Expires 25 April 2024                [Page 21]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-out-segment/te:label-restrictions
+               /te:label-restriction/te:label-start/te:te-label
+               /te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+               /te:primary-path/te:primary-reverse-path
+               /te:path-out-segment/te:label-restrictions
+               /te:label-restriction/te:label-end/te:te-label
+               /te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:path-out-segment/te:label-restrictions
                /te:label-restriction/te:label-step/te:technology:
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
-             +--rw flexi-ncfg?                   identityref
-             +--rw flexi-n-step?                 uint8
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
-               /te:primary-path/te:primary-reverse-path
-               /te:computed-paths-properties/te:computed-path-properties
-               /te:path-properties/te:path-route-objects
-               /te:path-route-object/te:type/te:label/te:label-hop
-               /te:te-label/te:technology:
-       +--ro (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--ro (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--ro dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--ro cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--ro (single-or-super-channel)?
-                +--:(single)
-                |  +--ro flexi-n?              l0-types:flexi-n
-                |  +--ro flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    l0-types:flexi-n
-                |     +--ro flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--ro frequency-slots
-                      +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    l0-types:flexi-n
-                         +--ro flexi-m?   l0-types:flexi-m
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
 
 
 
@@ -1234,54 +1234,54 @@ Guo, et al.               Expires 25 April 2024                [Page 22]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
+               /te:primary-path/te:primary-reverse-path
+               /te:computed-paths-properties/te:computed-path-properties
+               /te:path-properties/te:path-route-objects
+               /te:path-route-object/te:type/te:label/te:label-hop
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              l0-types:flexi-n
+                   |  +--ro flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    l0-types:flexi-n
+                   |     +--ro flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    l0-types:flexi-n
+                            +--ro flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:optimizations/te:algorithm
                /te:metric/te:optimization-metric
                /te:explicit-route-exclude-objects
                /te:route-object-exclude-object/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:optimizations/te:algorithm
-               /te:metric/te:optimization-metric
-               /te:explicit-route-include-objects
-               /te:route-object-include-object/te:type/te:label
-               /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
 
 
 
@@ -1290,54 +1290,54 @@ Guo, et al.               Expires 25 April 2024                [Page 23]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:optimizations/te:algorithm
+               /te:metric/te:optimization-metric
+               /te:explicit-route-include-objects
+               /te:route-object-include-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:explicit-route-objects-always
                /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:explicit-route-objects-always
-               /te:route-object-include-exclude/te:type/te:label
-               /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
 
 
 
@@ -1346,54 +1346,54 @@ Guo, et al.               Expires 25 April 2024                [Page 24]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:path-in-segment
-               /te:label-restrictions/te:label-restriction
-               /te:label-start/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:path-in-segment
-               /te:label-restrictions/te:label-restriction/te:label-end
-               /te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:path-in-segment
-               /te:label-restrictions/te:label-restriction/te:label-step
-               /te:technology:
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
+               /te:secondary-path/te:explicit-route-objects-always
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
 
 
 
@@ -1402,54 +1402,54 @@ Guo, et al.               Expires 25 April 2024                [Page 25]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-             +--rw flexi-ncfg?                   identityref
-             +--rw flexi-n-step?                 uint8
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-out-segment
                /te:label-restrictions/te:label-restriction
                /te:label-start/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:path-out-segment
-               /te:label-restrictions/te:label-restriction/te:label-end
-               /te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:path-out-segment
-               /te:label-restrictions/te:label-restriction/te:label-step
-               /te:technology:
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
-             +--rw flexi-ncfg?                   identityref
-             +--rw flexi-n-step?                 uint8
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-               /te:secondary-path/te:computed-paths-properties
-               /te:computed-path-properties/te:path-properties
-               /te:path-route-objects/te:path-route-object/te:type
-               /te:label/te:label-hop/te:te-label/te:technology:
-       +--ro (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--ro (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--ro dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
 
 
 
@@ -1458,54 +1458,54 @@ Guo, et al.               Expires 25 April 2024                [Page 26]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--ro cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--ro (single-or-super-channel)?
-                +--:(single)
-                |  +--ro flexi-n?              l0-types:flexi-n
-                |  +--ro flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    l0-types:flexi-n
-                |     +--ro flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--ro frequency-slots
-                      +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    l0-types:flexi-n
-                         +--ro flexi-m?   l0-types:flexi-m
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path/te:optimizations/te:algorithm
-               /te:metric/te:optimization-metric
-               /te:explicit-route-exclude-objects
-               /te:route-object-exclude-object/te:type/te:label
-               /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path/te:optimizations/te:algorithm
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+               /te:secondary-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:label/te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              l0-types:flexi-n
 
 
 
@@ -1514,54 +1514,54 @@ Guo, et al.               Expires 25 April 2024                [Page 27]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
+                   |  +--ro flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    l0-types:flexi-n
+                   |     +--ro flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    l0-types:flexi-n
+                            +--ro flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:optimizations/te:algorithm
+               /te:metric/te:optimization-metric
+               /te:explicit-route-exclude-objects
+               /te:route-object-exclude-object/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:optimizations/te:algorithm
                /te:metric/te:optimization-metric
                /te:explicit-route-include-objects
                /te:route-object-include-object/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path
-               /te:explicit-route-objects-always
-               /te:route-object-exclude-always/te:type/te:label
-               /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
+       +--:(wdm)
+          +--rw (grid-type)?
 
 
 
@@ -1570,54 +1570,54 @@ Guo, et al.               Expires 25 April 2024                [Page 28]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path
                /te:explicit-route-objects-always
-               /te:route-object-include-exclude/te:type/te:label
+               /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--rw dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw (single-or-super-channel)?
-                +--:(single)
-                |  +--rw flexi-n?              l0-types:flexi-n
-                |  +--rw flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--rw subcarrier-flexi-n* [flexi-n]
-                |     +--rw flexi-n    l0-types:flexi-n
-                |     +--rw flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--rw frequency-slots
-                      +--rw frequency-slot* [flexi-n]
-                         +--rw flexi-n    l0-types:flexi-n
-                         +--rw flexi-m?   l0-types:flexi-m
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path/te:path-in-segment
-               /te:label-restrictions/te:label-restriction
-               /te:label-start/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path/te:path-in-segment
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
 
 
 
@@ -1626,54 +1626,54 @@ Guo, et al.               Expires 25 April 2024                [Page 29]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-               /te:label-restrictions/te:label-restriction/te:label-end
-               /te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path
+               /te:explicit-route-objects-always
+               /te:route-object-include-exclude/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--rw dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw (single-or-super-channel)?
+                   +--:(single)
+                   |  +--rw flexi-n?              l0-types:flexi-n
+                   |  +--rw flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--rw subcarrier-flexi-n* [flexi-n]
+                   |     +--rw flexi-n    l0-types:flexi-n
+                   |     +--rw flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--rw frequency-slots
+                         +--rw frequency-slot* [flexi-n]
+                            +--rw flexi-n    l0-types:flexi-n
+                            +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:path-in-segment
-               /te:label-restrictions/te:label-restriction/te:label-step
-               /te:technology:
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
-             +--rw flexi-ncfg?                   identityref
-             +--rw flexi-n-step?                 uint8
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path/te:path-out-segment
                /te:label-restrictions/te:label-restriction
                /te:label-start/te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path/te:path-out-segment
+               /te:secondary-reverse-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-end
                /te:te-label/te:technology:
-       +--rw (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw dwdm-n?    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--rw cwdm-n?    l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--rw flexi-n?   l0-types:flexi-n
-     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path/te:path-out-segment
-               /te:label-restrictions/te:label-restriction/te:label-step
-               /te:technology:
 
 
 
@@ -1682,54 +1682,54 @@ Guo, et al.               Expires 25 April 2024                [Page 30]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-       +--rw (l0-grid-type)?
-          +--:(fixed-dwdm)
-          |  +--rw wson-dwdm-channel-spacing?    identityref
-          +--:(cwdm)
-          |  +--rw wson-cwdm-channel-spacing?    identityref
-          +--:(flexi-grid)
-             x--rw flexi-grid-channel-spacing?   identityref
-             +--rw flexi-ncfg?                   identityref
-             +--rw flexi-n-step?                 uint8
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
-               /te:secondary-reverse-path/te:computed-paths-properties
-               /te:computed-path-properties/te:path-properties
-               /te:path-route-objects/te:path-route-object/te:type
-               /te:label/te:label-hop/te:te-label/te:technology:
-       +--ro (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--ro (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--ro dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
-          |  +--ro cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--ro (single-or-super-channel)?
-                +--:(single)
-                |  +--ro flexi-n?              l0-types:flexi-n
-                |  +--ro flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    l0-types:flexi-n
-                |     +--ro flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--ro frequency-slots
-                      +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    l0-types:flexi-n
-                         +--ro flexi-m?   l0-types:flexi-m
-     augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
-               /te:lsp-actual-route-information/te:type/te:label
-               /te:label-hop/te:te-label/te:technology:
-       +--ro (grid-type)?
-          +--:(fixed-dwdm)
-          |  +--ro (fixed-single-or-super-channel)?
-          |     +--:(single)
-          |     |  +--ro dwdm-n?               l0-types:dwdm-n
-          |     +--:(multi)
-          |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
-          +--:(cwdm)
+               /te:secondary-reverse-path/te:path-in-segment
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction
+               /te:label-start/te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-out-segment
+               /te:label-restrictions/te:label-restriction/te:label-end
+               /te:te-label/te:technology:
+       +--:(wdm)
+          +--rw (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw dwdm-n?    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--rw cwdm-n?    l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--rw flexi-n?   l0-types:flexi-n
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:path-out-segment
 
 
 
@@ -1738,21 +1738,82 @@ Guo, et al.               Expires 25 April 2024                [Page 31]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-          |  +--ro cwdm-n?                     l0-types:cwdm-n
-          +--:(flexi-grid)
-             +--ro (single-or-super-channel)?
-                +--:(single)
-                |  +--ro flexi-n?              l0-types:flexi-n
-                |  +--ro flexi-m?              l0-types:flexi-m
-                x--:(super)
-                |  +--ro subcarrier-flexi-n* [flexi-n]
-                |     +--ro flexi-n    l0-types:flexi-n
-                |     +--ro flexi-m?   l0-types:flexi-m
-                +--:(multi)
-                   +--ro frequency-slots
-                      +--ro frequency-slot* [flexi-n]
-                         +--ro flexi-n    l0-types:flexi-n
-                         +--ro flexi-m?   l0-types:flexi-m
+               /te:label-restrictions/te:label-restriction/te:label-step
+               /te:technology:
+       +--:(wdm)
+          +--rw (l0-grid-type)?
+             +--:(fixed-dwdm)
+             |  +--rw wson-dwdm-channel-spacing?    identityref
+             +--:(cwdm)
+             |  +--rw wson-cwdm-channel-spacing?    identityref
+             +--:(flexi-grid)
+                x--rw flexi-grid-channel-spacing?   identityref
+                +--rw flexi-ncfg?                   identityref
+                +--rw flexi-n-step?                 uint8
+     augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
+               /te:secondary-reverse-path/te:computed-paths-properties
+               /te:computed-path-properties/te:path-properties
+               /te:path-route-objects/te:path-route-object/te:type
+               /te:label/te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-super-channel)?
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              l0-types:flexi-n
+                   |  +--ro flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    l0-types:flexi-n
+                   |     +--ro flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    l0-types:flexi-n
+                            +--ro flexi-m?   l0-types:flexi-m
+     augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information
+               /te:lsp-actual-route-information/te:type/te:label
+               /te:label-hop/te:te-label/te:technology:
+       +--:(wdm)
+          +--ro (grid-type)?
+             +--:(fixed-dwdm)
+             |  +--ro (fixed-single-or-super-channel)?
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 32]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
+             |     +--:(single)
+             |     |  +--ro dwdm-n?               l0-types:dwdm-n
+             |     +--:(multi)
+             |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
+             +--:(cwdm)
+             |  +--ro cwdm-n?                     l0-types:cwdm-n
+             +--:(flexi-grid)
+                +--ro (single-or-super-channel)?
+                   +--:(single)
+                   |  +--ro flexi-n?              l0-types:flexi-n
+                   |  +--ro flexi-m?              l0-types:flexi-m
+                   x--:(super)
+                   |  +--ro subcarrier-flexi-n* [flexi-n]
+                   |     +--ro flexi-n    l0-types:flexi-n
+                   |     +--ro flexi-m?   l0-types:flexi-m
+                   +--:(multi)
+                      +--ro frequency-slots
+                         +--ro frequency-slot* [flexi-n]
+                            +--ro flexi-n    l0-types:flexi-n
+                            +--ro flexi-m?   l0-types:flexi-m
 
 5.2.  YANG Code
 
@@ -1781,18 +1842,19 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        "WG Web:   <http://tools.ietf.org/wg/ccamp/>
         WG List:  <mailto:ccamp@ietf.org>
 
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 33]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
         Editor:   Jorge E. Lopez de Vergara
                   <jorge.lopez_vergara@uam.es>
 
         Editor:   Daniel Perdices
                   <daniel.perdices@naudit.es>
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 32]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
 
         Editor:   Victor Lopez
                   <victor.lopez@nokia.com>
@@ -1836,20 +1898,20 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      }
 
      /*
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 34]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
       * Identities
       */
      identity lower-first-wavelength-assignment {
        base l0-types:wavelength-assignment;
        description
          "Assign first available wavelength starting from the
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 33]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
           lowest frequency towards the highest frequency in
           the allowable frequency range.";
      }
@@ -1892,19 +1954,20 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        }
 
        uses tx-tune-constraints;
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 35]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
      }
 
      grouping path-transceiver-config-grp {
        description
          "This grouping defines explicit transceiver configurations
           on an end-to-end path.";
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 34]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
 
        leaf transponder-id {
          type uint32;
@@ -1947,20 +2010,20 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
             configurations";
 
          uses path-transceiver-config-grp;
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 36]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
        }
 
        container path-out-transceiver {
          description
            "Constraints for outgoing direction transceiver
             configurations";
-
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 35]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
 
          uses path-transceiver-config-grp;
        }
@@ -2003,6 +2066,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          leaf wavelength-conversion {
            when '../use-regen = "true"' {
              description
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 37]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
                "Regenerator must be enabled for wavelength conversion
                 to be considered.";
            }
@@ -2010,14 +2081,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            default false;
            description
              "Indicate whether or not wavelength conversion is allowed
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 36]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
               along the tunnel path. Applicable only when 3R
               regeneration is enabled.";
          }
@@ -2059,6 +2122,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      }
 
      grouping wdm-path-state {
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 38]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
        description
          "Grouping for WDM path state.";
 
@@ -2066,13 +2137,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          config false;
          description
            "WDM path state.";
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 37]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
 
          leaf gsnr {
            type l0-types:snr;
@@ -2114,6 +2178,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      /*
       * Transceiver constraints for primary reverse path
       * Applicable to starting, terminating and regenerator
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 39]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
       * transceivers.
       */
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
@@ -2122,14 +2194,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:route-object-exclude-always/te:type/"
            + "te:numbered-node-hop/te:numbered-node-hop" {
        description
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 38]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
          "Augment TE primary reverse path with transceiver
           configurations.";
 
@@ -2170,6 +2234,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      augment "/te:te/te:tunnels/te:tunnel/te:secondary-paths/"
            + "te:secondary-path/te:explicit-route-objects-always/"
            + "te:route-object-exclude-always/te:type/"
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 40]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
            + "te:numbered-node-hop/te:numbered-node-hop" {
        description
          "Augment TE secondary path with transceiver configurations.";
@@ -2178,14 +2250,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      }
 
      /*
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 39]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
       * Transceiver constraints for secondary reverse path
       * Applicable to starting, terminating and regenerator
       * transceivers.
@@ -2226,6 +2290,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           properties.";
 
        uses l0-types:l0-path-properties;
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 41]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
      }
 
      /*
@@ -2234,14 +2306,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      augment "/te:te/te:lsps/te:lsp/"
            + "te:lsp-actual-route-information" {
        description
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 40]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
          "Augment TE LSP to with WDM path state.";
 
        uses wdm-path-state;
@@ -2282,70 +2346,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
-           + "te:path-out-segment/te:label-restrictions/"
-           + "te:label-restriction" {
-       description
-         "Augment TE label range information for the egress segment
-         of the primay path.";
-       uses l0-types:wdm-label-range-info;
-     }
-
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 41]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
-     augment "/te:te/te:tunnels/te:tunnel/"
-           + "te:primary-paths/te:primary-path/"
-           + "te:primary-reverse-path/"
-           + "te:path-in-segment/te:label-restrictions/"
-           + "te:label-restriction" {
-       description
-         "Augment TE label range information for the ingress segment
-         of the primay reverse path.";
-       uses l0-types:wdm-label-range-info;
-     }
-
-     augment "/te:te/te:tunnels/te:tunnel/"
-           + "te:primary-paths/te:primary-path/"
-           + "te:primary-reverse-path/"
-           + "te:path-out-segment/te:label-restrictions/"
-           + "te:label-restriction" {
-       description
-         "Augment TE label range information for the egress segment
-         of the primay reverse path.";
-       uses l0-types:wdm-label-range-info;
-     }
-
-     augment "/te:te/te:tunnels/te:tunnel/"
-           + "te:secondary-paths/te:secondary-path/"
-           + "te:path-in-segment/te:label-restrictions/"
-           + "te:label-restriction" {
-       description
-         "Augment TE label range information for the ingress segment
-         of the secondary path.";
-       uses l0-types:wdm-label-range-info;
-     }
-
-     augment "/te:te/te:tunnels/te:tunnel/"
-           + "te:secondary-paths/te:secondary-path/"
-           + "te:path-out-segment/te:label-restrictions/"
-           + "te:label-restriction" {
-       description
-         "Augment TE label range information for the egress segment
-         of the secondary path.";
-       uses l0-types:wdm-label-range-info;
-     }
-
-     augment "/te:te/te:tunnels/te:tunnel/"
-           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
-           + "te:path-in-segment/te:label-restrictions/"
-           + "te:label-restriction" {
-       description
-         "Augment TE label range information for the ingress segment
 
 
 
@@ -2354,6 +2354,70 @@ Guo, et al.               Expires 25 April 2024                [Page 42]
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the primay path.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the ingress segment
+         of the primay reverse path.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:primary-paths/te:primary-path/"
+           + "te:primary-reverse-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the primay reverse path.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the ingress segment
+         of the secondary path.";
+       uses l0-types:wdm-label-range-info;
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-paths/te:secondary-path/"
+           + "te:path-out-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the egress segment
+         of the secondary path.";
+       uses l0-types:wdm-label-range-info;
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 43]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
+           + "te:secondary-reverse-paths/te:secondary-reverse-path/"
+           + "te:path-in-segment/te:label-restrictions/"
+           + "te:label-restriction" {
+       description
+         "Augment TE label range information for the ingress segment
          of the secondary reverse path.";
        uses l0-types:wdm-label-range-info;
      }
@@ -2371,7 +2435,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      /*
       * Augment TE label.
       */
-
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/"
            + "te:explicit-route-objects-always/"
@@ -2381,7 +2444,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the explicit route objects always
          excluded by the path computation with the named path
          constraint.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:globals/te:named-path-constraints/"
@@ -2393,26 +2458,29 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the explicit route objects included
          or excluded by the path computation with the named path
          constraint.";
-       uses l0-types:wdm-label-hop;
-     }
 
+
+
+Guo, et al.               Expires 25 April 2024                [Page 44]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/te:path-in-segment/"
            + "te:label-restrictions/"
            + "te:label-restriction/te:label-start/"
            + "te:te-label/te:technology" {
        description
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 43]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
          "Augment TE label range start for the ingress segment
          of the named path constraint.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:globals/te:named-path-constraints/"
@@ -2423,7 +2491,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range end for the ingress segment
          of the named path constraint.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:globals/te:named-path-constraints/"
@@ -2433,7 +2503,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range step for the ingress segment
          of the named path constraint.";
-       uses l0-types:wdm-label-step;
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
      }
 
      augment "/te:te/te:globals/te:named-path-constraints/"
@@ -2442,9 +2514,19 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:label-restriction/te:label-start/"
            + "te:te-label/te:technology" {
        description
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 45]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
          "Augment TE label range start for the egress segment
          of the named path constraint.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:globals/te:named-path-constraints/"
@@ -2455,16 +2537,10 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range end for the egress segment
          of the named path constraint.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
-
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 44]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
 
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/te:path-out-segment/"
@@ -2473,7 +2549,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range step for the egress segment
          of the named path constraint.";
-       uses l0-types:wdm-label-step;
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2486,10 +2564,20 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the optimization of the explicit
          route objects excluded by the path computation of the primary
          path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 46]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
            + "te:primary-paths/te:primary-path/"
            + "te:optimizations/te:algorithm/te:metric/"
            + "te:optimization-metric/te:explicit-route-include-objects/"
@@ -2499,7 +2587,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the optimization of the explicit
          route objects included by the path computation of the primary
          path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2510,18 +2600,12 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label hop for the explicit route objects always
          excluded by the path computation of the primary path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 45]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
            + "te:primary-paths/te:primary-path/"
            + "te:explicit-route-objects-always/"
            + "te:route-object-include-exclude/te:type/te:label/"
@@ -2529,7 +2613,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label hop for the explicit route objects included
          or excluded by the path computation of the primary path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2540,7 +2626,17 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range start for the ingress segment
          of the primay path.";
-       uses l0-types:wdm-label-start-end;
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 47]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2551,7 +2647,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range end for the ingress segment
          of the primay path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2561,7 +2659,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range step for the ingress segment
          of the primay path.";
-       uses l0-types:wdm-label-step;
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2570,17 +2670,11 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:label-restriction/te:label-start/"
            + "te:te-label/te:technology" {
        description
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 46]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
          "Augment TE label range start for the egress segment
          of the primay path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2588,10 +2682,20 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:path-out-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-end/"
            + "te:te-label/te:technology" {
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 48]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
        description
          "Augment TE label range end for the egress segment
          of the primay path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2601,7 +2705,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range end for the egress segment
          of the primay path.";
-       uses l0-types:wdm-label-step;
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2614,7 +2720,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label hop for the route object of the computed
          primary path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2626,17 +2734,19 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the optimization of the explicit
+         route objects excluded by the path computation of the primary
+         reverse path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
 
 
 
-Guo, et al.               Expires 25 April 2024                [Page 47]
+Guo, et al.               Expires 25 April 2024                [Page 49]
 
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-         route objects excluded by the path computation of the primary
-         reverse path.";
-       uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2650,7 +2760,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the optimization of the explicit
          route objects included by the path computation of the primary
          reverse path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2664,7 +2776,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the explicit route objects always
          excluded by the path computation of the primary reverse
          path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2678,18 +2792,20 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the explicit route objects included
          or excluded by the path computation of the primary reverse
          path.";
-       uses l0-types:wdm-label-hop;
-     }
-
-     augment "/te:te/te:tunnels/te:tunnel/"
+       case wdm {
+         uses l0-types:wdm-label-hop;
 
 
 
-Guo, et al.               Expires 25 April 2024                [Page 48]
+Guo, et al.               Expires 25 April 2024                [Page 50]
 
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
            + "te:path-in-segment/te:label-restrictions/"
@@ -2698,7 +2814,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range start for the ingress segment
          of the primay reverse path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2710,7 +2828,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range end for the ingress segment
          of the primay reverse path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2721,31 +2841,35 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range step for the ingress segment
          of the primay reverse path.";
-       uses l0-types:wdm-label-step;
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
            + "te:path-out-segment/te:label-restrictions/"
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 51]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
            + "te:label-restriction/te:label-start/"
            + "te:te-label/te:technology" {
        description
          "Augment TE label range start for the egress segment
          of the primay reverse path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 49]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
            + "te:primary-reverse-path/"
            + "te:path-out-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-end/"
@@ -2753,7 +2877,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range end for the egress segment
          of the primay reverse path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2764,7 +2890,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range step for the egress segment
          of the primay reverse path.";
-       uses l0-types:wdm-label-step;
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2777,7 +2905,17 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label hop for the route object of the computed
          primary reverse path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 52]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2790,18 +2928,12 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the optimization of the explicit
          route objects excluded by the path computation of the
          secondary path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 50]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
            + "te:secondary-paths/te:secondary-path/"
            + "te:optimizations/te:algorithm/te:metric/"
            + "te:optimization-metric/te:explicit-route-include-objects/"
@@ -2811,7 +2943,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the optimization of the explicit
          route objects included by the path computation of the
          secondary path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2822,10 +2956,20 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label hop for the explicit route objects always
          excluded by the path computation of the secondary path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 53]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
            + "te:secondary-paths/te:secondary-path/"
            + "te:explicit-route-objects-always/"
            + "te:route-object-include-exclude/te:type/te:label/"
@@ -2833,7 +2977,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label hop for the explicit route objects included
          or excluded by the path computation of the secondary path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2844,26 +2990,22 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range start for the ingress segment
          of the secondary path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
            + "te:path-in-segment/te:label-restrictions/"
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 51]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
            + "te:label-restriction/te:label-end/"
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the ingress segment
          of the secondary path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
@@ -2872,8 +3014,17 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range step for the ingress segment
          of the secondary path.";
-       uses l0-types:wdm-label-step;
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
      }
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 54]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
@@ -2883,7 +3034,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range start for the egress segment
          of the secondary path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2894,7 +3047,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range end for the egress segment
          of the secondary path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2904,15 +3059,10 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range step for the egress segment
          of the secondary path.";
-       uses l0-types:wdm-label-step;
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
      }
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 52]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
@@ -2924,7 +3074,17 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label hop for the route object of the computed
          secondary path.";
-       uses l0-types:wdm-label-hop;
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 55]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2937,7 +3097,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the optimization of the explicit
          route objects excluded by the path computation of the
          secondary reverse path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2950,7 +3112,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the optimization of the explicit
          route objects included by the path computation of the
          secondary reverse path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2962,16 +3126,17 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the explicit route objects always
          excluded by the path computation of the secondary reverse
          path.";
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
+     }
 
 
 
-Guo, et al.               Expires 25 April 2024                [Page 53]
+Guo, et al.               Expires 25 April 2024                [Page 56]
 
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
-
-       uses l0-types:wdm-label-hop;
-     }
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
@@ -2982,7 +3147,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the explicit route objects included
          or excluded by the path computation of the secondary reverse
          path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -2993,7 +3160,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range start for the ingress segment
          of the secondary reverse path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -3004,7 +3173,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range end for the ingress segment
          of the secondary reverse path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -3014,18 +3185,20 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range step for the ingress segment
          of the secondary reverse path.";
-       uses l0-types:wdm-label-step;
-     }
-
-     augment "/te:te/te:tunnels/te:tunnel/"
+       case wdm {
 
 
 
-Guo, et al.               Expires 25 April 2024                [Page 54]
+Guo, et al.               Expires 25 April 2024                [Page 57]
 
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
+         uses l0-types:wdm-label-step;
+       }
+     }
+
+     augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
            + "te:path-out-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-start/"
@@ -3033,7 +3206,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range start for the egress segment
          of the secondary reverse path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -3044,7 +3219,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range end for the egress segment
          of the secondary reverse path.";
-       uses l0-types:wdm-label-start-end;
+       case wdm {
+         uses l0-types:wdm-label-start-end;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -3054,7 +3231,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "Augment TE label range step for the egress segment
          of the secondary reverse path.";
-       uses l0-types:wdm-label-step;
+       case wdm {
+         uses l0-types:wdm-label-step;
+       }
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
@@ -3063,28 +3242,32 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:computed-path-properties/"
            + "te:path-properties/te:path-route-objects/"
            + "te:path-route-object/te:type/te:label/"
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 58]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the route object of the computed
          secondary reverse path.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
 
      augment "/te:te/te:lsps/"
            + "te:lsp/te:lsp-actual-route-information/"
            + "te:lsp-actual-route-information/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 55]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
        description
          "Augment TE label hop for the actual route of the LSP.";
-       uses l0-types:wdm-label-hop;
+       case wdm {
+         uses l0-types:wdm-label-hop;
+       }
      }
    }
    <CODE ENDS>
@@ -3115,6 +3298,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
    *  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
       start/te:te-label/te:technology
 
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 59]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
    *  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
       end/te:te-label/te:technology
 
@@ -3127,16 +3318,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
    It is proposed to IANA to assign new URIs from the "IETF XML
    Registry" [RFC3688] as follows:
-
-
-
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 56]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
 
       URI: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
       Registrant Contact: The IESG
@@ -3170,6 +3351,17 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
               October 2023, <https://datatracker.ietf.org/doc/html/
               draft-ietf-teas-yang-te-34>.
 
+
+
+
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 60]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -3183,16 +3375,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
               the Network Configuration Protocol (NETCONF)", RFC 6020,
               DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/info/rfc6020>.
-
-
-
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 57]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
 
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
               and A. Bierman, Ed., "Network Configuration Protocol
@@ -3227,6 +3409,15 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
               DOI 10.17487/RFC8341, March 2018,
               <https://www.rfc-editor.org/info/rfc8341>.
 
+
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 61]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
    [RFC9094]  Zheng, H., Lee, Y., Guo, A., Lopez, V., and D. King, "A
               YANG Data Model for Wavelength Switched Optical Networks
               (WSONs)", RFC 9094, DOI 10.17487/RFC9094, August 2021,
@@ -3239,16 +3430,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
               Control of Wavelength Switched Optical Networks (WSONs)",
               RFC 6163, DOI 10.17487/RFC6163, April 2011,
               <https://www.rfc-editor.org/info/rfc6163>.
-
-
-
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 58]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
 
    [RFC7698]  Gonzalez de Dios, O., Ed., Casellas, R., Ed., Zhang, F.,
               Fu, X., Ceccarelli, D., and I. Hussain, "Framework and
@@ -3285,6 +3466,14 @@ Contributors
    Italo Busi
    Huawei Technologies
 
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 62]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
    Email: italo.busi@huawei.com
 
 
@@ -3298,12 +3487,6 @@ Contributors
    Nokia
 
    Email: victor.lopez@nokia.com
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 59]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
    Dieter Beller
@@ -3339,6 +3522,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
    Zafar Ali
    Cisco
 
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 63]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
    Email: zali@cisco.com
 
 
@@ -3354,12 +3545,6 @@ Authors' Addresses
    Nokia
 
    Email: Sergio.belotti@nokia.com
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 60]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
    G. Galimberti
@@ -3396,21 +3581,4 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Guo, et al.               Expires 25 April 2024                [Page 61]
+Guo, et al.               Expires 25 April 2024                [Page 64]

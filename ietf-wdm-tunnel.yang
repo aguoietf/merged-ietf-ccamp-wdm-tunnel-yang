@@ -58,7 +58,7 @@ module ietf-wdm-tunnel {
     This version of this YANG module is part of RFC XXXX; see
     the RFC itself for full legal notices.";
 
-  revision "2023-10-02" {
+  revision "2023-10-22" {
     description
       "Updated revision with combined WSON and Flexi-grid tunnel
        YANG model";

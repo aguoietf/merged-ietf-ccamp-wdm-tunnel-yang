@@ -46,7 +46,7 @@
       </address>
     </author>
 
-    <date year="2023" month="October" day="21"/>
+    <date year="2023" month="October" day="23"/>
 
     
     <workgroup>CCAMP Working Group</workgroup>
@@ -55,12 +55,9 @@
     <abstract>
 
 
-<t>This document defines a YANG model for managing flexi-grid optical
-   tunnels (media-channels), complementing the information provided by the
-   flexi-grid topology model.</t>
+<t>This document defines a YANG data model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in Optical Networks (Wavelength Switched Optical Networks (WSON) and Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks).</t>
 
-<t>The YANG data model defined in this document conforms to the Network
-   Management Datastore Architecture (NMDA).</t>
+<t>The YANG data model defined in this document conforms to the Network Management Datastore Architecture (NMDA).</t>
 
 
 
@@ -73,23 +70,17 @@
 
 
 <section anchor="introduction"><name>Introduction</name>
-<t>Transport networks are evolving from current DWDM systems towards
-   elastic optical networks, based on flexi-grid transmission and
-   switching technologies <xref target="RFC7698"/>. Such technology
-   aims at increasing both transport network scalability and flexibility,
-   allowing the optimization of bandwidth usage.</t>
 
-<t>While <xref target="I-D.ietf-ccamp-flexigrid-yang"/> focuses on flexi-grid
-   objects such as nodes, transponders and links, this document presents
-   a YANG <xref target="RFC7950"/> model for the flexi-grid tunnel (media-channel). This YANG
-   module defines the whole path from a source transponder or node to
-   the destination through a number of intermediate nodes in the flexi-grid network.</t>
+<t>Transport networks have evolved from traditional Wavelength Switched Optical Networks (WSON) systems <xref target="RFC6163"/> based on only fixed-grid wavelength switching, towards elastic optical networks,
+based on flexi-grid Dense Wavelength Division Multiplexing (DWDM) transmission and switching technologies <xref target="RFC7698"/>. Such technology aims
+at increasing transport network scalability and flexibility, allowing bandwidth usage optimization.</t>
 
-<t>This document identifies the flexi-grid tunnel components,
-   parameters and their values, characterizes the features and the
-   performances of the flexi-grid elements. An application example is
-   provided towards the end of the document to better understand
-   their utility.</t>
+<t>While <xref target="RFC9094"/> <xref target="I-D.ietf-ccamp-flexigrid-yang"/> focus on flexi-grid objects such as nodes, transponders
+and links, this document presents a YANG <xref target="RFC7950"/> model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in DWDM Optical Networks, which can be Wavelength Switched Optical Networks (WSON) networks or Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks, or a mix of these two networks. This YANG module defines the path from a source transponder or node to the destination through several intermediate nodes in such a WDM optical network.</t>
+
+<t>This document identifies the WDM tunnel components, parameters and their values, and
+characterizes the features and the performances of the WDM elements. An application example is
+provided towards the end of the document to understand their utility better.</t>
 
 </section>
 <section anchor="terminology"><name>Terminology</name>
@@ -125,31 +116,22 @@
 </section>
 <section anchor="overview"><name>Overview</name>
 
-<t>The present model defines a flexi-grid tunnel mainly composed of:
-   -  source address</t>
+<t>The generic TE tunnel attributes, such as source and destination node addresses, are already defined by the base data model in <xref target="I-D.ietf-teas-yang-te"/>. The present model defines a WDM tunnel by augmenting the base model with the following
+WDM technology-specific constructs:</t>
 
 <t><list style="symbols">
-  <t>source flexi-grid port</t>
-  <t>source flexi-grid transponder</t>
-  <t>destination address</t>
-  <t>destination flexi-grid port</t>
-  <t>destination flexi-grid transponder</t>
-  <t>list of links that defines the path</t>
-  <t>other optical attributes</t>
+  <t>Source and destination WDM node specification</t>
+  <t>Global WDM layer constraints that influence the TE path selection, e.g., whether wavelength conversion or regeneration is considered</t>
+  <t>Global transponder/transceiver configuration constraints, e.g., operational modes, tuning constraints of the transceiver</t>
+  <t>Global optical performance constraints, e.g. generalized Signal-to-noise (G-SNR) margin of a feasible optical path</t>
+  <t>Path-scope WDM layer constraints, e.g. identities of transceivers assigned to the primary or secondary path</t>
+  <t>List of links that defines the path</t>
+  <t>Other optical attributes</t>
 </list></t>
 
-<t>Each path can be a tunnel (only defined by source and
-   destination node) or a network tunnel (additionally needs
-   source and destination transponders). Therefore, all the attributes
-   are optional to support both situations.</t>
-
-<t>This is achieved by a combination of the traffic engineering tunnel
-   attributes explained in <xref target="I-D.ietf-teas-yang-te"/> and augments
-   when necessary. For instance, source address, source flexi-grid
-   transponder, destination address and destination flexi-grid
-   transponder attributes are directly taken from tunnel, whereas other
-   attributes such as source flexi-grid port, destination flexi-grid
-   port are defined, as they are specific for flexi-grid.</t>
+<t>Each path can be a segment path (only defined by the source and destination nodes or link termination points)
+or an end-to-end path (additionally needs source and destination transponders). Therefore, all the attributes
+are optional to support both situations.</t>
 
 </section>
 <section anchor="example-of-use"><name>Example of Use</name>
@@ -158,20 +140,21 @@
    example is provided.  An optical network usually has multiple transponders,
    switches (nodes) and links. <xref target="fig-topology-example"/> shows a simple
    topology, where two physical paths interconnect two optical
-   transponders.</t>
+   transponders via a combination of both WSON and Flexi-grid wavelength
+   switched nodes and links.</t>
 
 <figure title="Topology Example" anchor="fig-topology-example"><artwork><![CDATA[
-                                 Tunnel
+                              WDM Tunnel
    <==============================================================>
-                         Flexi-grid Tunnel Group x
-            <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+                         WDM Primary Path
+            <------------------------------------------------>
 
    +----------+                                        +----------+
    |  Flexi-  |                                        |  Flexi-  |
    |   grid   |                                        |   grid   |
    |  node A  |                                        |  node E  |
    |          |        +------+        +------+        |          |
-   |          | Link 1 |Flexi-| Link 2 |Flexi-| Link 3 |          |
+   |          | Link 1 |Flexi-| Link 2 |Fixed-| Link 3 |          |
    |          |<------>| grid |<------>| grid |<------>|          |
    |......... |        |node B|        |node C|        | .........|
    | Trans- : |        +------+        +------+        | : Trans- |
@@ -183,11 +166,11 @@
    |          |              +----------+              |          |
    +----------+                                        +----------+
 
-            <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
-                          Flexi-grid Tunnel Group y
+            <------------------------------------------------>
+                          WDM Secondary Path
 ]]></artwork></figure>
 
-<t>To configure a network tunnel to interconnect
+<t>To configure a WDM tunnel to interconnect
    transponders A and E, first of all we have to populate the
    flexi-grid topology YANG model with all elements in the network:</t>
 
@@ -200,16 +183,17 @@ addresses and interfaces.</t>
 identifiers, addresses and interfaces, as well as the internal
 connectivity matrix between interfaces.</t>
   <t>Then, we also define the links 1 to 5 that interconnect nodes,
-indicating which flexi-grid labels are available.</t>
+indicating which WSON or flexi-grid labels are available.</t>
   <t>Other information, such as the slot frequency and granularity are
 also provided.</t>
 </list></t>
 
 <t>After the nodes, links and transponders have been defined using
-   <xref target="I-D.ietf-ccamp-flexigrid-yang"/> we can
+   <xref target="I-D.ietf-ccamp-flexigrid-yang"/> and <xref target="RFC9094"/> we can
    configure the tunnel from the information we have stored in the
    flexi-grid topology, by querying which elements are available, and
-   planning the resources that have to be provided on each situation.
+   planning the resources that have to be provided on each situation, taking into
+   account the global and path-specific WDM tunnel constraints.
    Note that every element in the flexi-grid topology has a reference,
    and this is the way in which they are called in the tunnel.</t>
 
@@ -1475,7 +1459,7 @@ module: ietf-wdm-tunnel
 <section anchor="yang-code"><name>YANG Code</name>
 
 <figure><artwork><![CDATA[
-   <CODE BEGINS> file "ietf-wdm-tunnel@2023-10-02.yang"
+   <CODE BEGINS> file "ietf-wdm-tunnel@2023-10-22.yang"
 module ietf-wdm-tunnel {
   yang-version 1.1;
   namespace
@@ -1536,7 +1520,7 @@ module ietf-wdm-tunnel {
     This version of this YANG module is part of RFC XXXX; see
     the RFC itself for full legal notices.";
 
-  revision "2023-10-02" {
+  revision "2023-10-22" {
     description
       "Updated revision with combined WSON and Flexi-grid tunnel
        YANG model";
@@ -2687,23 +2671,21 @@ end/te:te-label/te:technology</t>
 
 
 
-<reference anchor='RFC7698' target='https://www.rfc-editor.org/info/rfc7698'>
+<reference anchor='RFC9094' target='https://www.rfc-editor.org/info/rfc9094'>
   <front>
-    <title>Framework and Requirements for GMPLS-Based Control of Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks</title>
-    <author fullname='O. Gonzalez de Dios' initials='O.' role='editor' surname='Gonzalez de Dios'/>
-    <author fullname='R. Casellas' initials='R.' role='editor' surname='Casellas'/>
-    <author fullname='F. Zhang' initials='F.' surname='Zhang'/>
-    <author fullname='X. Fu' initials='X.' surname='Fu'/>
-    <author fullname='D. Ceccarelli' initials='D.' surname='Ceccarelli'/>
-    <author fullname='I. Hussain' initials='I.' surname='Hussain'/>
-    <date month='November' year='2015'/>
+    <title>A YANG Data Model for Wavelength Switched Optical Networks (WSONs)</title>
+    <author fullname='H. Zheng' initials='H.' surname='Zheng'/>
+    <author fullname='Y. Lee' initials='Y.' surname='Lee'/>
+    <author fullname='A. Guo' initials='A.' surname='Guo'/>
+    <author fullname='V. Lopez' initials='V.' surname='Lopez'/>
+    <author fullname='D. King' initials='D.' surname='King'/>
+    <date month='August' year='2021'/>
     <abstract>
-      <t>To allow efficient allocation of optical spectral bandwidth for systems that have high bit-rates, the International Telecommunication Union Telecommunication Standardization Sector (ITU-T) has extended its Recommendations G.694.1 and G.872 to include a new Dense Wavelength Division Multiplexing (DWDM) grid by defining a set of nominal central frequencies, channel spacings, and the concept of the "frequency slot". In such an environment, a data-plane connection is switched based on allocated, variable-sized frequency ranges within the optical spectrum, creating what is known as a flexible grid (flexi-grid).</t>
-      <t>Given the specific characteristics of flexi-grid optical networks and their associated technology, this document defines a framework and the associated control-plane requirements for the application of the existing GMPLS architecture and control-plane protocols to the control of flexi-grid DWDM networks. The actual extensions to the GMPLS protocols will be defined in companion documents.</t>
+      <t>This document provides a YANG data model for the routing and wavelength assignment (RWA) TE topology in Wavelength Switched Optical Networks (WSONs). The YANG data model defined in this document conforms to the Network Management Datastore Architecture (NMDA).</t>
     </abstract>
   </front>
-  <seriesInfo name='RFC' value='7698'/>
-  <seriesInfo name='DOI' value='10.17487/RFC7698'/>
+  <seriesInfo name='RFC' value='9094'/>
+  <seriesInfo name='DOI' value='10.17487/RFC9094'/>
 </reference>
 
 
@@ -2933,6 +2915,49 @@ end/te:te-label/te:technology</t>
 
     </references>
 
+    <references title='Informative References'>
+
+
+
+<reference anchor='RFC6163' target='https://www.rfc-editor.org/info/rfc6163'>
+  <front>
+    <title>Framework for GMPLS and Path Computation Element (PCE) Control of Wavelength Switched Optical Networks (WSONs)</title>
+    <author fullname='Y. Lee' initials='Y.' role='editor' surname='Lee'/>
+    <author fullname='G. Bernstein' initials='G.' role='editor' surname='Bernstein'/>
+    <author fullname='W. Imajuku' initials='W.' surname='Imajuku'/>
+    <date month='April' year='2011'/>
+    <abstract>
+      <t>This document provides a framework for applying Generalized Multi-Protocol Label Switching (GMPLS) and the Path Computation Element (PCE) architecture to the control of Wavelength Switched Optical Networks (WSONs). In particular, it examines Routing and Wavelength Assignment (RWA) of optical paths.</t>
+      <t>This document focuses on topological elements and path selection constraints that are common across different WSON environments; as such, it does not address optical impairments in any depth. This document is not an Internet Standards Track specification; it is published for informational purposes.</t>
+    </abstract>
+  </front>
+  <seriesInfo name='RFC' value='6163'/>
+  <seriesInfo name='DOI' value='10.17487/RFC6163'/>
+</reference>
+
+<reference anchor='RFC7698' target='https://www.rfc-editor.org/info/rfc7698'>
+  <front>
+    <title>Framework and Requirements for GMPLS-Based Control of Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks</title>
+    <author fullname='O. Gonzalez de Dios' initials='O.' role='editor' surname='Gonzalez de Dios'/>
+    <author fullname='R. Casellas' initials='R.' role='editor' surname='Casellas'/>
+    <author fullname='F. Zhang' initials='F.' surname='Zhang'/>
+    <author fullname='X. Fu' initials='X.' surname='Fu'/>
+    <author fullname='D. Ceccarelli' initials='D.' surname='Ceccarelli'/>
+    <author fullname='I. Hussain' initials='I.' surname='Hussain'/>
+    <date month='November' year='2015'/>
+    <abstract>
+      <t>To allow efficient allocation of optical spectral bandwidth for systems that have high bit-rates, the International Telecommunication Union Telecommunication Standardization Sector (ITU-T) has extended its Recommendations G.694.1 and G.872 to include a new Dense Wavelength Division Multiplexing (DWDM) grid by defining a set of nominal central frequencies, channel spacings, and the concept of the "frequency slot". In such an environment, a data-plane connection is switched based on allocated, variable-sized frequency ranges within the optical spectrum, creating what is known as a flexible grid (flexi-grid).</t>
+      <t>Given the specific characteristics of flexi-grid optical networks and their associated technology, this document defines a framework and the associated control-plane requirements for the application of the existing GMPLS architecture and control-plane protocols to the control of flexi-grid DWDM networks. The actual extensions to the GMPLS protocols will be defined in companion documents.</t>
+    </abstract>
+  </front>
+  <seriesInfo name='RFC' value='7698'/>
+  <seriesInfo name='DOI' value='10.17487/RFC7698'/>
+</reference>
+
+
+
+
+    </references>
 
 
 <section numbered="false" anchor="acknowledgments"><name>Acknowledgments</name>
@@ -3023,227 +3048,234 @@ end/te:te-label/te:technology</t>
   </back>
 
 <!-- ##markdown-source:
-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
-tgJhz2OuiVaxSbA2h3l6zIP860/Ne9J51iNawVlpNRvzc20X3USygWLdDYJ+
-05fVlplJyp+dm+/zb8UN2Ba5bwQCLsFyLXTfdru12H2LsPsS7nq6vwNMhHg0
-wP7wcIRvRviz2sEMEXeSZ8Y0dBzyVqjtPCzXNzVv245D23Gosdd2HNqOwy0C
-v7yFuhT4VQe34NeCX429Fvxa8Fv531xp8arFqxavWrxaPbxq72e3gNUCVgtY
-1wtYl/S1jgU3QJZt1N6HrvoqGkzEYWuu22MubL+3tzvu9O2O9hb1rYzy9tb0
-PbZXe0v6fmH0lfz4yeyqeL3SSmj8NO8VNLvxmXsF6jw4oi67V6CuolegLqlX
-oK6gV6Aur1egLtIrUFfSK1Dn6xWo8/QK1OX1CtSyvYL6wOV6BWcQr3He9fYK
-Gn58YOYO9QyVhtvVc+5Qz0xtz+q03dQqb203tZzDapIsxT5rkKDtpt4VhGwP
-9LQI2SJkMYe1CHkbEPI0VGtP/bSg1oJaPoe1oHbfQK09GtSiWotqLaqtIKq1
-54cqk2/Brc8bsWp7yOju2bQ9iXTn73Jf689Ntzlg9fDiUs3aJoE7aNQ2C7RZ
-AAddyQNSi48qPZPmWU0Hogo3rTRFGoCnPRDVHohqD0QVqry3B6LO/lyJ+T/P
-MTO5PfzU9osr1Np+cdsvXuV+8eqiYXvQqUXDFg2LOaxFw1VEw/YcU4tZFd5a
-zCrnsBaz7hhmtceUWtBqQasFresHrfZpPJXJN3Gz8saMVrm/PEOkNdlKm6z9
-2Yzbfiv55p7E3aL1tYd++xNH99xmLV7fP7xuf+qo5lftyZ4GFtuTPe3Jnttx
-ssc9xrgI/xb+iMcV3ttuT/q0Lde25VrMYTVJlmKfNUjQtlzvAjq2J39adGzR
-sZjDWnRcdXQ8DdHaY0EtoLWAls9hLaDdJ0Brzwy1iNYiWotoN7+Bbc8QVSbf
-7B3OGzZie5P6DpmwvWd9d+5ZX8ip2jNHdwEa2jNIrQ1bfDd/Lb63Z5TaM0rt
-GaX2jNJpA1ftjFKkx9r+a//xeJBmPCpuc/dVMuLNNeeCwZfcQG2xp8WeFntu
-Mfb8F/46nW++Yb9tH75mOyoUHfMZDP5x5+3uHnu593r/8Ohn1peRYGtSpH0P
-XdVUZy8ePXz02Nt66D185E95PFjrjFSYwcDaOPY7EMQBHtZlgENsy9/6AT6L
-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
-6JrH3qhOF3osiTGt9AxXUJWus66sf66+KpfZ7N46161UPLdc77fJz29C7/XN
-wex+4Pa6c23jtNoavRWOetMare6hlu9B3EafvVk0uJCmb5kvX1DT87Z3ebPg
-ancfV99uy80zx2gLv9J/FjMCodJw+al2YpBZKVjlp10tuyHrTctDbaZlYbzA
-NO0q+xw7dfndDjB1HXvIS7TiaT9tuwJmtCzm593wjPwdsuX5+iunDimR1Pzs
-W33CxS1ncJSoX2Fzhujj10/uhC1AjiuzBH5F517boVH1zfPwB8Eu7vlifKUK
-F9eKP5fdj7wZALr0/uWN+P3V2eK6AOhe2uEmAegKFL4Yfy67STf/0Vz4xj6N
-a9Ekr3xi1+JnFS63rZnzNK7rrIdd6XJb5qJZAtVK+dS62O0gJlNLY5mN7CnF
-8C1yhtqj2ZbbHd1GZ8i3TbfeGdoexRyT3TFj3c1WxOqb7JLa3SvYcTjDHeGl
-6suV1/xK9Bfundavt5twJvVebw1/WbdzVq93cCt8+lI1vwqdgvun9cuAkivR
-7vUCyZWcYm423xJPSpgJg5uqSt1itPwVUKOAfP+2wnXmMsew2jbQTbWBznKu
-4Z55TtszutOec3kNppXJFFfRbbI6zBPN/TN2vUG16ta+eLfqbpj8zje4zgLA
-N7NRuhEzrVI3rDXR6rTOzmaLa26hXed3VVa2z3aHouWuNuVaE10Tol26LVYQ
-0Ob3++oXT+3nNbQAqy2+U7uAN7plP0OL71q33Wf/nlrbybu2Tp6de7bv290t
-l2hbdLfTJdrDXfXey1022Z0+4rXyhru7fbCzqf6StiMrYICV6HBdSPm3V/fX
-27o6q5Ivusm7ud+lWL2m1G1ClzvXbrq3yr/WRtLqw8slHAm7p/2iG6tLz/ur
-MG3n6OY6RzfUVFxBV2k7SnfLVdpO0/yGxQ2c87lRg96TPtStNOt96FLdwM3z
-FTTMinWvWqPcZFvres8wrM5PV65yu+v2RsQdboO1RrnJ9thtg6m2bXbxttkl
-bnTp+TMzcuqxvTb3+TNNc+YPvknNcvt4XKNgo9k3R++W1hs9L/fHnbe7e2zv
-cPfo585/4a/T+YYdiSBLZDplO5WHNtPDfY/JfM7DtTbMY3c26PFnnKCDhfjI
-3VD0JT6KW+Kj7aVmoQqyPN55IlBc86xu8/x3HgQACvD2RHLG2YjHfCBIeAiA
-VAUqsg/PRXfJEtpq0eO7xgqybcSnIgFWsgBGaHa4d7zz9vAV+/33P71/tfP0
-0ZOtr19xY/d+78i98Ozhk4dfv/q5XPkswwo9JzmBZUcqBM3bGY+JFLB0AorR
-pPORAC5ACiSTA2hOg572iA+LC7KIJ8UKYJsEp4A040Tk+jQBobOeFubh0FHE
-+AmXET13Lp9bqANhwViGdI/sgrr83EygYlQzZ+aJa0gwLB6FPGOd37YPX6Ok
-GT7hbshTnIuEJuAIuPxmkAhuXoE2BL1iD6Qv/I38edH49PYNNhlKsIHUeSPL
-PvZ83SemILYdJvBEbU8UzwanB1rBy1Se4KPM2UkW4bP0YCUkBJxqNRIsFulE
-JZ8gn5/IRMXoIhqIfwRGhauTB8IfAHMilKlnOFwnn1HIWZUPdCyIIvucLNKw
-MJ4c8JgN+QmpUQw4coZERL9PcBYX3JQLF4Ki9imlZb00EcJYKaw8jRo/gSEy
-KQSHsNvM5ZYRvOuSPT3GFmSz2hDf9y3a9GCBiQzNA8tKxJkzvgJky2FXM6WG
-emNxiZEnAqrLr2kxrDWvaCmavQeOpyDKY3CmLpsYf8g0PilSy9E4kn0JDu+A
-Pnab+ioK7QgIe3qcYQ9ALhgKAxcnSuJDJscipSeI+wjX+9uH201QvZ9iGKJP
-K21glkYiGY3QC747YR/e7+vyIfZr+3vHr9jfD97g/PdiIEEmzE+EfY+fPnsG
-2McR1aJITTS4JqUMGAtkuixL4q4Uab9LTzXX3c+jqBvr7hQqQPrcwyRUPlfd
-0ucA8Tv4SPog7RIM7+8dvcbrwEaXHW5u/2DqCPGfDFQMgsBaKBhEJoygn9zU
-Yx4I3+YvQj8n3+AzOWEdAlygY3hHHbuQRzAozEcH5qNDJGww3eghzyYPH1HS
-KGRHDrqsQcCCtTOrBpJCX37u0oPr0jgyXPQBIWMkBkywv8OfFdjzPNbjwadO
-5/cuyx+v+dNan0darH1FD9kOPsVqEomQqgld6oigC3UZaWXyFOQc8MIsdrqf
-R2MeSz1kR5jnwWpa8CSgX3nfHgBDU4ajE/stCUV13vZARuIAXPrB9t4+e7e/
-++jh1vfe1sMnT77bev/S23m0tU7Y16MvtruLHMjYKBvS1VEgUeANth/H6sR0
-XnHWh5gepyrpoZC0eE4F1h+AfosSiX6AFW0N1LJ81pRFwCOkW/CIB6/J/4zW
-ukjm1bsPW99vPvzu6V+frfud/wfDky0HvJUBAA==
+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
+TbS+5iZVcdlEsl0kS62ZdtEsQ/I40+raK+CF5uZo2ZbAgQxdm8/5F8JdDT8p
+VLz62hFg94n5vZtwEo5WZ4qd9iGe9I8EHuXT2RhPs5qTxiWhP0pypu1q9UlB
+EIfxZk5uFpUX87iBKn11tUa0NLGsF/AkkcCZIfDtGUSJXNA426CRuRqLwSy1
+0vRXHS1ZCZ4rO4dQTXY19swwdf7Ks6Hm8ZmdR2d3HlU7fyaekOt5LDmSt8N/
+y/5uP/1jpg+rzWQh9lnDDM5mu8Fg3GdIqihi04H3mVZzGs6dW73XotNr7Ddv
+hvcCxGRsQMyCWYtiLYrV2GtRrEWxJd9VmdNPpzxJbxCmHFS50qq/7CJ3VmaD
+wu+D4sqbovimYEmkVdvSq02nYtygt0ZdwWQvo66JVrFxsNaHeXrMg/zrT805
+6TztEa3gorSalfm5lkU3kWygWDeDoN/0ZbVFepLwZ/vmef692IBtkftOIOAa
+NNdC933XW4vd9wi7r2HX0/0FaCLEowHWh4cjvBjhT8gHM0TcTp5p01BxyEuh
+tvKwWN3UXLYVh7biUGOvrTi0FYd7BH55CXUh8Ks2bsGvBb8aey34teC39L+5
+0uJVi1ctXrV4tXx41e5nt4DVAlYLWLcLWNf0tY4zNkAWLdQ+hqr6MipMxGGr
+rvujLiy/t9sdD3q7o92ivpervN2afsT6arekHxdG38iPn8yOis8rpYTGu3mt
+oNmML1wrUJfBEXXdtQJ1E7UCdU21AnUDtQJ1fbUCdZVagbqRWoG6XK1AXaZW
+oK6vVqAWrRXUGy5WK7jA9Br73W6toOHHB2Z2qGeoNGxXz9mhnunantVpq6lV
+3tpqatmH1WayEPusYQZtNfWhIGR7oKdFyBYhiz6sRcj7gJDnoVp76qcFtRbU
+8j6sBbXHBmrt0aAW1VpUa1FtCVGtPT9U6XwPtj7vRKvtIaOHp9P2JNKD3+W+
+1Z+bbn3A8uHFtaq1dQIPUKmtF2i9ADa6kRekFrcqNZPmXk0HogozrRRFGoCn
+PRDVHohqD0QVony0B6Iu/l6J+T/PMdO5PfzU1osr1Np6cVsvXuZ68fKiYXvQ
+qUXDFg2LPqxFw2VEw/YcU4tZFd5azCr7sBazHhhmtceUWtBqQasFrdsHrfZt
+PJXOd7FZeWdKq+wvzxBpVbbUKmt/NuO+byXf3Zu4W7S+9aXf/sTRI9dZi9eP
+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
+KgyomAEA
 
 -->
 

@@ -5,14 +5,14 @@
 CCAMP Working Group                                               A. Guo
 Internet-Draft                                    Futurewei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 23 April 2024                                             Nokia
+Expires: 25 April 2024                                             Nokia
                                                            G. Galimberti
                                                               Individual
                                                        J.E.L.d.V. Mendez
                                                              Naudit HPCN
                                                             D.P. Burrero
                                           Universidad Autonoma de Madrid
-                                                         21 October 2023
+                                                         23 October 2023
 
 
                    A YANG Data Model for WDM Tunnels
@@ -20,9 +20,11 @@ Expires: 23 April 2024                                             Nokia
 
 Abstract
 
-   This document defines a YANG model for managing flexi-grid optical
-   tunnels (media-channels), complementing the information provided by
-   the flexi-grid topology model.
+   This document defines a YANG data model for the provisioning and
+   management of Traffic Engineering (TE) tunnels and Label Switched
+   Paths (LSPs) in Optical Networks (Wavelength Switched Optical
+   Networks (WSON) and Flexi-Grid Dense Wavelength Division Multiplexing
+   (DWDM) Networks).
 
    The YANG data model defined in this document conforms to the Network
    Management Datastore Architecture (NMDA).
@@ -42,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 April 2024.
+   This Internet-Draft will expire on 25 April 2024.
 
 Copyright Notice
 
@@ -51,9 +53,7 @@ Copyright Notice
 
 
 
-
-
-Guo, et al.               Expires 23 April 2024                 [Page 1]
+Guo, et al.               Expires 25 April 2024                 [Page 1]
 
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
@@ -73,46 +73,51 @@ Table of Contents
    2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
    3.  Overview  . . . . . . . . . . . . . . . . . . . . . . . . . .   3
    4.  Example of Use  . . . . . . . . . . . . . . . . . . . . . . .   4
-   5.  YANG Model for WDM Tunnel . . . . . . . . . . . . . . . . . .   5
-     5.1.  YANG Tree . . . . . . . . . . . . . . . . . . . . . . . .   5
-     5.2.  YANG Code . . . . . . . . . . . . . . . . . . . . . . . .  31
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  55
+   5.  YANG Model for WDM Tunnel . . . . . . . . . . . . . . . . . .   6
+     5.1.  YANG Tree . . . . . . . . . . . . . . . . . . . . . . . .   6
+     5.2.  YANG Code . . . . . . . . . . . . . . . . . . . . . . . .  32
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  56
    7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  56
-   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  56
-   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  58
-   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  58
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  59
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  57
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  57
+     8.2.  Informative References  . . . . . . . . . . . . . . . . .  58
+   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  59
+   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  59
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  60
 
 1.  Introduction
 
-   Transport networks are evolving from current DWDM systems towards
-   elastic optical networks, based on flexi-grid transmission and
-   switching technologies [RFC7698].  Such technology aims at increasing
-   both transport network scalability and flexibility, allowing the
-   optimization of bandwidth usage.
+   Transport networks have evolved from traditional Wavelength Switched
+   Optical Networks (WSON) systems [RFC6163] based on only fixed-grid
+   wavelength switching, towards elastic optical networks, based on
+   flexi-grid Dense Wavelength Division Multiplexing (DWDM) transmission
+   and switching technologies [RFC7698].  Such technology aims at
+   increasing transport network scalability and flexibility, allowing
+   bandwidth usage optimization.
 
-   While [I-D.ietf-ccamp-flexigrid-yang] focuses on flexi-grid objects
-   such as nodes, transponders and links, this document presents a YANG
-   [RFC7950] model for the flexi-grid tunnel (media-channel).  This YANG
-   module defines the whole path from a source transponder or node to
-   the destination through a number of intermediate nodes in the flexi-
-   grid network.
-
-   This document identifies the flexi-grid tunnel components, parameters
-   and their values, characterizes the features and the performances of
-   the flexi-grid elements.  An application example is provided towards
-   the end of the document to better understand their utility.
-
-
+   While [RFC9094] [I-D.ietf-ccamp-flexigrid-yang] focus on flexi-grid
+   objects such as nodes, transponders and links, this document presents
+   a YANG [RFC7950] model for the provisioning and management of Traffic
+   Engineering (TE) tunnels and Label Switched Paths (LSPs) in DWDM
+   Optical Networks, which can be Wavelength Switched Optical Networks
+   (WSON) networks or Flexi-Grid Dense Wavelength Division Multiplexing
+   (DWDM) Networks, or a mix of these two networks.  This YANG module
+   defines the path from a source transponder or node to the destination
+   through several intermediate nodes in such a WDM optical network.
 
 
 
 
 
-Guo, et al.               Expires 23 April 2024                 [Page 2]
+Guo, et al.               Expires 25 April 2024                 [Page 2]
 
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
+
+   This document identifies the WDM tunnel components, parameters and
+   their values, and characterizes the features and the performances of
+   the WDM elements.  An application example is provided towards the end
+   of the document to understand their utility better.
 
 2.  Terminology
 
@@ -146,61 +151,92 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 3.  Overview
 
-   The present model defines a flexi-grid tunnel mainly composed of: -
-   source address
+   The generic TE tunnel attributes, such as source and destination node
+   addresses, are already defined by the base data model in
+   [I-D.ietf-teas-yang-te].  The present model defines a WDM tunnel by
+   augmenting the base model with the following WDM technology-specific
+   constructs:
 
-   *  source flexi-grid port
+   *  Source and destination WDM node specification
 
-   *  source flexi-grid transponder
-
-   *  destination address
-
-   *  destination flexi-grid port
-
-   *  destination flexi-grid transponder
-
-   *  list of links that defines the path
-
-   *  other optical attributes
+   *  Global WDM layer constraints that influence the TE path selection,
+      e.g., whether wavelength conversion or regeneration is considered
 
 
 
-Guo, et al.               Expires 23 April 2024                 [Page 3]
+
+Guo, et al.               Expires 25 April 2024                 [Page 3]
 
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
-   Each path can be a tunnel (only defined by source and destination
-   node) or a network tunnel (additionally needs source and destination
-   transponders).  Therefore, all the attributes are optional to support
-   both situations.
+   *  Global transponder/transceiver configuration constraints, e.g.,
+      operational modes, tuning constraints of the transceiver
 
-   This is achieved by a combination of the traffic engineering tunnel
-   attributes explained in [I-D.ietf-teas-yang-te] and augments when
-   necessary.  For instance, source address, source flexi-grid
-   transponder, destination address and destination flexi-grid
-   transponder attributes are directly taken from tunnel, whereas other
-   attributes such as source flexi-grid port, destination flexi-grid
-   port are defined, as they are specific for flexi-grid.
+   *  Global optical performance constraints, e.g. generalized Signal-
+      to-noise (G-SNR) margin of a feasible optical path
+
+   *  Path-scope WDM layer constraints, e.g. identities of transceivers
+      assigned to the primary or secondary path
+
+   *  List of links that defines the path
+
+   *  Other optical attributes
+
+   Each path can be a segment path (only defined by the source and
+   destination nodes or link termination points) or an end-to-end path
+   (additionally needs source and destination transponders).  Therefore,
+   all the attributes are optional to support both situations.
 
 4.  Example of Use
 
    In order to explain how this model is used, the following example is
    provided.  An optical network usually has multiple transponders,
    switches (nodes) and links.  Figure 1 shows a simple topology, where
-   two physical paths interconnect two optical transponders.
+   two physical paths interconnect two optical transponders via a
+   combination of both WSON and Flexi-grid wavelength switched nodes and
+   links.
 
-                                    Tunnel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Guo, et al.               Expires 25 April 2024                 [Page 4]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
+                                 WDM Tunnel
       <==============================================================>
-                            Flexi-grid Tunnel Group x
-               <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+                            WDM Primary Path
+               <------------------------------------------------>
 
       +----------+                                        +----------+
       |  Flexi-  |                                        |  Flexi-  |
       |   grid   |                                        |   grid   |
       |  node A  |                                        |  node E  |
       |          |        +------+        +------+        |          |
-      |          | Link 1 |Flexi-| Link 2 |Flexi-| Link 3 |          |
+      |          | Link 1 |Flexi-| Link 2 |Fixed-| Link 3 |          |
       |          |<------>| grid |<------>| grid |<------>|          |
       |......... |        |node B|        |node C|        | .........|
       | Trans- : |        +------+        +------+        | : Trans- |
@@ -212,23 +248,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
       |          |              +----------+              |          |
       +----------+                                        +----------+
 
-               <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
-                             Flexi-grid Tunnel Group y
+               <------------------------------------------------>
+                             WDM Secondary Path
 
                          Figure 1: Topology Example
 
-
-
-
-
-Guo, et al.               Expires 23 April 2024                 [Page 4]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
-   To configure a network tunnel to interconnect transponders A and E,
-   first of all we have to populate the flexi-grid topology YANG model
-   with all elements in the network:
+   To configure a WDM tunnel to interconnect transponders A and E, first
+   of all we have to populate the flexi-grid topology YANG model with
+   all elements in the network:
 
    *  We define the transponders within nodes A and E as tunnel
       termination points (TTPs) and provide their internal local link
@@ -240,18 +267,29 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
       connectivity matrix between interfaces.
 
    *  Then, we also define the links 1 to 5 that interconnect nodes,
-      indicating which flexi-grid labels are available.
+      indicating which WSON or flexi-grid labels are available.
 
    *  Other information, such as the slot frequency and granularity are
       also provided.
 
+
+
+
+
+
+Guo, et al.               Expires 25 April 2024                 [Page 5]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
    After the nodes, links and transponders have been defined using
-   [I-D.ietf-ccamp-flexigrid-yang] we can configure the tunnel from the
-   information we have stored in the flexi-grid topology, by querying
-   which elements are available, and planning the resources that have to
-   be provided on each situation.  Note that every element in the flexi-
-   grid topology has a reference, and this is the way in which they are
-   called in the tunnel.
+   [I-D.ietf-ccamp-flexigrid-yang] and [RFC9094] we can configure the
+   tunnel from the information we have stored in the flexi-grid
+   topology, by querying which elements are available, and planning the
+   resources that have to be provided on each situation, taking into
+   account the global and path-specific WDM tunnel constraints.  Note
+   that every element in the flexi-grid topology has a reference, and
+   this is the way in which they are called in the tunnel.
 
    *  Depending on the case, it is possible to define either the source
       and destination node ports, or the source and destination node and
@@ -270,17 +308,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 5.  YANG Model for WDM Tunnel
 
 5.1.  YANG Tree
-
-
-
-
-
-
-
-Guo, et al.               Expires 23 April 2024                 [Page 5]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
 
    module: ietf-wdm-tunnel
 
@@ -303,6 +330,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           +--rw delta-power?
                   l0-types:gain-in-db-or-null
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+
+
+
+Guo, et al.               Expires 25 April 2024                 [Page 6]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
                /te:primary-path/te:explicit-route-objects-always
                /te:route-object-exclude-always/te:type
                /te:numbered-node-hop/te:numbered-node-hop:
@@ -330,14 +365,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                /te:primary-path/te:primary-reverse-path
                /te:explicit-route-objects-always
                /te:route-object-exclude-always/te:type
-
-
-
-Guo, et al.               Expires 23 April 2024                 [Page 6]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
                /te:numbered-node-hop/te:numbered-node-hop:
        +--rw path-in-transceiver
        |  +--rw transponder-id?        uint32
@@ -359,6 +386,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
              +--rw min-central-frequency?    frequency-thz
              +--rw max-central-frequency?    frequency-thz
              +--rw transceiver-tunability?   frequency-ghz
+
+
+
+Guo, et al.               Expires 25 April 2024                 [Page 7]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:computed-paths-properties
                /te:computed-path-properties/te:path-properties:
@@ -386,14 +421,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        |     +--rw min-central-frequency?    frequency-thz
        |     +--rw max-central-frequency?    frequency-thz
        |     +--rw transceiver-tunability?   frequency-ghz
-
-
-
-Guo, et al.               Expires 23 April 2024                 [Page 7]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
        +--rw path-out-transceiver
           +--rw transponder-id?        uint32
           +--rw transceivers* [lane-id]
@@ -415,6 +442,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        |  |  +--rw lane-id           uint8
        |  |  +--rw transceiver-id?   uint32
        |  +--rw operational-modes*     string
+
+
+
+Guo, et al.               Expires 25 April 2024                 [Page 8]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
        |  +--rw tx-tune-constraints
        |     +--rw min-central-frequency?    frequency-thz
        |     +--rw max-central-frequency?    frequency-thz
@@ -442,14 +477,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        +--ro estimated-eol-gsnr?      snr
        +--ro estimated-lowest-gsnr?   snr
      augment /te:te/te:lsps/te:lsp/te:lsp-actual-route-information:
-
-
-
-Guo, et al.               Expires 23 April 2024                 [Page 8]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
        +--ro wdm-path-state
           +--ro gsnr?   l0-types:snr
      augment /te:te/te:globals/te:named-path-constraints
@@ -471,6 +498,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           +--rw min-slot-width-factor?    uint16
           +--rw max-slot-width-factor?    uint16
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
+
+
+
+Guo, et al.               Expires 25 April 2024                 [Page 9]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
                /te:primary-path/te:path-in-segment/te:label-restrictions
                /te:label-restriction:
        +--rw grid-type?    identityref
@@ -498,14 +533,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           +--rw slot-width-granularity?   identityref
           +--rw min-slot-width-factor?    uint16
           +--rw max-slot-width-factor?    uint16
-
-
-
-Guo, et al.               Expires 23 April 2024                 [Page 9]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
                /te:primary-path/te:primary-reverse-path
                /te:path-out-segment/te:label-restrictions
@@ -527,6 +554,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           +--rw max-slot-width-factor?    uint16
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-out-segment
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 10]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
                /te:label-restrictions/te:label-restriction:
        +--rw grid-type?    identityref
        +--rw priority?     uint8
@@ -554,14 +589,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           +--rw max-slot-width-factor?    uint16
      augment /te:te/te:globals/te:named-path-constraints
                /te:named-path-constraint
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 10]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
                /te:explicit-route-objects-always
                /te:route-object-exclude-always/te:type/te:label
                /te:label-hop/te:te-label/te:technology:
@@ -583,6 +610,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                 |  +--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 11]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
@@ -610,14 +645,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                 x--:(super)
                 |  +--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 11]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
                    +--rw frequency-slots
@@ -639,6 +666,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                /te:named-path-constraint/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-end
                /te:te-label/te:technology:
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 12]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
        +--rw (grid-type)?
           +--:(fixed-dwdm)
           |  +--rw dwdm-n?    l0-types:dwdm-n
@@ -666,14 +701,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        +--rw (grid-type)?
           +--:(fixed-dwdm)
           |  +--rw dwdm-n?    l0-types:dwdm-n
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 12]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
           +--:(cwdm)
           |  +--rw cwdm-n?    l0-types:cwdm-n
           +--:(flexi-grid)
@@ -695,6 +722,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                /te:technology:
        +--rw (l0-grid-type)?
           +--:(fixed-dwdm)
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 13]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
           |  +--rw wson-dwdm-channel-spacing?    identityref
           +--:(cwdm)
           |  +--rw wson-cwdm-channel-spacing?    identityref
@@ -722,14 +757,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 13]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
                 |  +--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
@@ -751,6 +778,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           |     +--:(multi)
           |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
           +--:(cwdm)
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 14]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
           |  +--rw cwdm-n?                     l0-types:cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
@@ -778,14 +813,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           |     +--:(multi)
           |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
           +--:(cwdm)
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 14]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
           |  +--rw cwdm-n?                     l0-types:cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
@@ -807,6 +834,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                /te:label-hop/te:te-label/te:technology:
        +--rw (grid-type)?
           +--:(fixed-dwdm)
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 15]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
           |     |  +--rw dwdm-n?               l0-types:dwdm-n
@@ -834,14 +869,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                /te:technology:
        +--rw (grid-type)?
           +--:(fixed-dwdm)
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 15]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
           |  +--rw dwdm-n?    l0-types:dwdm-n
           +--:(cwdm)
           |  +--rw cwdm-n?    l0-types:cwdm-n
@@ -863,6 +890,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                /te:label-restriction/te:label-step/te:technology:
        +--rw (l0-grid-type)?
           +--:(fixed-dwdm)
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 16]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
           |  +--rw wson-dwdm-channel-spacing?    identityref
           +--:(cwdm)
           |  +--rw wson-cwdm-channel-spacing?    identityref
@@ -890,14 +925,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           |  +--rw dwdm-n?    l0-types:dwdm-n
           +--:(cwdm)
           |  +--rw cwdm-n?    l0-types:cwdm-n
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 16]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
           +--:(flexi-grid)
              +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
@@ -919,6 +946,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                /te:path-route-objects/te:path-route-object/te:type
                /te:label/te:label-hop/te:te-label/te:technology:
        +--ro (grid-type)?
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 17]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
           +--:(fixed-dwdm)
           |  +--ro (fixed-single-or-super-channel)?
           |     +--:(single)
@@ -946,14 +981,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                /te:algorithm/te:metric/te:optimization-metric
                /te:explicit-route-exclude-objects
                /te:route-object-exclude-object/te:type/te:label
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 17]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
                /te:label-hop/te:te-label/te:technology:
        +--rw (grid-type)?
           +--:(fixed-dwdm)
@@ -975,6 +1002,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
                    +--rw frequency-slots
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 18]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
                       +--rw frequency-slot* [flexi-n]
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
@@ -1002,14 +1037,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                 |  +--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 18]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
                 +--:(multi)
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
@@ -1031,6 +1058,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           |  +--rw cwdm-n?                     l0-types:cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 19]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
                 +--:(single)
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
@@ -1058,14 +1093,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           +--:(cwdm)
           |  +--rw cwdm-n?                     l0-types:cwdm-n
           +--:(flexi-grid)
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 19]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
              +--rw (single-or-super-channel)?
                 +--:(single)
                 |  +--rw flexi-n?              l0-types:flexi-n
@@ -1087,6 +1114,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        +--rw (grid-type)?
           +--:(fixed-dwdm)
           |  +--rw dwdm-n?    l0-types:dwdm-n
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 20]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
           +--:(cwdm)
           |  +--rw cwdm-n?    l0-types:cwdm-n
           +--:(flexi-grid)
@@ -1114,14 +1149,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           |  +--rw wson-cwdm-channel-spacing?    identityref
           +--:(flexi-grid)
              x--rw flexi-grid-channel-spacing?   identityref
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 20]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
              +--rw flexi-ncfg?                   identityref
              +--rw flexi-n-step?                 uint8
      augment /te:te/te:tunnels/te:tunnel/te:primary-paths
@@ -1143,6 +1170,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                /te:technology:
        +--rw (grid-type)?
           +--:(fixed-dwdm)
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 21]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
           |  +--rw dwdm-n?    l0-types:dwdm-n
           +--:(cwdm)
           |  +--rw cwdm-n?    l0-types:cwdm-n
@@ -1170,14 +1205,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        +--ro (grid-type)?
           +--:(fixed-dwdm)
           |  +--ro (fixed-single-or-super-channel)?
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 21]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
           |     +--:(single)
           |     |  +--ro dwdm-n?               l0-types:dwdm-n
           |     +--:(multi)
@@ -1199,6 +1226,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                          +--ro flexi-n    l0-types:flexi-n
                          +--ro flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 22]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
                /te:secondary-path/te:optimizations/te:algorithm
                /te:metric/te:optimization-metric
                /te:explicit-route-exclude-objects
@@ -1226,14 +1261,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                    +--rw frequency-slots
                       +--rw frequency-slot* [flexi-n]
                          +--rw flexi-n    l0-types:flexi-n
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 22]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
                          +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:optimizations/te:algorithm
@@ -1255,6 +1282,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                 +--:(single)
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 23]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
                 x--:(super)
                 |  +--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
@@ -1282,14 +1317,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                 +--:(single)
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 23]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
                 x--:(super)
                 |  +--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
@@ -1311,6 +1338,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           |     +--:(multi)
           |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
           +--:(cwdm)
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 24]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
           |  +--rw cwdm-n?                     l0-types:cwdm-n
           +--:(flexi-grid)
              +--rw (single-or-super-channel)?
@@ -1338,14 +1373,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           +--:(flexi-grid)
              +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 24]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
                /te:secondary-path/te:path-in-segment
                /te:label-restrictions/te:label-restriction/te:label-end
                /te:te-label/te:technology:
@@ -1367,6 +1394,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           |  +--rw wson-cwdm-channel-spacing?    identityref
           +--:(flexi-grid)
              x--rw flexi-grid-channel-spacing?   identityref
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 25]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
              +--rw flexi-ncfg?                   identityref
              +--rw flexi-n-step?                 uint8
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
@@ -1394,14 +1429,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      augment /te:te/te:tunnels/te:tunnel/te:secondary-paths
                /te:secondary-path/te:path-out-segment
                /te:label-restrictions/te:label-restriction/te:label-step
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 25]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
                /te:technology:
        +--rw (l0-grid-type)?
           +--:(fixed-dwdm)
@@ -1423,6 +1450,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           |     +--:(single)
           |     |  +--ro dwdm-n?               l0-types:dwdm-n
           |     +--:(multi)
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 26]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
           |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
           +--:(cwdm)
           |  +--ro cwdm-n?                     l0-types:cwdm-n
@@ -1450,14 +1485,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           +--:(fixed-dwdm)
           |  +--rw (fixed-single-or-super-channel)?
           |     +--:(single)
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 26]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
           |     |  +--rw dwdm-n?               l0-types:dwdm-n
           |     +--:(multi)
           |        +--rw subcarrier-dwdm-n*    l0-types:dwdm-n
@@ -1479,6 +1506,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                          +--rw flexi-m?   l0-types:flexi-m
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:optimizations/te:algorithm
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 27]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
                /te:metric/te:optimization-metric
                /te:explicit-route-include-objects
                /te:route-object-include-object/te:type/te:label
@@ -1506,14 +1541,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                       +--rw frequency-slot* [flexi-n]
                          +--rw flexi-n    l0-types:flexi-n
                          +--rw flexi-m?   l0-types:flexi-m
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 27]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path
                /te:explicit-route-objects-always
@@ -1535,6 +1562,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
                 |  +--rw subcarrier-flexi-n* [flexi-n]
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 28]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
                 +--:(multi)
@@ -1562,14 +1597,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                 |  +--rw flexi-n?              l0-types:flexi-n
                 |  +--rw flexi-m?              l0-types:flexi-m
                 x--:(super)
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 28]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
                 |  +--rw subcarrier-flexi-n* [flexi-n]
                 |     +--rw flexi-n    l0-types:flexi-n
                 |     +--rw flexi-m?   l0-types:flexi-m
@@ -1591,6 +1618,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
              +--rw flexi-n?   l0-types:flexi-n
      augment /te:te/te:tunnels/te:tunnel/te:secondary-reverse-paths
                /te:secondary-reverse-path/te:path-in-segment
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 29]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
                /te:label-restrictions/te:label-restriction/te:label-end
                /te:te-label/te:technology:
        +--rw (grid-type)?
@@ -1618,14 +1653,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                /te:label-restrictions/te:label-restriction
                /te:label-start/te:te-label/te:technology:
        +--rw (grid-type)?
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 29]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
           +--:(fixed-dwdm)
           |  +--rw dwdm-n?    l0-types:dwdm-n
           +--:(cwdm)
@@ -1647,6 +1674,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
                /te:secondary-reverse-path/te:path-out-segment
                /te:label-restrictions/te:label-restriction/te:label-step
                /te:technology:
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 30]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
        +--rw (l0-grid-type)?
           +--:(fixed-dwdm)
           |  +--rw wson-dwdm-channel-spacing?    identityref
@@ -1674,14 +1709,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
              +--ro (single-or-super-channel)?
                 +--:(single)
                 |  +--ro flexi-n?              l0-types:flexi-n
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 30]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
                 |  +--ro flexi-m?              l0-types:flexi-m
                 x--:(super)
                 |  +--ro subcarrier-flexi-n* [flexi-n]
@@ -1703,6 +1730,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
           |     +--:(multi)
           |        +--ro subcarrier-dwdm-n*    l0-types:dwdm-n
           +--:(cwdm)
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 31]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
           |  +--ro cwdm-n?                     l0-types:cwdm-n
           +--:(flexi-grid)
              +--ro (single-or-super-channel)?
@@ -1721,7 +1756,7 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 5.2.  YANG Code
 
-   <CODE BEGINS> file "ietf-wdm-tunnel@2023-10-02.yang"
+   <CODE BEGINS> file "ietf-wdm-tunnel@2023-10-22.yang"
    module ietf-wdm-tunnel {
      yang-version 1.1;
      namespace
@@ -1730,14 +1765,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
      import ietf-te {
        prefix "te";
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 31]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
        revision-date "2023-06-16";
        reference
          "I-D.ietf-teas-yang-te-34: A YANG Data Model for Traffic
@@ -1759,6 +1786,13 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
         Editor:   Daniel Perdices
                   <daniel.perdices@naudit.es>
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 32]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
 
         Editor:   Victor Lopez
                   <victor.lopez@nokia.com>
@@ -1787,17 +1821,10 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        Relating to IETF Documents
        (https://trustee.ietf.org/license-info).
 
-
-
-Guo, et al.               Expires 23 April 2024                [Page 32]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
        This version of this YANG module is part of RFC XXXX; see
        the RFC itself for full legal notices.";
 
-     revision "2023-10-02" {
+     revision "2023-10-22" {
        description
          "Updated revision with combined WSON and Flexi-grid tunnel
           YANG model";
@@ -1815,6 +1842,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        base l0-types:wavelength-assignment;
        description
          "Assign first available wavelength starting from the
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 33]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
           lowest frequency towards the highest frequency in
           the allowable frequency range.";
      }
@@ -1843,13 +1878,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        }
      }
 
-
-
-Guo, et al.               Expires 23 April 2024                [Page 33]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
      grouping transceiver-constraints-grp {
        description
          "This grouping defines constraints for transceiver
@@ -1870,6 +1898,13 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        description
          "This grouping defines explicit transceiver configurations
           on an end-to-end path.";
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 34]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
 
        leaf transponder-id {
          type uint32;
@@ -1898,14 +1933,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        }
 
        uses transceiver-constraints-grp;
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 34]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
      }
 
      grouping path-transceiver-grp {
@@ -1926,6 +1953,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          description
            "Constraints for outgoing direction transceiver
             configurations";
+
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 35]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
 
          uses path-transceiver-config-grp;
        }
@@ -1955,13 +1990,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          uses global-transceiver-constraint;
          uses l0-types:l0-path-constraints;
 
-
-
-Guo, et al.               Expires 23 April 2024                [Page 35]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
          leaf use-regen {
            type boolean;
            default false;
@@ -1982,6 +2010,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            default false;
            description
              "Indicate whether or not wavelength conversion is allowed
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 36]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
               along the tunnel path. Applicable only when 3R
               regeneration is enabled.";
          }
@@ -2010,14 +2046,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
               more paths of a WDM tunnel is being restored. Typically,
               wavelength retuning is not preferred for wavelength
               planning considerations.";
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 36]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
          }
          leaf delta-power {
            type l0-types:gain-in-db-or-null;
@@ -2038,6 +2066,13 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          config false;
          description
            "WDM path state.";
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 37]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
 
          leaf gsnr {
            type l0-types:snr;
@@ -2066,14 +2101,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
       * Applicable to starting, terminating and regenerator
       * transceivers.
       */
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 37]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
      augment "/te:te/te:tunnels/te:tunnel/te:primary-paths/"
            + "te:primary-path/te:explicit-route-objects-always/"
            + "te:route-object-exclude-always/te:type/"
@@ -2095,6 +2122,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:route-object-exclude-always/te:type/"
            + "te:numbered-node-hop/te:numbered-node-hop" {
        description
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 38]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
          "Augment TE primary reverse path with transceiver
           configurations.";
 
@@ -2122,14 +2157,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:computed-path-properties/te:path-properties" {
        description
          "Augment TE computed primary reverse path with WDM
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 38]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
           properties.";
 
        uses l0-types:l0-path-properties;
@@ -2151,6 +2178,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      }
 
      /*
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 39]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
       * Transceiver constraints for secondary reverse path
       * Applicable to starting, terminating and regenerator
       * transceivers.
@@ -2178,14 +2213,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE computed secondary path with WDM properties.";
 
        uses l0-types:l0-path-properties;
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 39]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
      }
 
      /*
@@ -2207,6 +2234,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      augment "/te:te/te:lsps/te:lsp/"
            + "te:lsp-actual-route-information" {
        description
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 40]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
          "Augment TE LSP to with WDM path state.";
 
        uses wdm-path-state;
@@ -2235,13 +2270,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        uses l0-types:wdm-label-range-info;
      }
 
-
-
-Guo, et al.               Expires 23 April 2024                [Page 40]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
            + "te:path-in-segment/te:label-restrictions/"
@@ -2261,6 +2289,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          of the primay path.";
        uses l0-types:wdm-label-range-info;
      }
+
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 41]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
@@ -2290,14 +2326,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:label-restriction" {
        description
          "Augment TE label range information for the ingress segment
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 41]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
          of the secondary path.";
        uses l0-types:wdm-label-range-info;
      }
@@ -2318,6 +2346,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:label-restriction" {
        description
          "Augment TE label range information for the ingress segment
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 42]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
          of the secondary reverse path.";
        uses l0-types:wdm-label-range-info;
      }
@@ -2346,14 +2382,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          excluded by the path computation with the named path
          constraint.";
        uses l0-types:wdm-label-hop;
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 42]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
      }
 
      augment "/te:te/te:globals/te:named-path-constraints/"
@@ -2374,6 +2402,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:label-restriction/te:label-start/"
            + "te:te-label/te:technology" {
        description
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 43]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
          "Augment TE label range start for the ingress segment
          of the named path constraint.";
        uses l0-types:wdm-label-start-end;
@@ -2402,14 +2438,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/te:path-out-segment/"
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 43]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
            + "te:label-restrictions/"
            + "te:label-restriction/te:label-start/"
            + "te:te-label/te:technology" {
@@ -2429,6 +2457,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          of the named path constraint.";
        uses l0-types:wdm-label-start-end;
      }
+
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 44]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
 
      augment "/te:te/te:globals/te:named-path-constraints/"
            + "te:named-path-constraint/te:path-out-segment/"
@@ -2458,14 +2494,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:optimizations/te:algorithm/te:metric/"
            + "te:optimization-metric/te:explicit-route-include-objects/"
            + "te:route-object-include-object/te:type/te:label/"
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 44]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the optimization of the explicit
@@ -2486,6 +2514,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 45]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
            + "te:primary-paths/te:primary-path/"
            + "te:explicit-route-objects-always/"
            + "te:route-object-include-exclude/te:type/te:label/"
@@ -2514,14 +2550,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:te-label/te:technology" {
        description
          "Augment TE label range end for the ingress segment
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 45]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
          of the primay path.";
        uses l0-types:wdm-label-start-end;
      }
@@ -2542,6 +2570,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:label-restriction/te:label-start/"
            + "te:te-label/te:technology" {
        description
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 46]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
          "Augment TE label range start for the egress segment
          of the primay path.";
        uses l0-types:wdm-label-start-end;
@@ -2570,14 +2606,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 46]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
            + "te:computed-paths-properties/"
            + "te:computed-path-properties/te:path-properties/"
            + "te:path-route-objects/te:path-route-object/"
@@ -2598,6 +2626,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the optimization of the explicit
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 47]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
          route objects excluded by the path computation of the primary
          reverse path.";
        uses l0-types:wdm-label-hop;
@@ -2626,14 +2662,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:label-hop/te:te-label/te:technology" {
        description
          "Augment TE label hop for the explicit route objects always
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 47]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
          excluded by the path computation of the primary reverse
          path.";
        uses l0-types:wdm-label-hop;
@@ -2654,6 +2682,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 48]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
            + "te:primary-paths/te:primary-path/"
            + "te:primary-reverse-path/"
            + "te:path-in-segment/te:label-restrictions/"
@@ -2682,14 +2718,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:primary-reverse-path/"
            + "te:path-in-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-step/te:technology" {
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 48]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
        description
          "Augment TE label range step for the ingress segment
          of the primay reverse path.";
@@ -2710,6 +2738,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:primary-paths/te:primary-path/"
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 49]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
            + "te:primary-reverse-path/"
            + "te:path-out-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-end/"
@@ -2738,14 +2774,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:path-properties/te:path-route-objects/"
            + "te:path-route-object/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 49]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
        description
          "Augment TE label hop for the route object of the computed
          primary reverse path.";
@@ -2766,6 +2794,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 50]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
            + "te:secondary-paths/te:secondary-path/"
            + "te:optimizations/te:algorithm/te:metric/"
            + "te:optimization-metric/te:explicit-route-include-objects/"
@@ -2794,14 +2830,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:explicit-route-objects-always/"
            + "te:route-object-include-exclude/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 50]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
        description
          "Augment TE label hop for the explicit route objects included
          or excluded by the path computation of the secondary path.";
@@ -2822,6 +2850,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
            + "te:path-in-segment/te:label-restrictions/"
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 51]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
            + "te:label-restriction/te:label-end/"
            + "te:te-label/te:technology" {
        description
@@ -2850,14 +2886,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
        uses l0-types:wdm-label-start-end;
      }
 
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 51]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
            + "te:path-out-segment/te:label-restrictions/"
@@ -2878,6 +2906,13 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          of the secondary path.";
        uses l0-types:wdm-label-step;
      }
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 52]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
 
      augment "/te:te/te:tunnels/te:tunnel/"
            + "te:secondary-paths/te:secondary-path/"
@@ -2906,14 +2941,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 52]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
            + "te:optimizations/te:algorithm/te:metric/"
            + "te:optimization-metric/te:explicit-route-include-objects/"
@@ -2935,6 +2962,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
          "Augment TE label hop for the explicit route objects always
          excluded by the path computation of the secondary reverse
          path.";
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 53]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
        uses l0-types:wdm-label-hop;
      }
 
@@ -2962,14 +2997,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 53]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
            + "te:path-in-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-end/"
@@ -2991,6 +3018,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
      }
 
      augment "/te:te/te:tunnels/te:tunnel/"
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 54]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
            + "te:secondary-reverse-paths/te:secondary-reverse-path/"
            + "te:path-out-segment/te:label-restrictions/"
            + "te:label-restriction/te:label-start/"
@@ -3018,14 +3053,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:label-restriction/te:label-step/te:technology" {
        description
          "Augment TE label range step for the egress segment
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 54]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
          of the secondary reverse path.";
        uses l0-types:wdm-label-step;
      }
@@ -3047,6 +3074,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
            + "te:lsp/te:lsp-actual-route-information/"
            + "te:lsp-actual-route-information/te:type/te:label/"
            + "te:label-hop/te:te-label/te:technology" {
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 55]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
        description
          "Augment TE label hop for the actual route of the LSP.";
        uses l0-types:wdm-label-hop;
@@ -3075,13 +3110,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
    *  /te:te/.../te:te-bandwidth/te:technology
 
-
-
-Guo, et al.               Expires 23 April 2024                [Page 55]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
    *  /te:te/.../te:type/te:label/te:label-hop/te:te-label/te:technology
 
    *  /te:te/.../te:label-restrictions/te:label-restriction/te:label-
@@ -3100,6 +3128,16 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
    It is proposed to IANA to assign new URIs from the "IETF XML
    Registry" [RFC3688] as follows:
 
+
+
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 56]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
       URI: urn:ietf:params:xml:ns:yang:ietf-wdm-tunnel
       Registrant Contact: The IESG
       XML: N/A; the requested URI is an XML namespace.
@@ -3112,7 +3150,9 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
       prefix: wdm-tnl
       reference: RFC XXXX
 
-8.  Normative References
+8.  References
+
+8.1.  Normative References
 
    [I-D.ietf-ccamp-flexigrid-yang]
               de Madrid, U. A., Burrero, D. P., King, D., Lee, Y., and
@@ -3130,14 +3170,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
               October 2023, <https://datatracker.ietf.org/doc/html/
               draft-ietf-teas-yang-te-34>.
 
-
-
-
-Guo, et al.               Expires 23 April 2024                [Page 56]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -3152,6 +3184,16 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
               DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/info/rfc6020>.
 
+
+
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 57]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
               and A. Bierman, Ed., "Network Configuration Protocol
               (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
@@ -3162,13 +3204,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
               Wavelength Switched Optical Networks", RFC 7446,
               DOI 10.17487/RFC7446, February 2015,
               <https://www.rfc-editor.org/info/rfc7446>.
-
-   [RFC7698]  Gonzalez de Dios, O., Ed., Casellas, R., Ed., Zhang, F.,
-              Fu, X., Ceccarelli, D., and I. Hussain, "Framework and
-              Requirements for GMPLS-Based Control of Flexi-Grid Dense
-              Wavelength Division Multiplexing (DWDM) Networks",
-              RFC 7698, DOI 10.17487/RFC7698, November 2015,
-              <https://www.rfc-editor.org/info/rfc7698>.
 
    [RFC7699]  Farrel, A., King, D., Li, Y., and F. Zhang, "Generalized
               Labels for the Flexi-Grid in Lambda Switch Capable (LSC)
@@ -3187,17 +3222,40 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
-
-
-Guo, et al.               Expires 23 April 2024                [Page 57]
-
-Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
-
-
    [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
               Access Control Model", STD 91, RFC 8341,
               DOI 10.17487/RFC8341, March 2018,
               <https://www.rfc-editor.org/info/rfc8341>.
+
+   [RFC9094]  Zheng, H., Lee, Y., Guo, A., Lopez, V., and D. King, "A
+              YANG Data Model for Wavelength Switched Optical Networks
+              (WSONs)", RFC 9094, DOI 10.17487/RFC9094, August 2021,
+              <https://www.rfc-editor.org/info/rfc9094>.
+
+8.2.  Informative References
+
+   [RFC6163]  Lee, Y., Ed., Bernstein, G., Ed., and W. Imajuku,
+              "Framework for GMPLS and Path Computation Element (PCE)
+              Control of Wavelength Switched Optical Networks (WSONs)",
+              RFC 6163, DOI 10.17487/RFC6163, April 2011,
+              <https://www.rfc-editor.org/info/rfc6163>.
+
+
+
+
+
+
+Guo, et al.               Expires 25 April 2024                [Page 58]
+
+Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
+
+
+   [RFC7698]  Gonzalez de Dios, O., Ed., Casellas, R., Ed., Zhang, F.,
+              Fu, X., Ceccarelli, D., and I. Hussain, "Framework and
+              Requirements for GMPLS-Based Control of Flexi-Grid Dense
+              Wavelength Division Multiplexing (DWDM) Networks",
+              RFC 7698, DOI 10.17487/RFC7698, November 2015,
+              <https://www.rfc-editor.org/info/rfc7698>.
 
 Acknowledgments
 
@@ -3243,9 +3301,7 @@ Contributors
 
 
 
-
-
-Guo, et al.               Expires 23 April 2024                [Page 58]
+Guo, et al.               Expires 25 April 2024                [Page 59]
 
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
@@ -3301,7 +3357,7 @@ Authors' Addresses
 
 
 
-Guo, et al.               Expires 23 April 2024                [Page 59]
+Guo, et al.               Expires 25 April 2024                [Page 60]
 
 Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
@@ -3357,4 +3413,4 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
 
-Guo, et al.               Expires 23 April 2024                [Page 60]
+Guo, et al.               Expires 25 April 2024                [Page 61]

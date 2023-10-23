@@ -103,21 +103,18 @@ contributor:
 
 This document defines a YANG data model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in Optical Networks (Wavelength Switched Optical Networks (WSON) and Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks).
 
-   The YANG data model defined in this document conforms to the Network
-   Management Datastore Architecture (NMDA).
+The YANG data model defined in this document conforms to the Network Management Datastore Architecture (NMDA).
 
 --- middle
 
 # Introduction
 
-Transport networks have evolved from traditional Wavelength Switched Optical Networks (WSON) systems {{?RFC6163}} towards elastic optical networks,
+Transport networks have evolved from traditional Wavelength Switched Optical Networks (WSON) systems {{?RFC6163}} based on only fixed-grid wavelength switching, towards elastic optical networks,
 based on flexi-grid Dense Wavelength Division Multiplexing (DWDM) transmission and switching technologies {{?RFC7698}}. Such technology aims
 at increasing transport network scalability and flexibility, allowing bandwidth usage optimization.
 
 While {{!RFC9094}} {{!I-D.ietf-ccamp-flexigrid-yang}} focus on flexi-grid objects such as nodes, transponders
-and links, this document presents a YANG {{!RFC7950}} model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in Optical Networks, which can be Wavelength Switched Optical Networks (WSON) networks or Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks or a mix of these two Networks.
-This YANG module defines the path from a source transponder or node to the destination through several
-intermediate nodes in the flexi-grid network.
+and links, this document presents a YANG {{!RFC7950}} model for the provisioning and management of Traffic Engineering (TE) tunnels and Label Switched Paths (LSPs) in DWDM Optical Networks, which can be Wavelength Switched Optical Networks (WSON) networks or Flexi-Grid Dense Wavelength Division Multiplexing (DWDM) Networks, or a mix of these two networks. This YANG module defines the path from a source transponder or node to the destination through several intermediate nodes in such a WDM optical network.
 
 This document identifies the WDM tunnel components, parameters and their values, and
 characterizes the features and the performances of the WDM elements. An application example is
@@ -154,33 +151,28 @@ provided towards the end of the document to understand their utility better.
 
 # Overview
 
-   The present model defines a flexi-grid tunnel mainly composed of:
-   -  source address
+The generic TE tunnel attributes, such as source and destination node addresses, are already defined by the base data model in {{!I-D.ietf-teas-yang-te}}. The present model defines a WDM tunnel by augmenting the base model with the following
+WDM technology-specific constructs:
 
-   -  source flexi-grid port
+   -  Source and destination WDM node specification
 
-   -  source flexi-grid transponder
+   -  Global WDM layer constraints that influence the TE path selection, e.g., whether wavelength conversion or regeneration is considered
 
-   -  destination address
+   -  Global transponder/transceiver configuration constraints, e.g., operational modes, tuning constraints of the transceiver
 
-   -  destination flexi-grid port
+   -  Global optical performance constraints, e.g. generalized Signal-to-noise (G-SNR) margin of a feasible optical path
 
-   -  destination flexi-grid transponder
+   -  Path-scope WDM layer constraints, e.g. identities of transceivers assigned to the primary or secondary path
 
-   -  list of links that defines the path
+   -  List of links that defines the path
 
-   -  other optical attributes
+   -  Other optical attributes
+
 
 Each path can be a segment path (only defined by the source and destination nodes or link termination points)
-or an end-to-end path (additionally needs source and destination transponders).
-Therefore, all the attributes are optional to support both situations.
+or an end-to-end path (additionally needs source and destination transponders). Therefore, all the attributes
+are optional to support both situations. 
 
-This is achieved by combining the traffic engineering tunnel attributes
-explained in {{!I-D.ietf-teas-yang-te}} and augments when necessary. For
-instance, source address, source flexi-grid transponder, destination address
-and destination flexi-grid transponder attributes are directly taken from the
-tunnel; other tunnel attributes such as source flexi-grid port, destination
-flexi-grid port are defined, as they are specific for flexi-grid.
 
 # Example of Use
 
@@ -188,13 +180,14 @@ flexi-grid port are defined, as they are specific for flexi-grid.
    example is provided.  An optical network usually has multiple transponders,
    switches (nodes) and links. {{fig-topology-example}} shows a simple
    topology, where two physical paths interconnect two optical
-   transponders.
+   transponders via a combination of both WSON and Flexi-grid wavelength
+   switched nodes and links.
 
 
 ~~~~
-                                 Tunnel
+                              WDM Tunnel
    <==============================================================>
-                         Flexi-grid Tunnel Group x
+                         WDM Primary Path
             <------------------------------------------------>
 
    +----------+                                        +----------+
@@ -202,7 +195,7 @@ flexi-grid port are defined, as they are specific for flexi-grid.
    |   grid   |                                        |   grid   |
    |  node A  |                                        |  node E  |
    |          |        +------+        +------+        |          |
-   |          | Link 1 |Flexi-| Link 2 |Flexi-| Link 3 |          |
+   |          | Link 1 |Flexi-| Link 2 |Fixed-| Link 3 |          |
    |          |<------>| grid |<------>| grid |<------>|          |
    |......... |        |node B|        |node C|        | .........|
    | Trans- : |        +------+        +------+        | : Trans- |
@@ -215,11 +208,11 @@ flexi-grid port are defined, as they are specific for flexi-grid.
    +----------+                                        +----------+
 
             <------------------------------------------------>
-                          Flexi-grid Tunnel Group y
+                          WDM Secondary Path
 ~~~~
 {: #fig-topology-example title="Topology Example"}
 
-   To configure a network tunnel to interconnect
+   To configure a WDM tunnel to interconnect
    transponders A and E, first of all we have to populate the
    flexi-grid topology YANG model with all elements in the network:
 
@@ -233,16 +226,17 @@ flexi-grid port are defined, as they are specific for flexi-grid.
       connectivity matrix between interfaces.
 
    -  Then, we also define the links 1 to 5 that interconnect nodes,
-      indicating which flexi-grid labels are available.
+      indicating which WSON or flexi-grid labels are available.
 
    -  Other information, such as the slot frequency and granularity are
       also provided.
 
    After the nodes, links and transponders have been defined using
-   {{!I-D.ietf-ccamp-flexigrid-yang}} we can
+   {{!I-D.ietf-ccamp-flexigrid-yang}} and {{!RFC9094}} we can
    configure the tunnel from the information we have stored in the
    flexi-grid topology, by querying which elements are available, and
-   planning the resources that have to be provided on each situation.
+   planning the resources that have to be provided on each situation, taking into
+   account the global and path-specific WDM tunnel constraints.
    Note that every element in the flexi-grid topology has a reference,
    and this is the way in which they are called in the tunnel.
 
@@ -271,7 +265,7 @@ flexi-grid port are defined, as they are specific for flexi-grid.
 ## YANG Code
 
 ~~~~
-   <CODE BEGINS> file "ietf-wdm-tunnel@2023-10-02.yang"
+   <CODE BEGINS> file "ietf-wdm-tunnel@2023-10-22.yang"
 {::include ./ietf-wdm-tunnel.yang}
    <CODE ENDS>
 ~~~~

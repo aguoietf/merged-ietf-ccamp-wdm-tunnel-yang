@@ -154,8 +154,6 @@ provided towards the end of the document to understand their utility better.
 The generic TE tunnel attributes, such as source and destination node addresses, source and destination tunnel termination points (TTPs), are already defined by the base data model in {{!I-D.ietf-teas-yang-te}}. The present model defines a WDM tunnel by augmenting the base model with the following
 WDM technology-specific constructs:
 
-   -  Source and destination WDM node specification
-
    -  Global WDM layer constraints that influence the TE path selection, e.g., whether wavelength conversion or regeneration is considered
 
    -  Global transponder/transceiver configuration constraints, e.g., operational modes, tuning constraints of the transceiver

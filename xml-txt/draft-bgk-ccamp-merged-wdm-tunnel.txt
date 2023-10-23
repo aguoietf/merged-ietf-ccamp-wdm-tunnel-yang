@@ -158,10 +158,10 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
    augmenting the base model with the following WDM technology-specific
    constructs:
 
-   *  Source and destination WDM node specification
-
    *  Global WDM layer constraints that influence the TE path selection,
       e.g., whether wavelength conversion or regeneration is considered
+
+
 
 
 

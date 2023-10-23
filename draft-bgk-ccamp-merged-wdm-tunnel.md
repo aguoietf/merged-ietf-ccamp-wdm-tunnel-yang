@@ -151,7 +151,7 @@ provided towards the end of the document to understand their utility better.
 
 # Overview
 
-The generic TE tunnel attributes, such as source and destination node addresses, are already defined by the base data model in {{!I-D.ietf-teas-yang-te}}. The present model defines a WDM tunnel by augmenting the base model with the following
+The generic TE tunnel attributes, such as source and destination node addresses, source and destination tunnel termination points (TTPs), are already defined by the base data model in {{!I-D.ietf-teas-yang-te}}. The present model defines a WDM tunnel by augmenting the base model with the following
 WDM technology-specific constructs:
 
    -  Source and destination WDM node specification
@@ -186,17 +186,17 @@ are optional to support both situations.
 
 ~~~~
                               WDM Tunnel
-   <==============================================================>
+        <===================================================>
                          WDM Primary Path
-            <------------------------------------------------>
+        <--------------------------------------------------->
 
    +----------+                                        +----------+
    |  Flexi-  |                                        |  Flexi-  |
    |   grid   |                                        |   grid   |
    |  node A  |                                        |  node E  |
    |          |        +------+        +------+        |          |
-   |          | Link 1 |Flexi-| Link 2 |Fixed-| Link 3 |          |
-   |          |<------>| grid |<------>| grid |<------>|          |
+   |          | Link 1 |Flexi-| Link 2 | WSON | Link 3 |          |
+   |          |<------>| grid |<------>|      |<------>|          |
    |......... |        |node B|        |node C|        | .........|
    | Trans- : |        +------+        +------+        | : Trans- |
    | ponder : |                                        | : ponder |
@@ -207,12 +207,12 @@ are optional to support both situations.
    |          |              +----------+              |          |
    +----------+                                        +----------+
 
-            <------------------------------------------------>
+        <--------------------------------------------------->
                           WDM Secondary Path
 ~~~~
 {: #fig-topology-example title="Topology Example"}
 
-   To configure a WDM tunnel to interconnect
+   To configure an end-to-end WDM tunnel to interconnect
    transponders A and E, first of all we have to populate the
    flexi-grid topology YANG model with all elements in the network:
 

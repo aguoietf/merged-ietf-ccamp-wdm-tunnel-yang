@@ -152,7 +152,8 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 3.  Overview
 
    The generic TE tunnel attributes, such as source and destination node
-   addresses, are already defined by the base data model in
+   addresses, source and destination tunnel termination points (TTPs),
+   are already defined by the base data model in
    [I-D.ietf-teas-yang-te].  The present model defines a WDM tunnel by
    augmenting the base model with the following WDM technology-specific
    constructs:
@@ -161,7 +162,6 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
    *  Global WDM layer constraints that influence the TE path selection,
       e.g., whether wavelength conversion or regeneration is considered
-
 
 
 
@@ -227,17 +227,17 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
 
 
                                  WDM Tunnel
-      <==============================================================>
+           <===================================================>
                             WDM Primary Path
-               <------------------------------------------------>
+           <--------------------------------------------------->
 
       +----------+                                        +----------+
       |  Flexi-  |                                        |  Flexi-  |
       |   grid   |                                        |   grid   |
       |  node A  |                                        |  node E  |
       |          |        +------+        +------+        |          |
-      |          | Link 1 |Flexi-| Link 2 |Fixed-| Link 3 |          |
-      |          |<------>| grid |<------>| grid |<------>|          |
+      |          | Link 1 |Flexi-| Link 2 | WSON | Link 3 |          |
+      |          |<------>| grid |<------>|      |<------>|          |
       |......... |        |node B|        |node C|        | .........|
       | Trans- : |        +------+        +------+        | : Trans- |
       | ponder : |                                        | : ponder |
@@ -248,14 +248,14 @@ Internet-Draft      A YANG Data Model for WDM Tunnels       October 2023
       |          |              +----------+              |          |
       +----------+                                        +----------+
 
-               <------------------------------------------------>
+           <--------------------------------------------------->
                              WDM Secondary Path
 
                          Figure 1: Topology Example
 
-   To configure a WDM tunnel to interconnect transponders A and E, first
-   of all we have to populate the flexi-grid topology YANG model with
-   all elements in the network:
+   To configure an end-to-end WDM tunnel to interconnect transponders A
+   and E, first of all we have to populate the flexi-grid topology YANG
+   model with all elements in the network:
 
    *  We define the transponders within nodes A and E as tunnel
       termination points (TTPs) and provide their internal local link

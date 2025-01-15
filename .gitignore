@@ -1,23 +1,45 @@
 # *.html
+# *.txt
+*.html
+*.pdf
 *.pdf
 *.redxml
+*.redxml
 *.swp
-# *.txt
+*.swp
+*.txt
+*.upload
 *.upload
 *~
+*~
+.tags
 .tags
 /*-[0-9][0-9].xml
+/*-[0-9][0-9].xml
+/.*.mk
 /.gems/
+/.gems/
+/.refcache
 /.refcache
 /.targets.mk
 /.venv/
+/.venv/
+/.vscode/
 /.vscode/
 /lib
 /node_modules/
+/node_modules/
+/versioned/
 /versioned/
 Gemfile.lock
+Gemfile.lock
 archive.json
+archive.json
+draft-bgk-ccamp-merged-wdm-tunnel.xml
 draft-ietf-cccamp-wdm-tunnel.xml
 package-lock.json
+package-lock.json
 report.xml
+report.xml
+!requirements.txt
 !requirements.txt
